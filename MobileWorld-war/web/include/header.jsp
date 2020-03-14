@@ -1,5 +1,5 @@
+<%@page import="vn.group1.entity.Customer"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<fmt:setLocale value="en_US" scope="session"/>
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
@@ -44,9 +44,18 @@
 
                     </ul>
                     <div class="right-sec">
+                    
                         <ul>
-                            <li><a href="#.">Login/Register </a></li>
-
+                            <li>  <% if (session.getAttribute("curAcc") != null) { %>
+		
+                            <li><i class="glyphicon glyphicon-user" ></i><a href="User?action=update&id=${curAcc.id}">Hello: ${curAcc.fullname}</a></li>
+                            <li><a href="User?action=logout">Logout</a></li>
+						<% } %>
+                                                <%if(session.getAttribute("curAcc") == null){ %>
+		
+						<li><a href="/MobileWorld-war/login">Login/Register</a></li>
+						<% } %></li>
+                       
                         </ul>
                     </div>
                 </div>
@@ -55,11 +64,11 @@
             <!-- Header -->
             <header class="header-style-5 style-10">
                 <div class="container">
-                    <div class="logo"> <a href="./"><img src="images/logo-47.png" alt="Logo"></a> </div>
+                    <div class="logo"> <a href="/MobileWorld-war"><img src="images/logo-47.png" alt="Logo"></a> </div>
                     <div class="go-right"> 
 
                         <!-- search -->
-                        <form action="./filter" method="get">
+                        <form action="/MobileWorld-war/filter" method="get">
                             <div class="search-cate">
                                 <select name="category" class="selectpicker">
                                     <option value="0">All Categories</option>

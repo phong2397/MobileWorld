@@ -39,7 +39,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0 text-dark">Products</h1>
+                                <h1 class="m-0 text-dark">Categories</h1>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
@@ -58,8 +58,8 @@
                                     <div class="info-box-content">
                                         <span class="info-box-text">Total</span>
                                         <span class="info-box-number">
-                                            ${brands.size()}
-                                            <small>brands</small>
+                                            ${categories.size()}
+                                            <small>categories</small>
                                         </span>
                                     </div>
                                     <!-- /.info-box-content -->
@@ -117,7 +117,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">Brand List</h5>
+                                        <h5 class="card-title">Category List</h5>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body p-0">
@@ -125,24 +125,19 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center text-muted">#ID</th>
-                                                    <th class="text-center"><i class="fas fa-image"></i></th>
                                                     <th>Name</th>
-                                                    <th>Categories</th>
                                                     <th class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="${brands}" var="item">
+                                                <c:forEach items="${categories}" var="item">
                                                     <tr>
                                                         <td class="text-center">#${item.id}</td>
-                                                        <td style="width: 150px; padding: 20px">
-                                                            <img class="img-fluid" src="${item.logo}" /></td>
                                                         <td>${item.name}</td>
-                                                        <td>${item.categories}</td>
                                                         <td class="text-center">
 <!--                                                            <a target="_blank" href="../brand?id=${item.id}" class="btn btn-primary btn-sm">View</a>-->
-                                                       <a target="_blank" href="update-brand?action=find&id=${item.id}"    class="btn btn-warning btn-sm">Update</a>
-                                                    <a target="_blank" href="update-brand?action=delete-brand&id=${item.id}"  onclick="return confirm('You want to delete?');"class="btn btn-danger btn-sm">Delete</a>
+                                                       <a target="_blank" href="update-category?action=find&id=${item.id}"    class="btn btn-warning btn-sm">Update</a>
+                                                    <a target="_blank" href="update-category?action=delete-category&id=${item.id}"  onclick="return confirm('You want to delete?');"class="btn btn-danger btn-sm">Delete</a>
                                                         </td>
                                                         </tr>
                                                 </c:forEach>

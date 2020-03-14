@@ -47,7 +47,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0 text-dark">Add New Brand</h1>
+                                <h1 class="m-0 text-dark">Add New Category</h1>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
@@ -72,28 +72,12 @@
 
                             <div class="card-body">
                               
-                                    <form action="create-brand" method="post" id="loginForm">
+                                    <form action="create-category" method="post" id="loginForm">
                                         <div class="col-md-6">
 
-                                            <label>Brand Name</label>
+                                            <label>Category Name</label>
                                             <input type="text" id="name" name="name" class="form-control" />
 
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Brand Logo</label>
-                                                <input type="text" id="logo" name="logo" class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Category</label>
-                                                <select id="category" name="category" class="form-control select2" style="width: 25%;">
-                                                    <c:forEach items="${categories}" var="item">
-                                                        <option value="${item.id}">${item.name}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
                                         </div>
                                         <div class="col-sm-2 " style="margin-top: 30px">
                                             <button id="btnPublish" class="btn btn-primary">
@@ -169,11 +153,9 @@
                         },
                                 messages: {
                                 name: {
-                                required: "<font color='red'>Please enter Name's Brand</font>",
+                                required: "<font color='red'>Please enter Name's Category</font>",
                                 },
-                                        logo: {
-                                        required: "<font color='red'>Please upload link Images</font>",
-                                        },
+                                        
                                 },
                         });
                     });

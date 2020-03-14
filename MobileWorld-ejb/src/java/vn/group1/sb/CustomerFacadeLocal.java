@@ -24,6 +24,10 @@ public interface CustomerFacadeLocal {
 
     Customer find(Object id);
 
+  Customer checklogin(String username, String pass);
+
+    void changePass(int userID, String newpass);
+
     List<Customer> findAll();
 
     List<Customer> findRange(int[] range);
@@ -31,5 +35,7 @@ public interface CustomerFacadeLocal {
     int count();
     
     Customer findByPhone(String phone);
+    Customer findUserByUsername(String username);
+
     
 }

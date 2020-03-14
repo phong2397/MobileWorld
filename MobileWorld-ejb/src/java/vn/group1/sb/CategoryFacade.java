@@ -5,11 +5,9 @@
  */
 package vn.group1.sb;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import vn.group1.entity.Category;
 
 /**
@@ -30,5 +28,5 @@ public class CategoryFacade extends AbstractFacade<Category> implements Category
     public CategoryFacade() {
         super(Category.class);
     }
-   
+    
 }

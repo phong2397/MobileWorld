@@ -16,7 +16,10 @@
                 <img src="<c:if test="${user.avatar != ''}">${user.avatar}</c:if><c:if test="${user.avatar == ''}">assets/img/customer-100.png</c:if>" class="img-circle elevation-2" />
             </div>
             <div class="info">
-                <a href="#" class="d-block">${user.fullname}</a>
+                
+                    <a href="login?action=logout" class="d-block"><p style=" font-weight: bold;">Welcome ${user.fullname}</p></a>
+           
+                
             </div>
         </div>
 
@@ -92,6 +95,64 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link <c:if test="${mainMenu.equals('category')}">active</c:if>">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>
+                            Categories
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./category-list" class="nav-link <c:if test="${subMenu.equals('category-list')}">active</c:if>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./create-category" class="nav-link <c:if test="${subMenu.equals('create-category')}">active</c:if>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./category-report" class="nav-link <c:if test="${subMenu.equals('category-report')}">active</c:if>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Report</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                  <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link <c:if test="${mainMenu.equals('customer')}">active</c:if>">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>
+                           User
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./user-list" class="nav-link <c:if test="${subMenu.equals('user-list')}">active</c:if>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./create-user" class="nav-link <c:if test="${subMenu.equals('create-brand')}">active</c:if>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./user-report" class="nav-link <c:if test="${subMenu.equals('brand-report')}">active</c:if>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Report</p>
+                            </a>
+                        </li>
+                  </ul>
+                  </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
