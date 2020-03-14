@@ -21,7 +21,7 @@ import vn.group1.sb.ProductFacadeLocal;
  *
  * @author junev
  */
-@WebServlet(name = "ProductAdminServlet", urlPatterns = {"/admin/product-list"})
+@WebServlet(name = "ProductAdminServlet", urlPatterns = { "/admin", "/admin/product-list"})
 public class ProductServlet extends HttpServlet {
 
     @EJB
@@ -33,16 +33,6 @@ public class ProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-        session.setAttribute("uid", 1);
-        String uid = session.getAttribute("uid").toString();
-        Admin user = adminFacade.find(Integer.parseInt(uid));
-        
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-        }
-
-        request.setAttribute("user", user);
         request.setAttribute("mainMenu", "product");
         request.setAttribute("subMenu", "product-list");
         request.setAttribute("products", productFacade.findAll());

@@ -97,7 +97,7 @@ public class UserServlet extends HttpServlet {
                 if (curAcc != null) {
 
                     session.setAttribute("curAcc", curAcc);
-                    request.getRequestDispatcher("home").forward(request, response);
+                    response.sendRedirect("home");
 
                 } else {
                     request.setAttribute("error", " Username and Password Invalid");
@@ -108,7 +108,7 @@ public class UserServlet extends HttpServlet {
             case "logout":
 
                 session.invalidate();
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                response.sendRedirect("");
         }
 
     }

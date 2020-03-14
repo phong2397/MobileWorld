@@ -125,9 +125,7 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center text-muted">#ID</th>
-                                                    <th class="text-center"><i class="fas fa-image"></i></th>
                                                     <th>Name</th>
-                                                    <th>Categories</th>
                                                     <th class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
@@ -135,10 +133,7 @@
                                                 <c:forEach items="${brands}" var="item">
                                                     <tr>
                                                         <td class="text-center">#${item.id}</td>
-                                                        <td style="width: 150px; padding: 20px">
-                                                            <img class="img-fluid" src="${item.logo}" /></td>
                                                         <td>${item.name}</td>
-                                                        <td>${item.categories}</td>
                                                         <td class="text-center">
 <!--                                                            <a target="_blank" href="../brand?id=${item.id}" class="btn btn-primary btn-sm">View</a>-->
                                                        <a target="_blank" href="update-brand?action=find&id=${item.id}"    class="btn btn-warning btn-sm">Update</a>

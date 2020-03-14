@@ -64,7 +64,7 @@
         %> 
         <div class="login-box">
             <div class="login-logo">
-                <a href="../../index2.html"><b>Admin</b>LTE</a>
+                <a href="../../index2.html"><b>Admin</b>Login</a>
             </div>
             <!-- /.login-logo -->
             <div class="card">
@@ -106,30 +106,10 @@
                             <!-- /.col -->
                         </div>
                     </form>
-
-                    <div class="social-auth-links text-center mb-3">
-                        <p>- OR -</p>
-                        <a href="#" class="btn btn-block btn-primary">
-                            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                        </a>
-                        <a href="#" class="btn btn-block btn-danger">
-                            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                        </a>
-                    </div>
-                    <!-- /.social-auth-links -->
-
                 </div>
                 <!-- /.login-card-body -->
             </div>
         </div>
         <!-- /.login-box -->
-
-        <!-- jQuery -->
-        <script src="../../plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap 4 -->
-        <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="../../dist/js/adminlte.min.js"></script>
-
     </body>
 </html>

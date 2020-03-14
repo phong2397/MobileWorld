@@ -40,14 +40,14 @@
                                 <li class="col-sm-12"     >   <span style="color:red">${error}</span><li>
                                 <li class="col-sm-12">
                                     <label>Username
-                                        <input type="text" id="username" class="form-control" name="username" placeholder="" required title="Username is required"/>
+                                        <input type="text" class="form-control" name="username" placeholder="" required title="Username is required"/>
 
 
                                     </label>
                                 </li>
                                 <li class="col-sm-12">
                                     <label>Password
-                                        <input type="password" id="pass" class="form-control" name="pass" placeholder="" required title="Password is required"/>
+                                        <input type="password" class="form-control" name="pass" placeholder="" required title="Password is required"/>
 
                                     </label>
                                 </li>
@@ -129,8 +129,20 @@
         </section>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- JavaScripts --> 
+<script src="js/vendors/jquery/jquery.min.js"></script> 
+<script src="js/vendors/wow.min.js"></script> 
+<script src="js/vendors/bootstrap.min.js"></script> 
+<script src="js/vendors/own-menu.js"></script> 
+<script src="js/vendors/jquery.sticky.js"></script> 
+<script src="js/vendors/owl.carousel.min.js"></script> 
+<script src="admin/plugins/toastr/toastr.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+
+<!-- SLIDER REVOLUTION 4.x SCRIPTS  --> 
+<script type="text/javascript" src="js/vendors/jquery.tp.t.min.js"></script> 
+<script type="text/javascript" src="js/vendors/jquery.tp.min.js"></script> 
+<script src="js/main.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -242,7 +254,7 @@
 
 
             $.ajax({
-                url: '/MobileWorld-war/upload',
+                url: './upload',
                 data: fd,
                 cache: false,
                 processData: false,
@@ -252,7 +264,7 @@
                     data = JSON.parse(data);
                     var im = data[0];
                     $('#avt-preview').html(
-                            `<img class="img-responsive" src="uploads/\${im}" alt="Uploaded Photo">
+                            `<img class="img-responsive" src="./uploads?fileName=\${im}" alt="Uploaded Photo">
                             <input hidden type="text" name="avatar" value="\${im}"/>`);
                 }
             });

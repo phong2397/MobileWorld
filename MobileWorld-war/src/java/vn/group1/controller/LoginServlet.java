@@ -12,8 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import vn.group1.sb.BrandFacadeLocal;
-import vn.group1.sb.CategoryFacadeLocal;
 import vn.group1.sb.ProductFacadeLocal;
 
 /**
@@ -22,22 +20,15 @@ import vn.group1.sb.ProductFacadeLocal;
  */
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
-    @EJB
-    private CategoryFacadeLocal categoryFacade;
-
-    @EJB
-    private BrandFacadeLocal brandFacade;
 
     @EJB
     private ProductFacadeLocal productFacade;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       request.setAttribute("categories", categoryFacade.findAll());
-        request.setAttribute("brands", brandFacade.findAll());
         request.setAttribute("products", productFacade.findAll());
-         request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
