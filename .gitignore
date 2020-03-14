@@ -9,6 +9,7 @@
 
 #build folder
 **/build
+**/dist
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

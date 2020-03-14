@@ -20,7 +20,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Admin
+ * @author junev
  */
 @Entity
 @Table(name = "Products")
@@ -82,6 +81,8 @@ public class Product implements Serializable {
     @NotNull
     @Column(name = "State")
     private int state;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "DateCreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
@@ -98,9 +99,8 @@ public class Product implements Serializable {
     @ManyToOne(optional = false)
     private Category category;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    @OrderBy(value = "attribute")
     private Collection<Specification> specificationCollection;
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "product")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Collection<OrderDetail> orderDetailCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Collection<Image> imageCollection;
@@ -114,12 +114,13 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public Product(Integer id, String name, int price, String thumb, int state) {
+    public Product(Integer id, String name, int price, String thumb, int state, Date dateCreated) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.thumb = thumb;
         this.state = state;
+        this.dateCreated = dateCreated;
     }
 
     public Integer getId() {

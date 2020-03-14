@@ -30,4 +30,6 @@ public interface AdminFacadeLocal {
 
     int count();
     
+    Admin checklogin(String username, String pass);
+    
 }

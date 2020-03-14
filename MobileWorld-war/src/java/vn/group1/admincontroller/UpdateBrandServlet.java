@@ -6,7 +6,6 @@
 package vn.group1.admincontroller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,13 +63,9 @@ public class UpdateBrandServlet extends HttpServlet {
             case "update-brand":
 
                 String name = request.getParameter("name");
-                String logo = request.getParameter("logo");
-                String category = request.getParameter("category");
 
                 Brand brand = brandFacade.find(id);
                 brand.setName(name);
-                brand.setLogo(logo);
-                brand.setCategories(category);
                 
                 brandFacade.edit(brand);
 request.getRequestDispatcher("brand-list").forward(request, response);
