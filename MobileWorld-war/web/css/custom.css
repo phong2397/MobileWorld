@@ -1,0 +1,138 @@
+.product article .price b:first-child,
+.product-detail .price b:first-child{
+    color: #f73232;
+}
+
+.product article p.rev{
+    color: #aaaaaa;
+}
+
+.product article .price b:nth-child(2),
+.product-detail .price b:nth-child(2){
+    text-decoration: line-through;
+    margin-left: 1em;
+    color: #aaaaaa;
+}
+.layout-10 .shop-listing .avatar {
+    padding: 15px;
+}
+
+.product article img {
+    padding: 20px 0;
+    height: 200px;
+    object-fit: contain;
+}
+
+.product article .item-img img {
+    padding: 20px 0;
+    height: 100%;
+    object-fit: contain;
+}
+
+.product article .slides img{
+    padding: 0px;
+}
+
+.product article .tittle {
+    height: 35px;
+    min-height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.ownmenu {
+    float: none;
+}
+
+.navbar.ownmenu hr{
+    margin: 0;
+}
+
+.mega-inside h6{
+    margin-top: 0 !important;
+}
+.mega-inside hr{
+    position: relative;
+    margin-bottom: 0.45em !important;
+}
+.mega-inside hr:before{
+    height: 2px;
+    background: #0088cc;
+    content: "";
+    position: absolute;
+    top: -1px;
+    width: 90px;
+    left: 0px;
+    background: #fed700;
+}
+
+.mega-inside li:hover{
+    border-bottom: solid 1px #e5e5e5 !important;
+}
+.navbar.ownmenu .nav li:hover > a {
+    color: #fed700 !important;
+}
+
+.product-detail table.options td{
+    padding: 5px 0;
+}
+.rev-group .rev-header {
+    display: inline-flex;
+    align-items: center;
+}
+.rev-header .avt{
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 2px #000 solid;
+    border-radius: 50%;
+}
+
+.rev-header .avt img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.rev-header .cus {
+    margin-left: 10px;
+}
+
+.rev-header .cus .cus-name{
+    font-size: 1.2em;
+    font-weight: 800;
+    display: block;
+}
+
+.rev-header .cus .rev{
+    display: block;
+}
+
+.rev-group .cmt {
+    margin-left: 60px;
+}
+
+.rev-group.mb-5{
+    margin-bottom: 30px;
+}
+
+ul#brands-logo li {
+    width: 100%;
+    height: 90px;
+    list-style: none;
+    text-align: center;
+}
+
+ul#brands-logo li{
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.heading h2 a:hover {
+    color: #f7d000;
+}
