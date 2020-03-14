@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vn.group1.controller;
+package vn.group1.admincontroller;
 
 import java.io.IOException;
 import javax.ejb.EJB;
@@ -12,35 +12,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import vn.group1.sb.BrandFacadeLocal;
-import vn.group1.sb.CategoryFacadeLocal;
-import vn.group1.sb.ProductFacadeLocal;
+import javax.servlet.http.HttpSession;
+import vn.group1.entity.Admin;
+import vn.group1.sb.AdminFacadeLocal;
 
 /**
  *
- * @author lehun
+ * @author junev
  */
-@WebServlet(name = "Login", urlPatterns = {"/login"})
-public class LoginServlet extends HttpServlet {
-    @EJB
-    private CategoryFacadeLocal categoryFacade;
+@WebServlet(name = "DashboardServlet", urlPatterns = {"/admin/dashboard"})
+public class DashboardServlet extends HttpServlet {
 
     @EJB
-    private BrandFacadeLocal brandFacade;
+    private AdminFacadeLocal adminFacade;
 
-    @EJB
-    private ProductFacadeLocal productFacade;
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-       request.setAttribute("categories", categoryFacade.findAll());
-        request.setAttribute("brands", brandFacade.findAll());
-        request.setAttribute("products", productFacade.findAll());
-         request.getRequestDispatcher("login.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        session.setAttribute("uid", 1);
+        String uid = session.getAttribute("uid").toString();
+        Admin user = adminFacade.find(Integer.parseInt(uid));
+        
+        if (user == null) {
+            response.sendRedirect("login.jsp");
+        }
+      
+        request.setAttribute("user", user);
+        
+        request.setAttribute("mainMenu", "dashboard");
+        request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

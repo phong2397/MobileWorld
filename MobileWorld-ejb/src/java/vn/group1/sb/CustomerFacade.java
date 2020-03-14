@@ -5,11 +5,11 @@
  */
 package vn.group1.sb;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import vn.group1.entity.Customer;
 
 /**

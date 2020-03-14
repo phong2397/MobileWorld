@@ -163,18 +163,19 @@
                     required: true, //Required username
                     minlength: 4,
                     maxlength: 30,
-                    pattern: /^(?![^-]*--+)(?![0-9]+$)[a-zA-Z0-9][-a-zA-Z0-9]{2,23}[a-zA-Z0-9]$/i,
 
                 },
                 pass: {
                     required: true, //Required password
                     minlength: 8, //Password must be of at least 6 chars
-                    maxlength: 15,
+                    maxlength: 20,
+                    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/i,
                 },
 
                 fullname: {
                     required: true,
-                    pattern: /^[A-Z][a-z]{0,9}[\s,][A-Z][a-z]{0,9}$/i,
+                    minlength: 2,
+                    maxlength: 30,
 
                 },
                 phone: {required: true,
@@ -183,7 +184,8 @@
 
                 address: {
                     required: true,
-                    
+                    minlength: 6,
+                    maxlength: 30,
                 },
             },
 
@@ -192,23 +194,23 @@
                     required: "<font color='red'>Please enter Username</font>",
                     minlength: "<font color='red'>Username must be at least 4 characters long<font>",
                     maxlength: "<font color='red'>Username must be maximun at least 30 characters long<font>",
-                    pattern: "<font color='red'>Invalid Username,Valid Format: minh77 , Long23 , Ninh<font>"
                 },
 
                 pass: {
                     required: "<font color='red'>Please enter Password</font>",
                     maxlength: "<font color='red'>Password must be maximun at least 15 characters long<font>",
                     minlength: "<font color='red'>Password must be at least 8 characters long</font>",
-                    pattern: "<font color='red'>Invalid Username,Valid Format:  AB*&^lou#,Phong23@<font>"
+                    pattern: "<font color='red'>Invalid Password,Valid Format:  AB*&^lou#,Phong23@<font>"
                 },
                 fullname: {
                     required: "<font color='red'>Please enter Fullname</font>",
-
-                    pattern: "<font color='red'>Invalid Fullname,Minimum at least each word is 10 characters,  Valid Format: Phong, Chau , Phong Chau, Phong<font>"
+                    minlength: "<font color='red'>Fullname must be at least 2 characters long<font>",
+                    maxlength: "<font color='red'>Fullname must be maximun at least 30 characters long<font>",
                 },
                 address: {
                     required: "<font color='red'>Please enter Address</font>",
-                    pattern: "<font color='red'>Invalid Username,e.g: 61 Park Street, Camden, ME, 04843, US<font>"
+                     maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
+                    minlength: "<font color='red'>Password must be at least 6 characters long</font>",
                 },
                 phone: {
                     required: "<font color='red'>Please enter Phone Number</font>",

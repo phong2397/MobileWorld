@@ -35,8 +35,6 @@ public class HomeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setAttribute("categories", categoryFacade.findAll());
-        request.setAttribute("brands", brandFacade.findAll());
         request.setAttribute("popularProducts", productFacade.getPopularProducts(10));
         request.setAttribute("lastestProducts", productFacade.getLastestProducts(10));
         request.setAttribute("popularProducts", productFacade.getPopularProducts(10));

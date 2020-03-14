@@ -21,69 +21,83 @@
         $("#register").validate({
             rules: {
                 username: {
-                  
+                    required: true,
                     minlength: 4,
                     maxlength: 30,
-                    pattern: /^(?![^-]*--+)(?![0-9]+$)[a-zA-Z0-9][-a-zA-Z0-9]{2,23}[a-zA-Z0-9]$/i,
 
                 },
-                pass: {
-                    
-                    minlength: 8, //Password must be of at least 6 chars
-                     maxlength: 15,
-                    pattern : /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/i,
-                },
+              
 
                 fullname: {
-                
-                   required:true,
+
+                    required: true,
                     minlength: 2,
-                    maxlength:30,
-                   
+                    maxlength: 30,
+
                 },
                 phone: {
+                    required: true,
                     pattern: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/i
                 },
 
-                address:{ 
-                 pattern: /^\d+\s[A-z]+\s[A-z]+/i
-            },
+                address: {
+                    required: true,
+
+                },
             },
 
             messages: {
                 username: {
-                  
+                    required: "<font color='red'>Please enter Username</font>",
                     minlength: "<font color='red'>Username must be at least 4 characters long<font>",
                     maxlength: "<font color='red'>Username must be maximun at least 30 characters long<font>",
-                    pattern: "<font color='red'>Invalid Username,Valid Format: minh77 , Long23 , Ninh<font>"
+
                 },
 
-                pass: {
-                    
-                     maxlength: "<font color='red'>Password must be maximun at least 15 characters long<font>",
-                    minlength: "<font color='red'>Password must be at least 8 characters long</font>",
-       pattern: "<font color='red'>Invalid Password,Valid Format: Ninhvu123^,Phong23@<font>"
-                },
+               
                 fullname: {
                     required: "<font color='red'>Please enter Fullname</font>",
                     minlength: "<font color='red'>Fullname must be at least 2 characters long<font>",
                     maxlength: "<font color='red'>Fullname must be maximun at least 30 characters long<font>",
-                   
+
                 },
                 address: {
-                  
- pattern: "<font color='red'>Invalid Username,e.g: 61 Park Street, Camden, ME, 04843, US<font>"
+                    required: "<font color='red'>Please enter Address</font>",
+
                 },
                 phone: {
-                  
+                    required: "<font color='red'>Please enter Phone Number</font>",
                     pattern: "<font color='red'>Invalid Phone,Valid Format:(123) 456-7890\n\
   ,  123-456-7890  , 123.456.7890 , 1234567890<font>"
                 },
             },
         });
+        $('#fs-upImage').change(function () {
+            var fd = new FormData();
+            var files = this.files;
+
+            fd.append('files', files[0]);
+
+
+            $.ajax({
+                url: '/MobileWorld-war/upload',
+                data: fd,
+                cache: false,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    data = JSON.parse(data);
+                    var im = data[0];
+                    $('#avt-preview').html(
+                            `<img class="img-responsive" src="uploads/\${im}" alt="Uploaded Photo">
+                            <input hidden type="text" name="avatar" value="\${im}"/>`);
+                }
+            });
+        });
 
     });
-    </script>
+</script>
 <style>
     .account-title{
         color: #333333;
@@ -239,12 +253,9 @@
         margin-bottom: 20px
     }
 
-    </style>
-  <% 
-   if (session.getAttribute("curAcc") == null)
-   {
-      response.sendRedirect("login.jsp");
-   }
+</style>
+<%
+   
 %> 
 <!-- MY ACCOUNT -->
 <div class="account-wrap">
@@ -256,7 +267,7 @@
                     <h4 class="account-title"><span class="fa fa-chevron-right"></span>Change Your Personal Details</h4>                                                                  
                     <div class="account-form">
                         <form  class="form-update-user" method="POST" action="UpdateUser" id="register">      
-                       <span class="text-success">${message}</span>
+                            <span class="text-success">${message}</span>
                             <ul class="row">
 
                                 <input type="hidden" name="id" value="${user.id}" />
@@ -292,9 +303,19 @@
                                     </div>
                                 </li>
 
-                                <li class="col-md-12 col-sm-12">
-                                    <label>Avatar <em>*</em></label>
-                                    <input type="file" id="upImage" name="upImage"  class="input-text fs-login-file-input">
+                                <li class="col-sm-12">
+                                    <label>Avatar <em>*</em>
+                                        <label class="btn btn-sm btn-primary" style="width: auto; border-radius: 3px; padding: 5px; font-size: 13px">
+                                            <i class="fa fa-upload"></i> Upload
+                                            <input type="file" id="fs-upImage" style="display: none">
+                                        </label>
+                                    </label>
+                                    <div id="avt-preview" class="border rounded" style="
+                                         border: 1px solid #e2e2e2;
+                                         border-radius: 3px;
+                                         height: 200px;
+                                         width: 200px;
+                                         "></div>
                                 </li>
                                 <div class="buttons-set">
                                     <button class="btn-black fs-button-update-user" type="submit"><span>Update Account</span></button>

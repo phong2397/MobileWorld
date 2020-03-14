@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import vn.group1.entity.Customer;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import vn.group1.sb.BrandFacadeLocal;
 import vn.group1.sb.CategoryFacadeLocal;
 import vn.group1.sb.CustomerFacadeLocal;
@@ -54,25 +55,23 @@ public class UserServlet extends HttpServlet {
             case "insert":
 
                 Customer newcus = new Customer();
-                
                 newcus.setUsername(request.getParameter("username"));
                 newcus.setPassword(request.getParameter("pass"));
                 newcus.setFullname(request.getParameter("fullname"));
                 newcus.setPhone(request.getParameter("phone"));
                 newcus.setAddress(request.getParameter("address"));
                 newcus.setDateCreated(new Date());
-                
+
                 String avatar = request.getParameter("avatar");
-                
+
                 if (avatar != null) {
                     newcus.setAvatar(avatar);
                 }
-              
+
                 try {
                     customerFacade.create(newcus);
                     session.setAttribute("curAcc", newcus);
                     request.getRequestDispatcher("home").forward(request, response);
-                    
                 } catch (Exception e) {
                     request.setAttribute("message", "Username already existed!!");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -80,16 +79,22 @@ public class UserServlet extends HttpServlet {
 
                 break;
             case "update":
+                if (session.getAttribute("curAcc") == null) {
+                    response.sendRedirect("login.jsp");
+                } else {
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    Customer c = customerFacade.find(id);
 
-                int id = Integer.parseInt(request.getParameter("id"));
-                Customer c = customerFacade.find(id);
+                    request.setAttribute("user", c);
+                    session.setAttribute("curAcc", c);
 
-                request.setAttribute("user", c);
+                    request.getRequestDispatcher("myaccount.jsp").forward(request, response);
+                }
 
-                request.getRequestDispatcher("myaccount.jsp").forward(request, response);
                 break;
 
             case "login":
+
                 String username = request.getParameter("username").trim();
                 String pass = request.getParameter("pass").trim();
 
@@ -97,7 +102,7 @@ public class UserServlet extends HttpServlet {
                 if (curAcc != null) {
 
                     session.setAttribute("curAcc", curAcc);
-                    response.sendRedirect("home");
+                    request.getRequestDispatcher("home").forward(request, response);
 
                 } else {
                     request.setAttribute("error", " Username and Password Invalid");
@@ -108,7 +113,7 @@ public class UserServlet extends HttpServlet {
             case "logout":
 
                 session.invalidate();
-                response.sendRedirect("");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
         }
 
     }

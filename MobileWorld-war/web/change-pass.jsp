@@ -15,6 +15,16 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+          $.validator.addMethod("pattern", function (value, element, param) {
+            if (this.optional(element)) {
+                return true;
+            }
+            if (typeof param === "string") {
+                param = new RegExp("^(?:" + param + ")$");
+            }
+            return param.test(value);
+        }, "Invalid regular expression format");
+
         $("#loginForm").validate({
 
             rules: {
@@ -25,8 +35,9 @@
                 },
                 pass: {
                     required: true, //Required password
- minlength: 4,
-  maxlength: 30,
+                    minlength: 8, //Password must be of at least 6 chars
+                    maxlength: 20,
+                      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/i,
                 },
     repass: {
                 equalTo: "#pass",
@@ -39,12 +50,12 @@
                     required: "<font color='red'>Please enter Your Current Pass</font>",
 
                 },
-                pass: {
-                    required: "<font color='red'>Please enter Your New Pass</font>",
-    minlength: "<font color='red'>Password must be at least 4 characters long</font>",
-                         maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
+              pass: {
+                    required: "<font color='red'>Please enter Password</font>",
+                    maxlength: "<font color='red'>Password must be maximun at least 20 characters long<font>",
+                    minlength: "<font color='red'>Password must be at least 8 characters long</font>",
+                    pattern: "<font color='red'>Invalid Pass,Valid Format:  ninhvu123^,Phong123@<font>",
                 },
-
                 repass: {
                   
                     equalTo: "<font color='red'>Your Password does not match</font>",

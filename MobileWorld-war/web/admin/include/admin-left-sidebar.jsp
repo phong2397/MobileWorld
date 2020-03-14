@@ -11,16 +11,12 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="<c:if test="${user.avatar != ''}">${user.avatar}</c:if><c:if test="${user.avatar == ''}">assets/img/customer-100.png</c:if>" class="img-circle elevation-2" />
             </div>
-            <div class="info">
-                
-                    <a href="login?action=logout" class="d-block"><p style=" font-weight: bold;">Welcome ${user.fullname}</p></a>
-           
-                
-            </div>
+              <a href="login?action=logout" class="d-block"><p style=" font-weight: bold;">Welcome ${user.fullname}</p></a>
         </div>
 
         <!-- Sidebar Menu -->

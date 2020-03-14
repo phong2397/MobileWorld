@@ -26,6 +26,12 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     </head>
     <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <% 
+   if (session.getAttribute("cur") == null)
+   {
+      response.sendRedirect("login.jsp");
+   }
+%> 
         <div class="wrapper">
             <!-- Navbar -->
             <%@include file="include/admin-navbar.jsp" %>

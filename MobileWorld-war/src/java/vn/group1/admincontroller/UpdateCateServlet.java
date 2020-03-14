@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vn.group1.controller;
+package vn.group1.admincontroller;
 
 import java.io.IOException;
-import java.util.Date;
+import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,68 +14,81 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import vn.group1.entity.Customer;
-import vn.group1.sb.BrandFacadeLocal;
+import vn.group1.entity.Admin;
+import vn.group1.entity.Brand;
+import vn.group1.entity.Category;
+import vn.group1.sb.AdminFacadeLocal;
+import vn.group1.sb.AttributeFacadeLocal;
 import vn.group1.sb.CategoryFacadeLocal;
-import vn.group1.sb.CustomerFacadeLocal;
+import vn.group1.sb.ProductFacadeLocal;
 
 /**
  *
  * @author lehun
  */
-@WebServlet(name = "UpdateUser", urlPatterns = {"/UpdateUser"})
-public class UpdateUserServlet extends HttpServlet {
+@WebServlet(name = "UpdateCateServlet", urlPatterns = {"/admin/update-cate"})
+public class UpdateCateServlet extends HttpServlet {
+  @EJB
+    private AdminFacadeLocal adminFacade;
 
+    @EJB
+    private ProductFacadeLocal productFacade;
+
+    @EJB
+    private AttributeFacadeLocal attributeFacade;
+
+  
     @EJB
     private CategoryFacadeLocal categoryFacade;
-    @EJB
-    private BrandFacadeLocal brandFacade;
-    @EJB
-    private CustomerFacadeLocal customerFacade;
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
+      HttpSession session = request.getSession();
+        session.setAttribute("uid", 1);
+        int uid = (int) session.getAttribute("uid");
+        Admin user = adminFacade.find(uid);
+
+        if (user == null) {
+            response.sendRedirect("login.jsp");
+        }
+
+        request.setAttribute("user", user);
+        request.setAttribute("categories", categoryFacade.findAll());
+String action = request.getParameter("action");
 
         int id = Integer.parseInt(request.getParameter("id"));
-        String username = request.getParameter("username");
-        String fullname = request.getParameter("fullname");
-        String phone = request.getParameter("phone");
-        String address = request.getParameter("address");
+        switch (action) {
+            case "find":
 
-                String avatar = request.getParameter("avatar");
+                Category c = categoryFacade.find(id);
 
-                
-           
-        Customer cus = customerFacade.find(id);
-        cus.setUsername(username);
-        cus.setFullname(fullname);
-        cus.setPhone(phone);
-        cus.setAddress(address);
-        cus.setDateCreated(new Date());
-     if (avatar != null) {
-                    cus.setAvatar(avatar);
-                }
+                request.setAttribute("cate", c);
+
+                request.getRequestDispatcher("update-cate.jsp").forward(request, response);
+                break;
+            case "update-cate":
+
+                String name = request.getParameter("name");
+                String logo = request.getParameter("logo");
+                String category = request.getParameter("category");
+
+               Category cate = categoryFacade.find(id);
+                cate.setName(name);
               
-        customerFacade.edit(cus);
+                categoryFacade.edit(cate);
+request.getRequestDispatcher("cate-list").forward(request, response);
+                break;
+                  case "delete-brand":
 
-        request.setAttribute("categories", categoryFacade.findAll());
-        request.setAttribute("brands", brandFacade.findAll());
-        request.setAttribute("message", "Update Successfully!");
+                Category c1 = categoryFacade.find(id);
+categoryFacade.remove(c1);
+                request.setAttribute("category", c1);
 
-        session.setAttribute("user", cus);
-        session.setAttribute("curAcc", cus);
-        request.getRequestDispatcher("myaccount.jsp").forward(request, response);
+                request.getRequestDispatcher("cate-list").forward(request, response);
+                break;
+        }
+        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -7,6 +7,7 @@ package vn.group1.admincontroller;
 
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import vn.group1.entity.Admin;
-import vn.group1.entity.Brand;
+import vn.group1.entity.Category;
 import vn.group1.sb.AdminFacadeLocal;
 import vn.group1.sb.AttributeFacadeLocal;
 import vn.group1.sb.BrandFacadeLocal;
@@ -25,11 +26,12 @@ import vn.group1.sb.ProductFacadeLocal;
 
 /**
  *
- * @author cuong
+ * @author lehun
  */
-@WebServlet(name = "CreateBrandServlet", urlPatterns = {"/admin/create-brand"})
-public class CreateBrandServlet extends HttpServlet {
+@WebServlet(name = "CreateCateServlet", urlPatterns = {"/admin/create-cate"})
+public class CreateCateServlet extends HttpServlet {
 
+    
     @EJB
     private AttributeFacadeLocal attributeFacade;
 
@@ -45,11 +47,21 @@ public class CreateBrandServlet extends HttpServlet {
     @EJB
     private CategoryFacadeLocal categoryFacade;
 
+   
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
+          HttpSession session = request.getSession();
         session.setAttribute("uid", 1);
         int uid = (int) session.getAttribute("uid");
         Admin user = adminFacade.find(uid);
@@ -59,8 +71,8 @@ public class CreateBrandServlet extends HttpServlet {
         }
 
         request.setAttribute("user", user);
-        request.setAttribute("mainMenu", "brand");
-        request.setAttribute("subMenu", "create-brand");
+        request.setAttribute("mainMenu", "category");
+        request.setAttribute("subMenu", "create-cate");
         request.setAttribute("categories", categoryFacade.findAll());
         request.setAttribute("brands", brandFacade.findAll());
 
@@ -71,7 +83,7 @@ public class CreateBrandServlet extends HttpServlet {
 
         request.setAttribute("attributes", json);
 
-        request.getRequestDispatcher("create-brand.jsp").forward(request, response);
+        request.getRequestDispatcher("create-cate.jsp").forward(request, response);
     }
 
     /**
@@ -100,12 +112,13 @@ public class CreateBrandServlet extends HttpServlet {
         String logo = request.getParameter("logo");
         String category = request.getParameter("category");
         
-        Brand b = new Brand();
-        b.setName(name);
-
-        brandFacade.create(b);
+        Category c = new Category();
+        c.setName(name);
       
- request.getRequestDispatcher("brand-list").forward(request, response);
+
+        categoryFacade.create(c);
+      
+ request.getRequestDispatcher("cate-list").forward(request, response);
     }
 
     /**

@@ -39,15 +39,19 @@ public class ChangepassServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-
+        HttpSession session = request.getSession();
         request.setAttribute("categories", categoryFacade.findAll());
         request.setAttribute("brands", brandFacade.findAll());
-        
+
         int id = Integer.parseInt(request.getParameter("id"));
         switch (action) {
             case "findid":
-                request.setAttribute("id", id);
-                request.getRequestDispatcher("change-pass.jsp").forward(request, response);
+                if (session.getAttribute("curAcc") == null) {
+                    response.sendRedirect("login.jsp");
+                } else {
+                    request.setAttribute("id", id);
+                    request.getRequestDispatcher("change-pass.jsp").forward(request, response);
+                }
                 break;
             case "change-pass":
 

@@ -43,18 +43,18 @@
 
                     </ul>
                     <div class="right-sec">
-
+                    
                         <ul>
                             <li>  <% if (session.getAttribute("curAcc") != null) { %>
-
+		
                             <li><i class="glyphicon glyphicon-user" ></i><a href="User?action=update&id=${curAcc.id}">Hello: ${curAcc.fullname}</a></li>
                             <li><a href="User?action=logout">Logout</a></li>
-                                <% } %>
-                                <%if (session.getAttribute("curAcc") == null) { %>
-
-                            <li><a href="/MobileWorld-war/login">Login/Register</a></li>
-                            <% }%></li>
-
+						<% } %>
+                                                <%if(session.getAttribute("curAcc") == null){ %>
+		
+						<li><a href="/MobileWorld-war/login">Login/Register</a></li>
+						<% } %></li>
+                       
                         </ul>
                     </div>
                 </div>

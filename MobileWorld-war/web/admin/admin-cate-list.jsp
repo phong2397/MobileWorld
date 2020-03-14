@@ -21,12 +21,11 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     </head>
     <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-  <% 
-   if (session.getAttribute("cur") == null)
-   {
-      response.sendRedirect("login.jsp");
-   }
-%> 
+        <%
+            if (session.getAttribute("cur") == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %> 
         <div class="wrapper">
             <!-- Navbar -->
             <%@include file="include/admin-navbar.jsp" %>
@@ -39,7 +38,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0 text-dark">Users</h1>
+                                <h1 class="m-0 text-dark">Categories</h1>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
@@ -50,7 +49,7 @@
                 <section class="content">
                     <div class="container-fluid">
                         <!-- Info boxes -->
-                       <div class="row">
+                        <div class="row">
                             <div class="col-12 col-sm-6 col-md-3">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
@@ -58,8 +57,8 @@
                                     <div class="info-box-content">
                                         <span class="info-box-text">Total</span>
                                         <span class="info-box-number">
-                                            ${customers.size()}
-                                            <small>customers</small>
+                                            ${categories.size()}
+                                            <small>categories</small>
                                         </span>
                                     </div>
                                     <!-- /.info-box-content -->
@@ -112,12 +111,12 @@
                             <!-- /.col -->
                         </div>
                         <!-- /.row -->
-  
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">User List</h5>
+                                        <h5 class="card-title">Category List</h5>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body p-0">
@@ -125,34 +124,25 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center text-muted">#ID</th>
-                                                  
-                                                    <th>UserName</th>
-                                                    <th>Full Name</th>
-                                                    <th>Phone</th>
-                                                    <th>Address</th>
-                                                    <th class="text-center"><i class="fas fa-image"></i></th>
-                                                    <th>Date Created</th>
+
+                                                    <th>Name</th>
+
                                                     <th class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="${customers}" var="item">
+                                                <c:forEach items="${categories}" var="item">
                                                     <tr>
                                                         <td class="text-center">#${item.id}</td>
-                                                      
-                                                        <td>${item.username}</td>
-                                                        <td>${item.fullname}</td>
-                                                        <td>${item.phone}</td>
-                                                        <td>${item.address}</td>
-                                                          <td style="width: 150px; padding: 20px">
-                                                            <img class="img-fluid" src="${item.avatar}" /></td>
-                                                                    <td>${item.dateCreated}</td>
-                                                                    
+
+                                                        <td>${item.name}</td>
+
                                                         <td class="text-center">
-                                                            <a target="_blank" href="../User?action=update&id=${item.id}" class="btn btn-primary btn-sm">View</a>
-                                                           
+
+                                                            <a target="_blank" href="update-cate?action=find&id=${item.id}"    class="btn btn-warning btn-sm">Update</a>
+                                                            <a target="_blank" href="update-cate?action=delete-cate&id=${item.id}"  onclick="return confirm('You want to delete?');"class="btn btn-danger btn-sm">Delete</a>
                                                         </td>
-                                                        </tr>
+                                                    </tr>
                                                 </c:forEach>
                                             </tbody>
                                         </table>
@@ -205,16 +195,16 @@
 
         <!-- PAGE SCRIPTS -->
         <script>
-            $(function () {
-                $("#productsTable").DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                });
-            });
+                                                                $(function () {
+                                                                    $("#productsTable").DataTable({
+                                                                        "paging": true,
+                                                                        "lengthChange": false,
+                                                                        "searching": false,
+                                                                        "ordering": true,
+                                                                        "info": true,
+                                                                        "autoWidth": false,
+                                                                    });
+                                                                });
         </script>
     </body>
 </html>

@@ -41,7 +41,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0 text-dark">Update Brand</h1>
+                                <h1 class="m-0 text-dark">Add New Category</h1>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
@@ -65,43 +65,23 @@
                             <!-- /.card-header -->
 
                             <div class="card-body">
-                              
-                                    <form action="update-brand?action=update-brand" method="post" id="loginForm">
-                                          <div class="col-md-6">
 
-                                          
-                                              <input type="hidden"  name="id" value="${brand.id}" class="form-control" />
+                                <form action="create-cate" method="post" id="loginForm">
+                                    <div class="col-md-6">
 
-                                        </div>
-                                        <div class="col-md-6">
+                                        <label>Category Name</label>
+                                        <input type="text" id="name" name="name" class="form-control" />
 
-                                            <label>Brand Name</label>
-                                            <input type="text" id="name" name="name" value="${brand.name}" class="form-control" />
+                                    </div>
 
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Brand Logo</label>
-                                                <input type="text" id="logo" name="logo" value="${brand.logo}" class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Category</label>
-                                                <select id="slectboxid"  name="category" value="${brand.categories}" class="form-control select2" style="width: 25%;">
-                                                    <c:forEach items="${categories}" var="item">
-                                                        <option value="${item.id}">${item.name}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 " style="margin-top: 30px">
-                                            <button id="btnPublish" class="btn btn-primary">
-                                                <i class="fas fa-upload mr-2"></i>Publish
-                                            </button>
-                                        </div>
-                                    </form>
-                              
+
+                                    <div class="col-sm-2 " style="margin-top: 30px">
+                                        <button id="btnPublish" class="btn btn-primary">
+                                            <i class="fas fa-upload mr-2"></i>Publish
+                                        </button>
+                                    </div>
+                                </form>
+
                             </div><!--/. container-fluid -->
                             </section>
                             <!-- /.content -->
@@ -156,28 +136,22 @@
 
 
 
-                        $("#loginForm").validate({
+                            $("#loginForm").validate({
 
-                        rules: {
-                        name: {
-                        required: true, //Required username
+                                rules: {
+                                    name: {
+                                        required: true, //Required username
 
-                        },
-                                logo:{
-                                required: true, //Required logo   
+                                    },
                                 },
-                        },
                                 messages: {
-                                name: {
-                                required: "<font color='red'>Please enter Name's Brand</font>",
+                                    name: {
+                                        required: "<font color='red'>Please enter Name's Category</font>",
+                                    },
+
                                 },
-                                        logo: {
-                                        required: "<font color='red'>Please upload link Images</font>",
-                                        },
-                                },
+                            });
                         });
-                        
-                    });
                     </script>
                     </body>
 

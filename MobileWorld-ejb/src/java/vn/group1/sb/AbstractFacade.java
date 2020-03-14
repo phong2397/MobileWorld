@@ -22,35 +22,46 @@ import javax.validation.ValidatorFactory;
 public abstract class AbstractFacade<T> {
 
     private Class<T> entityClass;
-    private String entityName;
-    private static boolean _refresh = true;
-
-    public static void refresh() { _refresh = true; }
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
-        this.entityName = entityClass.getSimpleName();
     }
 
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-        Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);
-        if (constraintViolations.size() > 0) {
-            Iterator<ConstraintViolation<T>> iterator = constraintViolations.iterator();
-            while (iterator.hasNext()) {
-                ConstraintViolation<T> cv = iterator.next();
-                System.err.println(cv.getRootBeanClass().getName() + "." + cv.getPropertyPath() + " " + cv.getMessage());
-            }
-        } else {
-            getEntityManager().persist(entity);
+        
+    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    Validator validator = factory.getValidator();
+    Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);
+    if(constraintViolations.size() > 0){
+        Iterator<ConstraintViolation<T>> iterator = constraintViolations.iterator();
+        while(iterator.hasNext()){
+            ConstraintViolation<T> cv = iterator.next();
+            System.err.println(cv.getRootBeanClass().getName()+"."+cv.getPropertyPath() + " " +cv.getMessage());
+
+   
         }
+    }else{
+        getEntityManager().persist(entity);
+    }
     }
 
     public void edit(T entity) {
+         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    Validator validator = factory.getValidator();
+    Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);
+    if(constraintViolations.size() > 0){
+        Iterator<ConstraintViolation<T>> iterator = constraintViolations.iterator();
+        while(iterator.hasNext()){
+            ConstraintViolation<T> cv = iterator.next();
+            System.err.println(cv.getRootBeanClass().getName()+"."+cv.getPropertyPath() + " " +cv.getMessage());
+
+   
+        }
+    }else{
         getEntityManager().merge(entity);
+    }
     }
 
     public void remove(T entity) {
@@ -83,25 +94,5 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-
-    private void doRefresh() {
-        if (_refresh) {
-            EntityManager em = getEntityManager();
-            em.flush();
-
-            for (EntityType<?> entity : em.getMetamodel().getEntities()) {
-                if (entity.getName().contains(entityName)) {
-                    try {
-                        em.refresh(entity);
-                        // log success
-                    }
-                    catch (IllegalArgumentException e) {
-                        // log failure ... typically complains entity is not managed
-                    }
-                }
-            }
-
-            _refresh = false;
-        }
-    }
+    
 }
