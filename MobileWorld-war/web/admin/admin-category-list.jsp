@@ -21,12 +21,11 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     </head>
     <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-  <% 
-   if (session.getAttribute("curAcc") == null)
-   {
-      response.sendRedirect("login.jsp");
-   }
-%> 
+        <%
+            if (session.getAttribute("cur") == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %> 
         <div class="wrapper">
             <!-- Navbar -->
             <%@include file="include/admin-navbar.jsp" %>
@@ -49,69 +48,7 @@
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid">
-                        <!-- Info boxes -->
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-md-3">
-                                <div class="info-box">
-                                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Total</span>
-                                        <span class="info-box-number">
-                                            ${categories.size()}
-                                            <small>categories</small>
-                                        </span>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-12 col-sm-6 col-md-3">
-                                <div class="info-box mb-3">
-                                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Likes</span>
-                                        <span class="info-box-number">41,410</span>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
-                            </div>
-                            <!-- /.col -->
-
-                            <!-- fix for small devices only -->
-                            <div class="clearfix hidden-md-up"></div>
-
-                            <div class="col-12 col-sm-6 col-md-3">
-                                <div class="info-box mb-3">
-                                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Sales</span>
-                                        <span class="info-box-number">760</span>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-12 col-sm-6 col-md-3">
-                                <div class="info-box mb-3">
-                                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">New Members</span>
-                                        <span class="info-box-number">2,000</span>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
 
                         <div class="row">
                             <div class="col-md-12">
@@ -136,10 +73,10 @@
                                                         <td>${item.name}</td>
                                                         <td class="text-center">
 <!--                                                            <a target="_blank" href="../brand?id=${item.id}" class="btn btn-primary btn-sm">View</a>-->
-                                                       <a target="_blank" href="update-category?action=find&id=${item.id}"    class="btn btn-warning btn-sm">Update</a>
-                                                    <a target="_blank" href="update-category?action=delete-category&id=${item.id}"  onclick="return confirm('You want to delete?');"class="btn btn-danger btn-sm">Delete</a>
+                                                            <a target="_blank" href="update-category?action=find&id=${item.id}"    class="btn btn-warning btn-sm">Update</a>
+                                                            <a target="_blank" href="update-category?action=delete-category&id=${item.id}"  onclick="return confirm('You want to delete?');"class="btn btn-danger btn-sm">Delete</a>
                                                         </td>
-                                                        </tr>
+                                                    </tr>
                                                 </c:forEach>
                                             </tbody>
                                         </table>
@@ -192,16 +129,16 @@
 
         <!-- PAGE SCRIPTS -->
         <script>
-            $(function () {
-                $("#productsTable").DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                });
-            });
+                                                        $(function () {
+                                                            $("#productsTable").DataTable({
+                                                                "paging": true,
+                                                                "lengthChange": false,
+                                                                "searching": false,
+                                                                "ordering": true,
+                                                                "info": true,
+                                                                "autoWidth": false,
+                                                            });
+                                                        });
         </script>
     </body>
 </html>

@@ -98,7 +98,6 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
             utx.begin();
             super.remove(entity);
             utx.commit();
-            refresh();
             return true;
         } catch (Exception e) {
             e.printStackTrace();

@@ -26,12 +26,11 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     </head>
     <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-    <% 
-   if (session.getAttribute("cur") == null)
-   {
-      response.sendRedirect("login.jsp");
-   }
-%> 
+        <%
+            if (session.getAttribute("cur") == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %> 
         <div class="wrapper">
             <!-- Navbar -->
             <%@include file="include/admin-navbar.jsp" %>
@@ -52,7 +51,7 @@
                                 </h1>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="./product-report" class="btn btn-default">Generate Report</a>
+                                <a target="_blank" href="./product-report" class="btn btn-default">Generate Report</a>
                             </div>
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->

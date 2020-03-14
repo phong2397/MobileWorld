@@ -20,7 +20,7 @@ import vn.group1.sb.AdminFacadeLocal;
  *
  * @author junev
  */
-@WebServlet(name = "DashboardServlet", urlPatterns = {"/admin/dashboard"})
+@WebServlet(name = "DashboardServlet", urlPatterns = {"/admin/"})
 public class DashboardServlet extends HttpServlet {
 
     @EJB
@@ -28,19 +28,7 @@ public class DashboardServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.setAttribute("uid", 1);
-        String uid = session.getAttribute("uid").toString();
-        Admin user = adminFacade.find(Integer.parseInt(uid));
-        
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-        }
-      
-        request.setAttribute("user", user);
-        
-        request.setAttribute("mainMenu", "dashboard");
-        request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+        response.sendRedirect("product-list");
     }
 
    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

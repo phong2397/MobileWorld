@@ -25,14 +25,7 @@
                 data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview">
-                    <a href="./dashboard" class="nav-link <c:if test="${mainMenu.equals('dashboard')}">active</c:if>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
+                
                 <li class="nav-item has-treeview menu-open">
                     <a href="#" class="nav-link <c:if test="${mainMenu.equals('product')}">active</c:if>">
                         <i class="nav-icon fas fa-box"></i>
@@ -51,13 +44,7 @@
                         <li class="nav-item">
                             <a href="./create-product" class="nav-link <c:if test="${subMenu.equals('create-product')}">active</c:if>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./product-report" class="nav-link <c:if test="${subMenu.equals('product-report')}">active</c:if>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Report</p>
+                                <p>Add new product</p>
                             </a>
                         </li>
                     </ul>
@@ -83,12 +70,6 @@
                                 <p>Create</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="./brand-report" class="nav-link <c:if test="${subMenu.equals('brand-report')}">active</c:if>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Report</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-item has-treeview menu-open">
@@ -112,12 +93,6 @@
                                 <p>Create</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="./category-report" class="nav-link <c:if test="${subMenu.equals('category-report')}">active</c:if>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Report</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                   <li class="nav-item has-treeview menu-open">
@@ -139,12 +114,6 @@
                             <a href="./create-user" class="nav-link <c:if test="${subMenu.equals('create-brand')}">active</c:if>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./user-report" class="nav-link <c:if test="${subMenu.equals('brand-report')}">active</c:if>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Report</p>
                             </a>
                         </li>
                   </ul>

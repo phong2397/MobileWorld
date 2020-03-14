@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import vn.group1.entity.Customer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import vn.group1.sb.BrandFacadeLocal;
 import vn.group1.sb.CategoryFacadeLocal;
 import vn.group1.sb.CustomerFacadeLocal;
@@ -102,7 +100,7 @@ public class UserServlet extends HttpServlet {
                 if (curAcc != null) {
 
                     session.setAttribute("curAcc", curAcc);
-                    request.getRequestDispatcher("home").forward(request, response);
+                    response.sendRedirect("home");
 
                 } else {
                     request.setAttribute("error", " Username and Password Invalid");
@@ -113,7 +111,7 @@ public class UserServlet extends HttpServlet {
             case "logout":
 
                 session.invalidate();
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                response.sendRedirect("");
         }
 
     }

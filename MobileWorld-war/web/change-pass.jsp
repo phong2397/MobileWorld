@@ -10,8 +10,19 @@
 
 <%@include file="include/header.jsp"  %>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="js/vendors/jquery/jquery.min.js"></script> 
+<script src="js/vendors/wow.min.js"></script> 
+<script src="js/vendors/bootstrap.min.js"></script> 
+<script src="js/vendors/own-menu.js"></script> 
+<script src="js/vendors/jquery.sticky.js"></script> 
+<script src="js/vendors/owl.carousel.min.js"></script> 
+<script src="admin/plugins/toastr/toastr.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+
+<!-- SLIDER REVOLUTION 4.x SCRIPTS  --> 
+<script type="text/javascript" src="js/vendors/jquery.tp.t.min.js"></script> 
+<script type="text/javascript" src="js/vendors/jquery.tp.min.js"></script> 
+<script src="js/main.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {

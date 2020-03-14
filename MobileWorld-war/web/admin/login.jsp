@@ -58,8 +58,8 @@
     </head>
     <body class="hold-transition login-page">
         <%
-            if (session.getAttribute("curAcc") != null) {
-                response.sendRedirect("dashboard");
+            if (session.getAttribute("cur") != null) {
+                response.sendRedirect("product-list");
             }
         %> 
         <div class="login-box">

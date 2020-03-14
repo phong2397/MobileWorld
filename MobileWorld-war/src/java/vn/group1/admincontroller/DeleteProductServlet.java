@@ -39,15 +39,6 @@ public class DeleteProductServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.setAttribute("uid", 1);
-        int uid = (int) session.getAttribute("uid");
-        Admin user = adminFacade.find(uid);
-
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        }
 
         String id = request.getParameter("id");
 

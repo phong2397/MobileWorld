@@ -25,7 +25,7 @@ import vn.group1.sb.CategoryFacadeLocal;
  *
  * @author junev
  */
-@WebFilter(filterName = "DataProviderFilter", urlPatterns = {"/home", "/product", "/filter", "/cart", "/payment", "/login"})
+@WebFilter(filterName = "DataProviderFilter", urlPatterns = {"/home", "/product", "/filter", "/cart", "/payment", "/login", "/User", "/UpdateUser", "/changepass"})
 public class DataProviderFilter implements Filter {
 
     @EJB

@@ -136,3 +136,11 @@ ul#brands-logo li{
 .heading h2 a:hover {
     color: #f7d000;
 }
+
+.header-style-5 .search-cate input {
+    width: 60%;
+}
+
+.header-style-5 .search-cate .submit:focus  {
+    outline: none;
+}

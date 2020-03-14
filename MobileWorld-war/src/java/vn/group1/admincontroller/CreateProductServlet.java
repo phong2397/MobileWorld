@@ -54,16 +54,6 @@ public class CreateProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-        session.setAttribute("uid", 1);
-        int uid = (int) session.getAttribute("uid");
-        Admin user = adminFacade.find(uid);
-
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-        }
-
-        request.setAttribute("user", user);
         request.setAttribute("mainMenu", "product");
         request.setAttribute("subMenu", "create-product");
         request.setAttribute("categories", categoryFacade.findAll());
