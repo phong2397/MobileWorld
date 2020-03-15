@@ -1,6 +1,3 @@
-$('#category').change(function () {
-    renderSpecificationForm();
-});
 
 IMask(document.getElementById('price'), {
     mask: 'num',
@@ -13,14 +10,6 @@ IMask(document.getElementById('price'), {
         }
     }
 });
-
-//Initialize Select2 Elements
-$('.select2').select2();
-
-$('#category').change(function () {
-    renderSpecificationForm();
-});
-
 
 //Initialize Select2 Elements
 $('.select2').select2();
@@ -186,7 +175,7 @@ $('#btnPublish').click(function (e) {
                 if (result.value) {
                     window.location.href = './product-list';
                 } else {
-//                    window.location.reload();
+                    window.location.reload();
                 }
             });
         }

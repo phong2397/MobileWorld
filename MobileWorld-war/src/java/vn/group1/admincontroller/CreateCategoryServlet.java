@@ -5,10 +5,7 @@
  */
 package vn.group1.admincontroller;
 
-import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import vn.group1.entity.Admin;
-import vn.group1.entity.Brand;
 import vn.group1.entity.Category;
 import vn.group1.sb.AdminFacadeLocal;
 import vn.group1.sb.AttributeFacadeLocal;
@@ -51,26 +47,8 @@ public class CreateCategoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-        session.setAttribute("uid", 1);
-        int uid = (int) session.getAttribute("uid");
-        Admin user = adminFacade.find(uid);
-
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-        }
-
-        request.setAttribute("user", user);
         request.setAttribute("mainMenu", "category");
         request.setAttribute("subMenu", "create-category");
-        request.setAttribute("categories", categoryFacade.findAll());
-
-        List atrributes = attributeFacade.getKeyAndName();
-
-        Gson gson = new Gson();
-        String json = gson.toJson(atrributes);
-
-        request.setAttribute("attributes", json);
 
         request.getRequestDispatcher("create-category.jsp").forward(request, response);
     }

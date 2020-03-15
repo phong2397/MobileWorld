@@ -1,21 +1,3 @@
-if (specList.length > 0) {
-    specList.forEach(function (item) {
-        $('#specifications').append(
-                `<div class="col-md-6">
-                <div class="form-group">
-                    <label>${item.attrName}</label>
-                    <input type="text" class="form-control specs" attr-id="${item.attrId}" attr-name="${item.attrName}" value="${item.value}" />
-                </div>
-            </div>`);
-    });
-} else {
-    renderSpecificationForm();
-}
-
-$('#category').change(function () {
-    renderSpecificationForm();
-});
-
 IMask(document.getElementById('price'), {
     mask: 'num',
     blocks: {
@@ -26,13 +8,6 @@ IMask(document.getElementById('price'), {
             max: 9999
         }
     }
-});
-
-//Initialize Select2 Elements
-$('.select2').select2();
-
-$('#category').change(function () {
-    renderSpecificationForm();
 });
 
 //Initialize Select2 Elements
@@ -50,6 +25,8 @@ IMask(document.getElementById('discount'), {
     }
 });
 
+var startDate, endDate;
+
 //Date range picker with time picker
 $('#reservationtime').daterangepicker({
     timePicker: true,
@@ -62,11 +39,11 @@ $('#reservationtime').daterangepicker({
     }
 });
 
-if (startDate != '' && endDate != '') {
+if (startPromotion != '' && endPromotion != '') {
     $('#reservationtime').data('daterangepicker').setStartDate(startDate);
     $('#reservationtime').data('daterangepicker').setEndDate(endDate);
 
-    $('#reservationtime').val(startDate + ' - ' + endDate);
+    $('#reservationtime').val(startPromotion + ' - ' + endPromotion);
 }
 
 $('#reservationtime').on('apply.daterangepicker', function (ev, picker) {

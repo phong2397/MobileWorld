@@ -12,8 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import vn.group1.entity.Admin;
 import vn.group1.sb.AdminFacadeLocal;
 import vn.group1.sb.BrandFacadeLocal;
 
@@ -33,16 +31,6 @@ public class BrandServlet extends HttpServlet {
 //chan vl
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.setAttribute("uid", 1);
-        String uid = session.getAttribute("uid").toString();
-        Admin user = adminFacade.find(Integer.parseInt(uid));
-        
-        if (user == null) {
-            response.sendRedirect("login");
-        }
-
-        request.setAttribute("user", user);
         request.setAttribute("mainMenu", "brand");
         request.setAttribute("subMenu", "brand-list");
         request.setAttribute("brands", brandFacade.findAll());

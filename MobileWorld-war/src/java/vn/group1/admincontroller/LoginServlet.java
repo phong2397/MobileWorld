@@ -42,12 +42,8 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setAttribute("categories", categoryFacade.findAll());
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
-        session.setAttribute("uid", 1);
-        String uid = session.getAttribute("uid").toString();
-        Admin user = adminFacade.find(Integer.parseInt(uid));
 
         switch (action) {
             case "login":

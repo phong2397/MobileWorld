@@ -17,6 +17,8 @@ import vn.group1.entity.Product;
 public interface ProductFacadeLocal {
 
     void create(Product product);
+    
+    void edit(Product product);
 
     boolean update(Product product);
 
@@ -47,5 +49,9 @@ public interface ProductFacadeLocal {
     List<Product> getRelatedProducts(Product product, int limit); 
     
     List<Product> getProducts(List<Integer> ids);
+    List<Product> getProductsByCate(int cateId);
+    List<Product> getProductsByBrand(int brandId);
+    
+    
     
 }

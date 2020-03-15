@@ -60,14 +60,6 @@ public class UpdateProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.setAttribute("uid", 1);
-        int uid = (int) session.getAttribute("uid");
-        Admin user = adminFacade.find(uid);
-
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-        }
 
         String sId = request.getParameter("id");
         if (sId == null) {
@@ -75,19 +67,20 @@ public class UpdateProductServlet extends HttpServlet {
             return;
         }
 
-        request.setAttribute("user", user);
         request.setAttribute("mainMenu", "product");
-//        request.setAttribute("subMenu", "create-product");
         request.setAttribute("categories", categoryFacade.findAll());
         request.setAttribute("brands", brandFacade.findAll());
+        request.setAttribute("attributes", attributeFacade.findAll());
 
-        List atrributes = attributeFacade.getKeyAndName();
-
-        Gson gson = new Gson();
-        String json = gson.toJson(atrributes);
-
-        request.setAttribute("attributes", json);
         Product p = productFacade.find(Integer.parseInt(sId));
+        
+        Gson gson = new Gson();
+        List<String> images = new ArrayList<>();
+        for (Image image : p.getImageCollection()) {
+            images.add(image.getSource());
+        }
+        request.setAttribute("images", gson.toJson(images));
+
         request.setAttribute("product", p);
         if (p.getStartDate() != null && p.getEndDate() != null) {
             SimpleDateFormat dfmt = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -129,12 +122,15 @@ public class UpdateProductServlet extends HttpServlet {
         List<String> imgs = gson.fromJson(images, new TypeToken<List<String>>() {
         }.getType());
 
+        Brand brand = brandFacade.find(brandId);
+        Category cate = categoryFacade.find(cateId);
+        
         Product p = productFacade.find(id);
         p.setName(name);
         p.setPrice(price);
         p.setAdmin(user);
-        p.setBrand(new Brand(brandId));
-        p.setCategory(new Category(cateId));
+        p.setBrand(brand);
+        p.setCategory(cate);
         p.setThumb(thumb);
         p.setDateUpdated(new Date(System.currentTimeMillis()));
 

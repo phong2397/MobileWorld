@@ -30,12 +30,11 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     </head>
     <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-             <% 
-   if (session.getAttribute("cur") == null)
-   {
-      response.sendRedirect("login.jsp");
-   }
-%> 
+        <%
+            if (session.getAttribute("cur") == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %> 
         <div class="wrapper">
             <!-- Navbar -->
             <%@include file="include/admin-navbar.jsp" %>
@@ -161,7 +160,16 @@
                                     </div>
                                     <div class="tab-pane fade" id="specs-tab" 
                                          role="tabpanel" aria-labelledby="specs-tab">
-                                        <div class="row" id="specifications"></div>
+                                        <div class="row">
+                                            <c:forEach items="${attributes}" var="attr">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>${attr.name}</label>
+                                                        <input type="text" class="form-control specs" attr-id="${attr.id}" attr-name="${attr.name}" value="${product.specificationCollection.stream().filter(s->attr.id == s.getAttribute().getId()).findFirst().orElse(null).value}" />
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="promotion-tab" 
                                          role="tabpanel" aria-labelledby="promotion-tab">
@@ -244,23 +252,10 @@
         !-- PAGE SCRIPTS -->
         <script>
             var id = ${product.id};
-            var attributeList = ${attributes};
-            var images = [
-            <c:forEach items="${product.imageCollection}" var="item" varStatus="loop">
-            "${item.source}"<c:if test="${loop.index < product.imageCollection.size() - 1}">,</c:if>
-            </c:forEach>
-            ];
-            var specList = [
-            <c:forEach items="${product.specificationCollection}" var="item" varStatus="loop" >
-            {
-            attrId:${item.attribute.id},
-                    attrName:'${item.attribute.name}',
-                    value:'${item.value}'
-            }<c:if test="${loop.index < product.specificationCollection.size() - 1}">,</c:if>
-            </c:forEach>
-            ];
-            var startDate = '${startDate}';
-            var endDate = '${endDate}';
+            var images = ${images};
+            
+            var startPromotion = '${startDate}';
+            var endPromotion = '${endDate}';
         </script>
         <script src="assets/js/pages/update-product.js"></script>
 

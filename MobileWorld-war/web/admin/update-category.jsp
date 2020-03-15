@@ -25,7 +25,7 @@
     </head>
     <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
         <%
-            if (session.getAttribute("curAcc") == null) {
+            if (session.getAttribute("cur") == null) {
                 response.sendRedirect("login.jsp");
             }
         %> 

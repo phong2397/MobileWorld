@@ -6,18 +6,14 @@
 package vn.group1.admincontroller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import vn.group1.entity.Admin;
 import vn.group1.sb.AdminFacadeLocal;
 import vn.group1.sb.CustomerFacadeLocal;
-import vn.group1.sb.ProductFacadeLocal;
 
 /**
  *
@@ -44,16 +40,6 @@ public class AdminUserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        HttpSession session = request.getSession();
-        session.setAttribute("uid", 1);
-        String uid = session.getAttribute("uid").toString();
-        Admin user = adminFacade.find(Integer.parseInt(uid));
-        
-        if (user == null) {
-            response.sendRedirect("index.jsp");
-        }
-
-        request.setAttribute("user", user);
         request.setAttribute("mainMenu", "customer");
         request.setAttribute("subMenu", "user-list");
         request.setAttribute("customers", customerFacade.findAll());

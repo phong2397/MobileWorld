@@ -6,21 +6,14 @@
 package vn.group1.admincontroller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import vn.group1.entity.Brand;
 import vn.group1.entity.Category;
-import vn.group1.sb.AdminFacadeLocal;
-import vn.group1.sb.AttributeFacadeLocal;
-import vn.group1.sb.BrandFacadeLocal;
 import vn.group1.sb.CategoryFacadeLocal;
-import vn.group1.sb.ProductFacadeLocal;
 
 /**
  *
@@ -29,21 +22,9 @@ import vn.group1.sb.ProductFacadeLocal;
 @WebServlet(name = "UpdateCategoryServlet", urlPatterns = {"/admin/update-category"})
 public class UpdateCategoryServlet extends HttpServlet {
 
-    
-    @EJB
-    private AdminFacadeLocal adminFacade;
-
-    @EJB
-    private ProductFacadeLocal productFacade;
-
-    @EJB
-    private AttributeFacadeLocal attributeFacade;
-
-    @EJB
-    private BrandFacadeLocal brandFacade;
-
     @EJB
     private CategoryFacadeLocal categoryFacade;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -55,10 +36,8 @@ public class UpdateCategoryServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+
         String action = request.getParameter("action");
-        HttpSession session = request.getSession();
-        request.setAttribute("categories", categoryFacade.findAll());
 
         int id = Integer.parseInt(request.getParameter("id"));
         switch (action) {
@@ -76,20 +55,19 @@ public class UpdateCategoryServlet extends HttpServlet {
 
                 Category cate = categoryFacade.find(id);
                 cate.setName(name);
-                
+
                 categoryFacade.edit(cate);
-request.getRequestDispatcher("category-list").forward(request, response);
+                request.getRequestDispatcher("category-list").forward(request, response);
                 break;
-                  case "delete-category":
+            case "delete-category":
 
                 Category b1 = categoryFacade.find(id);
-categoryFacade.remove(b1);
+                categoryFacade.remove(b1);
                 request.setAttribute("cate", b1);
 
                 request.getRequestDispatcher("category-list").forward(request, response);
                 break;
         }
-        
 
     }
 

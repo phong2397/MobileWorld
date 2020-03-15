@@ -42,6 +42,25 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
     }
 
     @Override
+    public void edit(Product entity) {
+        try {
+            utx.begin();
+            super.edit(entity);
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (IllegalStateException | SecurityException | SystemException ex) {
+                ex.printStackTrace();
+            }
+        }
+        em.getEntityManagerFactory().getCache().evictAll();
+    }
+    
+    
+
+    @Override
     public void create(Product entity) {
         try {
             utx.begin();
@@ -55,6 +74,7 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
                 ex.printStackTrace();
             }
         }
+        em.getEntityManagerFactory().getCache().evictAll();
     }
 
     @Override
@@ -74,6 +94,7 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
                 ex1.printStackTrace();
             }
         }
+        em.getEntityManagerFactory().getCache().evictAll();
         return flag;
     }
 
@@ -91,6 +112,7 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
                 e1.printStackTrace();
             }
         }
+        em.getEntityManagerFactory().getCache().evictAll();
     }
     
     public boolean delete(Product entity) {
@@ -98,6 +120,7 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
             utx.begin();
             super.remove(entity);
             utx.commit();
+            em.getEntityManagerFactory().getCache().evictAll();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,6 +131,7 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
             }
             return false;
         }
+        
     }
 
     @Override
@@ -242,6 +266,18 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
     public List<Product> getProducts(List<Integer> ids) {
         TypedQuery<Product> q = em.createQuery("SELECT p FROM Product p WHERE p.id IN :ids", Product.class);
         return q.setParameter("ids", ids).getResultList();
+    }
+
+    @Override
+    public List<Product> getProductsByCate(int cateId) {
+        TypedQuery<Product> q = em.createQuery("SELECT p FROM Product p WHERE p.category.id = :cateId", Product.class);
+        return q.setParameter("cateId", cateId).getResultList();
+    }
+
+    @Override
+    public List<Product> getProductsByBrand(int brandId) {
+        TypedQuery<Product> q = em.createQuery("SELECT p FROM Product p WHERE p.brand.id = :brandId", Product.class);
+        return q.setParameter("brandId", brandId).getResultList();
     }
     
     

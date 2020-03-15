@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/junev/Desktop/PRJ4/MobileWorld-war/web/admin/admin-product-list.jsp</file>
-            <file>file:/C:/Users/junev/Desktop/PRJ4/MobileWorld-war/web/admin/admin-user-list.jsp</file>
-            <file>file:/C:/Users/junev/Desktop/PRJ4/MobileWorld-war/web/admin/admin-brand-list.jsp</file>
-            <file>file:/C:/Users/junev/Desktop/PRJ4/MobileWorld-war/web/admin/include/admin-left-sidebar.jsp</file>
-            <file>file:/C:/Users/junev/Desktop/PRJ4/MobileWorld-war/web/admin/admin-category-list.jsp</file>
+            <file>file:/C:/Users/junev/Desktop/PRJ4/MobileWorld-war/src/java/vn/group1/admincontroller/UpdateProductServlet.java</file>
+            <file>file:/C:/Users/junev/Desktop/PRJ4/MobileWorld-war/src/java/vn/group1/controller/HomeServlet.java</file>
+            <file>file:/C:/Users/junev/Desktop/PRJ4/MobileWorld-war/web/admin/create-brand.jsp</file>
         </group>
     </open-files>
 </project-private>

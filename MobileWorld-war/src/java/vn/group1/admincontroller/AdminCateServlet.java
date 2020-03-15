@@ -41,17 +41,7 @@ public class AdminCateServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-         HttpSession session = request.getSession();
-        session.setAttribute("uid", 1);
-        String uid = session.getAttribute("uid").toString();
-        Admin user = adminFacade.find(Integer.parseInt(uid));
         
-        if (user == null) {
-            response.sendRedirect("login");
-        }
-
-        request.setAttribute("user", user);
         request.setAttribute("mainMenu", "category");
         request.setAttribute("subMenu", "cate-list");
         request.setAttribute("categories", categoryFacade.findAll());

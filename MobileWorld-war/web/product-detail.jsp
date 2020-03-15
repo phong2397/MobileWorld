@@ -53,7 +53,7 @@
                         <!-- Item Content -->
                         <div class="col-xs-7">
                             <span class="tags">${product.category.name}</span>
-                            <h5>${product.brand.name} ${product.name}</h5>
+                            <h5>${product.name}</h5>
                             <p class="rev">
                                 <c:if test="${product.ratingCollection.size() > 0}">
                                     <c:forEach begin="1" end="${product.ratingCollection.get(0).stars}">
@@ -87,7 +87,19 @@
                                     </span>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p>Availability: <span class="in-stock">In stock</span></p>
+                                    <p>Availability: 
+                                        <c:if test="${product.state == 1}">
+                                            <span class="in-stock">In stock</span>
+                                        </c:if>
+
+                                        <c:if test="${product.state == 2}">
+                                            <span class="text-warning">Out stock</span>
+                                        </c:if>
+
+                                        <c:if test="${product.state == 3}">
+                                            <span class="text-danger">Stop Selling</span>
+                                        </c:if> 
+                                    </p>
                                 </div>
                             </div>
                             <!-- List Details -->

@@ -13,8 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import vn.group1.entity.Admin;
 import vn.group1.entity.Category;
 import vn.group1.entity.Product;
 import vn.group1.sb.AdminFacadeLocal;
@@ -30,9 +28,6 @@ public class DeleteProductServlet extends HttpServlet {
 
     @EJB
     private CategoryFacadeLocal categoryFacade;
-
-    @EJB
-    private AdminFacadeLocal adminFacade;
 
     @EJB
     private ProductFacadeLocal productFacade;

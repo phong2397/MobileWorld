@@ -24,20 +24,11 @@ import vn.group1.sb.CategoryFacadeLocal;
 public class HomeServlet extends HttpServlet {
 
     @EJB
-    private BrandFacadeLocal brandFacade;
-
-    @EJB
-    private CategoryFacadeLocal categoryFacade;
-
-    @EJB
     private ProductFacadeLocal productFacade;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setAttribute("popularProducts", productFacade.getPopularProducts(10));
-        request.setAttribute("lastestProducts", productFacade.getLastestProducts(10));
-        request.setAttribute("popularProducts", productFacade.getPopularProducts(10));
         request.setAttribute("promotions", productFacade.getPromotions(5));
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }

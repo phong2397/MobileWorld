@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import vn.group1.entity.Product;
-import vn.group1.sb.BrandFacadeLocal;
-import vn.group1.sb.CategoryFacadeLocal;
 import vn.group1.sb.ProductFacadeLocal;
 
 /**
@@ -26,12 +24,6 @@ import vn.group1.sb.ProductFacadeLocal;
  */
 @WebServlet(name = "ProductServlet", urlPatterns = {"/product"})
 public class ProductServlet extends HttpServlet {
-
-    @EJB
-    private BrandFacadeLocal brandFacade;
-
-    @EJB
-    private CategoryFacadeLocal categoryFacade;
 
     @EJB
     private ProductFacadeLocal productFacade;
@@ -70,7 +62,7 @@ public class ProductServlet extends HttpServlet {
         sId = request.getParameter("cateId");
         if (sId != null) {
             int cateId = Integer.parseInt(sId);
-            request.setAttribute("products", categoryFacade.find(cateId).getProductCollection());
+            request.setAttribute("products", productFacade.getProductsByCate(cateId));
             request.getRequestDispatcher("product-list.jsp").forward(request, response);
             return;
         }
@@ -78,7 +70,7 @@ public class ProductServlet extends HttpServlet {
         sId = request.getParameter("brandId");
         if (sId != null) {
             int brandId = Integer.parseInt(sId);
-            request.setAttribute("products", brandFacade.find(brandId).getProductCollection());
+            request.setAttribute("products", productFacade.getProductsByBrand(brandId));
             request.getRequestDispatcher("product-list.jsp").forward(request, response);
             return;
         }

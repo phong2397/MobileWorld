@@ -7,7 +7,6 @@ package vn.group1.admincontroller;
 
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -15,8 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import vn.group1.entity.Admin;
 import vn.group1.entity.Category;
 import vn.group1.sb.AdminFacadeLocal;
 import vn.group1.sb.AttributeFacadeLocal;
@@ -61,16 +58,7 @@ public class CreateCateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          HttpSession session = request.getSession();
-        session.setAttribute("uid", 1);
-        int uid = (int) session.getAttribute("uid");
-        Admin user = adminFacade.find(uid);
-
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-        }
-
-        request.setAttribute("user", user);
+        
         request.setAttribute("mainMenu", "category");
         request.setAttribute("subMenu", "create-cate");
         request.setAttribute("categories", categoryFacade.findAll());
@@ -97,20 +85,9 @@ public class CreateCateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.setAttribute("uid", 1);
-        int uid = (int) session.getAttribute("uid");
-        Admin user = adminFacade.find(uid);
-
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-        }
-        request.setAttribute("categories", categoryFacade.findAll());
-
+      
 
         String name = request.getParameter("name");
-        String logo = request.getParameter("logo");
-        String category = request.getParameter("category");
         
         Category c = new Category();
         c.setName(name);

@@ -74,9 +74,9 @@
                                                     <td>${item.name}</td>
                                                     <td class="text-center">
                                                         <!--                                                            <a target="_blank" href="../brand?id=${item.id}" class="btn btn-primary btn-sm">View</a>-->
-                                                        <a target="_blank" href="update-brand?action=find&id=${item.id}"
+                                                        <a href="update-brand?action=find&id=${item.id}"
                                                             class="btn btn-warning btn-sm">Update</a>
-                                                        <a target="_blank"
+                                                        <a
                                                             href="update-brand?action=delete-brand&id=${item.id}"
                                                             onclick="return confirm('You want to delete?');"
                                                             class="btn btn-danger btn-sm">Delete</a>

@@ -83,3 +83,14 @@
 .table td{
     vertical-align: middle !important;
 }
+
+.table td select {
+    border: none;
+    background: transparent;
+    
+}
+
+.table td select:focus {
+    outline: none;
+    border: 1px solid var(--primary);
+}

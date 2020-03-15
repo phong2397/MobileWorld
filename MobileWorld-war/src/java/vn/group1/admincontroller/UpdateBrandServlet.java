@@ -14,11 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import vn.group1.entity.Brand;
-import vn.group1.sb.AdminFacadeLocal;
-import vn.group1.sb.AttributeFacadeLocal;
 import vn.group1.sb.BrandFacadeLocal;
 import vn.group1.sb.CategoryFacadeLocal;
-import vn.group1.sb.ProductFacadeLocal;
 
 /**
  *
@@ -28,15 +25,6 @@ import vn.group1.sb.ProductFacadeLocal;
 public class UpdateBrandServlet extends HttpServlet {
 
     @EJB
-    private AdminFacadeLocal adminFacade;
-
-    @EJB
-    private ProductFacadeLocal productFacade;
-
-    @EJB
-    private AttributeFacadeLocal attributeFacade;
-
-    @EJB
     private BrandFacadeLocal brandFacade;
 
     @EJB
@@ -44,11 +32,9 @@ public class UpdateBrandServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+
         String action = request.getParameter("action");
         HttpSession session = request.getSession();
-        request.setAttribute("categories", categoryFacade.findAll());
-        request.setAttribute("brands", brandFacade.findAll());
 
         int id = Integer.parseInt(request.getParameter("id"));
         switch (action) {
@@ -66,20 +52,19 @@ public class UpdateBrandServlet extends HttpServlet {
 
                 Brand brand = brandFacade.find(id);
                 brand.setName(name);
-                
+
                 brandFacade.edit(brand);
-request.getRequestDispatcher("brand-list").forward(request, response);
-                break;
-                  case "delete-brand":
-
-                Brand b1 = brandFacade.find(id);
-brandFacade.remove(b1);
-                request.setAttribute("brand", b1);
-
                 request.getRequestDispatcher("brand-list").forward(request, response);
                 break;
+            case "delete-brand":
+
+                Brand b1 = brandFacade.find(id);
+                brandFacade.remove(b1);
+                request.setAttribute("brand", b1);
+
+                response.sendRedirect("brand-list");
+                break;
         }
-        
 
     }
 

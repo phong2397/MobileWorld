@@ -119,49 +119,49 @@
             <!-- Items Slider -->
             <div class="item-slide-5 with-nav"> 
                 <c:forEach items="${c.productCollection.stream().sorted((p1, p2)->p2.orderDetailCollection.size().compareTo(p1.orderDetailCollection.size())).limit(10).toArray()}" var="item">
-                    <!-- Product -->
-                    <div class="product">
-                        <article>
-                            <a href="./product?id=${item.id}">
-                                <img class="img-responsive primary-img" src="./uploads?fileName=${item.thumb}" alt="Image" >
-                            </a>
-                            <!-- Content --> 
-                            <span class="tag">${item.category.name}</span>
-                            <a href="./product?id=${item.id}" class="tittle" title="${item.name}">${item.name}</a>
+                    <c:if test="${item.state < 3}">
+                        <div class="product">
+                            <article>
+                                <a href="./product?id=${item.id}">
+                                    <img class="img-responsive primary-img" src="./uploads?fileName=${item.thumb}" alt="Image" >
+                                </a>
+                                <!-- Content --> 
+                                <span class="tag">${item.category.name}</span>
+                                <a href="./product?id=${item.id}" class="tittle" title="${item.name}">${item.name}</a>
 
-                            <!-- Reviews -->
-                            <p class="rev">
-                                <c:if test="${item.ratingCollection.size() > 0}">
-                                    <c:forEach begin="1" end="${item.ratingCollection.get(0).stars}">
-                                        <i class="fa fa-star"></i>
-                                    </c:forEach>     
-                                    <c:forEach begin="${item.ratingCollection.get(0).stars + 1}" end="5">
+                                <!-- Reviews -->
+                                <p class="rev">
+                                    <c:if test="${item.ratingCollection.size() > 0}">
+                                        <c:forEach begin="1" end="${item.ratingCollection.get(0).stars}">
+                                            <i class="fa fa-star"></i>
+                                        </c:forEach>     
+                                        <c:forEach begin="${item.ratingCollection.get(0).stars + 1}" end="5">
+                                            <i class="fa fa-star-o"></i> 
+                                        </c:forEach>
+                                    </c:if>
+
+                                    <c:if test="${item.ratingCollection.size() == 0}">
                                         <i class="fa fa-star-o"></i> 
-                                    </c:forEach>
-                                </c:if>
-
-                                <c:if test="${item.ratingCollection.size() == 0}">
-                                    <i class="fa fa-star-o"></i> 
-                                    <i class="fa fa-star-o"></i> 
-                                    <i class="fa fa-star-o"></i> 
-                                    <i class="fa fa-star-o"></i> 
-                                    <i class="fa fa-star-o"></i> 
-                                </c:if>
-                                <span class="margin-left-10">${item.ratingCollection.size()} Review(s)</span>
-                            </p>
-                            <span class="price">
-                                <c:if test="${item.discount != null && today >= item.startDate && today <= item.endDate}">
-                                    <b><fmt:formatNumber type="currency" currencySymbol="$" value="${item.price - item.discount}" maxFractionDigits="0" /> </b>
-                                    <b><fmt:formatNumber type="currency" currencySymbol="$" value="${item.price}" maxFractionDigits="0" /></b>
-                                </c:if>
-                                <c:if test="${item.discount == null || today < item.startDate || today > item.endDate}">
-                                    <b><fmt:formatNumber type="currency" currencySymbol="$" value="${item.price}" maxFractionDigits="0" /> </b>
-                                </c:if> 
-                            </span>
-                            <a href="#" target="${item.id}" class="cart-btn"><i class="icon-basket-loaded"></i></a>
-                        </article>
-                    </div>
-                    <!-- Product -->
+                                        <i class="fa fa-star-o"></i> 
+                                        <i class="fa fa-star-o"></i> 
+                                        <i class="fa fa-star-o"></i> 
+                                        <i class="fa fa-star-o"></i> 
+                                    </c:if>
+                                    <span class="margin-left-10">${item.ratingCollection.size()} Review(s)</span>
+                                </p>
+                                <span class="price">
+                                    <c:if test="${item.discount != null && today >= item.startDate && today <= item.endDate}">
+                                        <b><fmt:formatNumber type="currency" currencySymbol="$" value="${item.price - item.discount}" maxFractionDigits="0" /> </b>
+                                        <b><fmt:formatNumber type="currency" currencySymbol="$" value="${item.price}" maxFractionDigits="0" /></b>
+                                    </c:if>
+                                    <c:if test="${item.discount == null || today < item.startDate || today > item.endDate}">
+                                        <b><fmt:formatNumber type="currency" currencySymbol="$" value="${item.price}" maxFractionDigits="0" /> </b>
+                                    </c:if> 
+                                </span>
+                                <a href="#" target="${item.id}" class="cart-btn"><i class="icon-basket-loaded"></i></a>
+                            </article>
+                        </div>
+                    </c:if>
                 </c:forEach>
             </div>
         </section>

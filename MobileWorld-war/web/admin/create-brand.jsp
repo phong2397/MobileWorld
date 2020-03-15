@@ -75,23 +75,7 @@
                                     <input type="text" id="name" name="name" class="form-control" />
 
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Brand Logo</label>
-                                        <input type="text" id="logo" name="logo" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Category</label>
-                                        <select id="category" name="category" class="form-control select2"
-                                            style="width: 25%;">
-                                            <c:forEach items="${categories}" var="item">
-                                                <option value="${item.id}">${item.name}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                </div>
+                                
                                 <div class="col-sm-2 " style="margin-top: 30px">
                                     <button id="btnPublish" class="btn btn-primary">
                                         <i class="fas fa-upload mr-2"></i>Publish

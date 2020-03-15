@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import vn.group1.cliententity.Spec;
 import vn.group1.entity.Admin;
-import vn.group1.entity.Category;
 import vn.group1.entity.Image;
 import vn.group1.entity.Product;
 import vn.group1.entity.Specification;
@@ -58,13 +57,7 @@ public class CreateProductServlet extends HttpServlet {
         request.setAttribute("subMenu", "create-product");
         request.setAttribute("categories", categoryFacade.findAll());
         request.setAttribute("brands", brandFacade.findAll());
-
-        List atrributes = attributeFacade.getKeyAndName();
-
-        Gson gson = new Gson();
-        String json = gson.toJson(atrributes);
-
-        request.setAttribute("attributes", json);
+        request.setAttribute("attributes", attributeFacade.findAll());
 
         request.getRequestDispatcher("create-product.jsp").forward(request, response);
     }
@@ -100,10 +93,7 @@ public class CreateProductServlet extends HttpServlet {
         p.setPrice(price);
         p.setAdmin(user);
         p.setBrand(brandFacade.find(brandId));
-        
-        Category c = categoryFacade.find(cateId);
-        
-        p.setCategory(c);
+        p.setCategory(categoryFacade.find(cateId));
         p.setThumb(thumb);
         p.setDateCreated(new Date(System.currentTimeMillis()));
         p.setState(1);
@@ -141,8 +131,6 @@ public class CreateProductServlet extends HttpServlet {
         }
 
         productFacade.create(p);
-        c.getProductCollection().add(p);
-        categoryFacade.edit(c);
         
         PrintWriter writer = response.getWriter();
         writer.print("successed");

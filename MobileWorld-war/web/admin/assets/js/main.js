@@ -76,30 +76,13 @@ function removeImage(el, image) {
     $(el).parent().remove();
 }
 
-function renderSpecificationForm() {
-    var cateSelected = $('#category').val();
-    var html = "";
-    attributeList.forEach(function (item) {
-        if (item[2] == cateSelected) {
-            html += `<div class="col-md-6">
-                        <div class="form-group">
-                            <label>${item[1]}</label>
-                            <input type="text" class="form-control specs" attr-id="${item[0]}" attr-name="${item[1]}" />
-                        </div>
-                    </div>`;
-        }
-    });
-
-    $('#specifications').html(html);
-}
-
 $('.data-table').on('length.dt', function (e, settings, len) {
     localStorage.setItem('pageLength', len);
     
 });
-const pageLength = localStorage.getItem('pageLength');
+var pageLength = localStorage.getItem('pageLength');
 
-const dataTableOptions = {
+var dataTableOptions = {
     "paging": true,
     "lengthChange": true,
     "searching": true,
