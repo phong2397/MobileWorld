@@ -55,11 +55,16 @@
                             <span class="tags">${product.category.name}</span>
                             <h5>${product.name}</h5>
                             <p class="rev">
-                                <c:if test="${product.ratingCollection.size() > 0}">
-                                    <c:forEach begin="1" end="${product.ratingCollection.stream().mapToInt(r->r.getStars()).sum()}">
+                                <c:if test="${product.ratingCollection.size() > 0}">  
+                                    <c:set var="sum" value="0"></c:set>
+                                    <c:forEach items="${product.ratingCollection}" var="r">
+                                        <c:set var="sum" value="${sum = sum + r.stars}"></c:set>
+                                    </c:forEach>
+                                    <c:set var="stars" value="${sum/product.ratingCollection.size()}"></c:set>
+                                    <c:forEach begin="1" end="${stars}">
                                         <i class="fa fa-star"></i>
                                     </c:forEach>     
-                                    <c:forEach begin="${product.ratingCollection.get(0).stars + 1}" end="5">
+                                    <c:forEach begin="${stars + 1}" end="5">
                                         <i class="fa fa-star-o"></i> 
                                     </c:forEach>
                                 </c:if>
@@ -136,7 +141,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="cus-rev">
 
-                            <c:if test="${cus != null}">
+                            <c:if test="${cus != null && !rated}">
                                 <div class="rev-group mb-5">
                                     <form action="rating" method="post">
                                         <input type="hidden" name="prodId" value="${product.id}"/>
