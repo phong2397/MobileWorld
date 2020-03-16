@@ -28,17 +28,28 @@
                     return value.indexOf(" ") < 0 && value != "";
                 }, " <font color='red'>No space  </font>");
 
+                $.each($.validator.methods, function (key, value) {
+                    $.validator.methods[key] = function () {
+                        if (arguments.length > 0) {
+                            arguments[0] = $.trim(arguments[0]);
+                        }
+
+                        return value.apply(this, arguments);
+                    };
+                });
+
                 $("#loginForm").validate({
 
                     rules: {
                         username: {
-                            required: true, //Required username
-                            noSpace: true
+                            required: true,
+
+                            maxlength: 30,
                         },
 
                         pass: {
-                            required: true, //Required password
-                            noSpace: true
+                            required: true,
+                            maxlength: 30,
                         }
 
                     },
@@ -46,12 +57,12 @@
                     messages: {
                         username: {
                             required: "<font color='red'>Please enter Username</font>",
-
+                            maxlength: "<font color='red'>Username must be maximun at least 30 characters long<font>",
                         },
 
                         pass: {
                             required: "<font color='red'>Please enter Password</font>",
-
+                            maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
                         },
                     },
 
@@ -95,7 +106,7 @@
                             </div>
                         </div>
                         <div class="row">
-                        
+
                             <!-- /.col -->
                             <div class="col-4">
                                 <button type="submit" class="btn btn-primary btn-block">Sign In</button>

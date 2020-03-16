@@ -36,22 +36,33 @@
             return param.test(value);
         }, "Invalid regular expression format");
 
+        $.each($.validator.methods, function (key, value) {
+            $.validator.methods[key] = function () {
+                if (arguments.length > 0) {
+                    arguments[0] = $.trim(arguments[0]);
+                }
+
+                return value.apply(this, arguments);
+            };
+        });
+
         $("#loginForm").validate({
 
             rules: {
 
                 oldpass: {
-                    required: true, //Required password
+                    required: true,
                     minlength: 2,
                     maxlength: 30,
                 },
                 pass: {
-                    required: true, //Required password
+                    required: true,
                     minlength: 8, //Password must be of at least 6 chars
                     maxlength: 30,
                     pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/i,
                 },
                 repass: {
+                    required: true,
                     equalTo: "#pass",
 
                 },
@@ -60,18 +71,18 @@
             messages: {
                 oldpass: {
                     required: "<font color='red'>Please enter Your Current Pass</font>",
-                    minlength: "<font color='red'>Password must be at least 3 characters long</font>",
-                    maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
+                    minlength: "<font color='red'>Current Password must be at least 3 characters long</font>",
+                    maxlength: "<font color='red'>Current Password must be maximun at least 30 characters long<font>",
                 },
                 pass: {
-                    required: "<font color='red'>Please enter Password</font>",
-                    maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
-                    minlength: "<font color='red'>Password must be at least 8 characters long</font>",
+                    required: "<font color='red'>Please enter New Password</font>",
+                    maxlength: "<font color='red'>New Password must be maximun at least 30 characters long<font>",
+                    minlength: "<font color='red'>New Password must be at least 8 characters long</font>",
                     pattern: "<font color='red'>Invalid Pass,Valid Format:  ninhvu123^,Phong123@<font>",
                 },
                 repass: {
-
-                    equalTo: "<font color='red'>Your Password does not match</font>",
+                    required: "<font color='red'>Please enter Confirm Pass</font>",
+                    equalTo: "<font color='red'>Your Confirm Password does not match</font>",
 
                 },
             },

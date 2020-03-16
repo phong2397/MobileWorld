@@ -28,6 +28,15 @@
             return param.test(value);
         }, "Invalid regular expression format");
 
+        $.each($.validator.methods, function (key, value) {
+            $.validator.methods[key] = function () {
+                if (arguments.length > 0) {
+                    arguments[0] = $.trim(arguments[0]);
+                }
+
+                return value.apply(this, arguments);
+            };
+        });
 
         $("#register").validate({
             rules: {
@@ -39,7 +48,6 @@
                 },
 
                 fullname: {
-
                     required: true,
                     minlength: 2,
                     maxlength: 30,

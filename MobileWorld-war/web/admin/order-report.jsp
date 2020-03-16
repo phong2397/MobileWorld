@@ -41,7 +41,7 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-             
+
                         <th class="text-center">Customer(*)</th>
                         <th class="text-center">State</th>
                         <th class="text-center">Order Date</th>
@@ -53,10 +53,10 @@
                         <tr>
                             <td class="text-center">${loop.index + 1}</td>
 
-                        
+
                             <td>${item.customer.fullname}</td>
                             <td>${item.state}</td>
-                          
+
                             <td style="white-space: nowrap">
                                 <fmt:formatDate value="${item.orderDate}" pattern="dd-MM-yyyy"/>
                             </td>
