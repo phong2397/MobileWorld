@@ -174,6 +174,7 @@ public class CartServlet extends HttpServlet {
 
             default: {
                 request.setAttribute("cart", cart);
+                request.setAttribute("user", session.getAttribute("curAcc"));
                 request.getRequestDispatcher("cart.jsp").forward(request, response);
             }
         }

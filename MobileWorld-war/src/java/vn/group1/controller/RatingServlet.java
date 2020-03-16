@@ -48,6 +48,7 @@ public class RatingServlet extends HttpServlet {
         
         ratingFacade.create(r);
         String url = req.getHeader("referer");
+        resp.setStatus(200);
         resp.sendRedirect(url);
     }
 

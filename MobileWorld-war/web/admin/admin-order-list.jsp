@@ -57,40 +57,67 @@
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid">
-
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        <table  class="table table-hover" data-order='[[ 0, "desc" ]]'> 
+                                        <table class="table table-hover" data-order='[[ 0, "desc" ]]'> 
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center text-muted">#ID</th>
+                                                    <th class="text-center">#ID</th>
                                                     <th>Customer</th>
-                                                    <th>State</th>
-                                                    <th>Order Date</th>
+                                                    <th class="text-center">Order Date</th>
+                                                    <th class="text-center">Verify Date</th>
                                                     <th>Verifier</th>
+                                                    <th class="text-center">State</th>
                                                     <th class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <c:forEach items="${order}" var="item">
                                                     <tr>
-                                                        <td class="text-center">#${item.id}</td>
-                                                        <td>${item.customer.username}</td>
-                                                        <td>${item.state}</td>
+                                                        <td class="text-center">${item.id}</td>
+                                                        <td>
+                                                            <p style="margin-bottom: 5px; font-weight: bolder">${item.customer.fullname}</span>
+                                                            <p style="margin-bottom: 5px">Phone: <a href="tel: ${item.customer.phone}">${item.customer.phone}</a></p>
+                                                            <p style="margin-bottom: 5px">Address: ${item.customer.address}</p>
+                                                        </td>
                                                         <td class="text-center"> <fmt:formatDate value="${item.orderDate}" pattern="dd-MM-yyyy"/></td>
-                                                        <td>  <select class="select-state" target="${item.id}">
-                                                                <option value="1" ${item.state == 1 ? "selected" : ""}>PENDING</option>
+                                                        <td class="text-center"> 
+                                                            <c:if test="${item.verificationDate != null}">
+                                                                <fmt:formatDate value="${item.verificationDate}" pattern="dd-MM-yyyy"/>
+                                                            </c:if>
 
-                                                                <option value="2" ${item.state == 2 ? "selected" : ""}>SUCCESS</option>
-                                                               
-                                                            </select></td>
+                                                            <c:if test="${item.verificationDate == null}">
+                                                                Not verified
+                                                            </c:if>
+                                                        </td>
+                                                        <td>
+                                                            <c:if test="${item.admin == null}">
+                                                                Not verified
+                                                            </c:if>
+                                                            <c:if test="${item.admin != null}">
+                                                                ${item.admin.fullname}
+                                                            </c:if>
+                                                        </td>
+                                                        <td>
+                                                            <c:if test="${item.state == 1}">
+                                                                <span class="badge badge-danger">Pending</span>
+                                                            </c:if>
+
+                                                            <c:if test="${item.state == 2}">
+                                                                <span class="badge badge-success">Verified</span>
+                                                            </c:if>
+                                                        </td>
                                                         <td class="text-center">
-                                                            <a href="update-category?action=find&id=${item.id}"    class="btn btn-warning btn-sm">Update</a>
-                                                            <a href="update-category?action=delete-category&id=${item.id}"  onclick="return confirm('You want to delete?');"class="btn btn-danger btn-sm">Delete</a>
+                                                            <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#order${item.id}">View</a>
+                                                            <c:if test="${item.state == 1}">
+                                                                <form action="./order-change-state" method="post" style="display: inline-block">
+                                                                    <input type="hidden" name="orderId" value="${item.id}">
+                                                                    <button type="submit" class="btn btn-success btn-sm btn-verify">Verify</button>
+                                                                </form>
+                                                            </c:if>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -112,13 +139,62 @@
                 </section>
                 <!-- /.content -->
             </div>
-            <!-- /.content-wrapper -->
 
-            <!-- Control Sidebar -->
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Control sidebar content goes here -->
-            </aside>
-            <!-- /.control-sidebar -->
+            <c:forEach items="${order}" var="item">
+                <div class="modal fade" id="order${item.id}">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Order #${item.id}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Items</h4>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Item</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-right">Price</th>
+                                            <th class="text-right">Sub Total</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <c:set var="total" value="${0}"/>
+                                        <c:forEach items="${item.orderDetailCollection}" var="od" varStatus="loop">
+                                            <c:set var="total" value="${total + od.quantity * od.price}" />
+                                            <tr>
+                                                <td>${loop.index + 1}</td>
+                                                <td>${od.product.name}</td>
+                                                <td class="text-center">${od.quantity}</td>
+                                                <td class="text-right">
+                                                    <fmt:formatNumber type="currency" currencySymbol="$" value="${od.price}" maxFractionDigits="0" />
+                                                </td>
+                                                <td class="text-right">
+                                                    <fmt:formatNumber type="currency" currencySymbol="$" value="${od.quantity * od.price}" maxFractionDigits="0" />
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+
+                                <!-- Totel Price -->
+                                <div class="totel-price">
+                                    <h4 class="text-right">
+                                        <small> Total Price: </small>
+                                        <fmt:formatNumber type="currency" currencySymbol="$" maxFractionDigits="0" value="${total}" />
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
 
             <!-- Main Footer -->
             <%@include file="include/admin-footer.jsp" %>
@@ -134,7 +210,7 @@
         <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
         <!-- SweetAleat -->
         <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-      <script src="plugins/toastr/toastr.min.js"></script>
+        <script src="plugins/toastr/toastr.min.js"></script>
         <!-- AdminLTE App -->
         <script src="assets/js/adminlte.js"></script>
 
@@ -143,27 +219,5 @@
         <script src="plugins/datatables/jquery.dataTables.js"></script>
         <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
         <script src="assets/js/main.js"></script>
-
-        <!-- PAGE SCRIPTS -->
-        <script>
-                                                                $(function () {
-                                                                    $(".table-hover").DataTable(dataTableOptions);
-
-                                                                    $('.select-state').change(function (e) {
-                                                                        e.preventDefault();
-                                                                        var id = $(this).attr('target').trim();
-                                                                        var state = $(this).val().trim();
-                                                                        $.post('./order-change-state', {
-                                                                            id: id,
-                                                                            state: state
-                                                                        }, function (resp) {
-                                                                            toastr.success('The Order state updated');
-                                                                        });
-                                                                    });
-
-
-                                                                });
-
-        </script>
     </body>
 </html>

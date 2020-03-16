@@ -58,14 +58,14 @@ public class ProductServlet extends HttpServlet {
             }
 
             Customer cus = (Customer) session.getAttribute("curAcc");
-            
+
             boolean rated = false;
             if (cus != null) {
                 for (Rating r : p.getRatingCollection()) {
-                if (r.getCustomer().getId() == cus.getId()) {
-                    rated = true;
+                    if (r.getCustomer().getId() == cus.getId()) {
+                        rated = true;
+                    }
                 }
-            }
             }
 
             session.setAttribute("recentlyViewed", recentlyViewed);
@@ -101,7 +101,7 @@ public class ProductServlet extends HttpServlet {
         int products = productFacade.count();
 
         int pages = (int) Math.ceil((double) products / LIMIT);
-        
+
         List<Product> productList = productFacade.findByPageNumber(currentPage, LIMIT);
 
         request.setAttribute("products", productList);

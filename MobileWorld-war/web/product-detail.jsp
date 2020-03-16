@@ -189,7 +189,7 @@
                             </c:if>
 
                             <c:if test="${product.ratingCollection.size() > 0}">
-                                <c:forEach items="${product.ratingCollection}" var="item" varStatus="loop">
+                                <c:forEach items="${product.ratingCollection.stream().limit(5).toArray()}" var="item" varStatus="loop">
                                     <div class="rev-group <c:if test="${loop.index < product.ratingCollection.size() - 1}">mb-5</c:if>">
                                             <div class="rev-header">
                                                 <div class="avt">

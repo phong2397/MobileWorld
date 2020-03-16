@@ -255,7 +255,8 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
         TypedQuery<Product> q = em.createQuery("SELECT p FROM Product p "
                 + "WHERE p.price = :price AND p.category.id = :cate "
                 + "OR (p.brand.id = :brand "
-                + "AND p.category.id = :cate)", Product.class);
+                + "AND p.category.id = :cate)"
+                + "AND p.state < 3", Product.class);
         return q.setParameter("brand", product.getBrand().getId())
                 .setParameter("cate", product.getCategory().getId())
                 .setParameter("price", product.getPrice())

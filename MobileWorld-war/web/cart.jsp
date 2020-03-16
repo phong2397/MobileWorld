@@ -98,7 +98,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="fullname"> Fullname </label>
-                                        <input class="form-control" name="fullname" id="fullname" type="text" required="">
+                                        <input class="form-control" name="fullname" id="fullname" type="text" value="${user.fullname}">
                                     </div>
                                 </div>
 
@@ -106,14 +106,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="phone"> Phone </label>
-                                        <input class="form-control" name="phone" id="phone" type="text" required="">
+                                        <input class="form-control" name="phone" id="phone" type="text" value="${user.phone}">
                                     </div>
                                 </div>
 
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="address"> Address </label>
-                                        <input class="form-control" name="address" id="address" type="text" required="">
+                                        <input class="form-control" name="address" id="address" type="text" value="${user.address}">
                                     </div>
                                 </div>
 

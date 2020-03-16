@@ -10,7 +10,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Report</title>
         <link rel="stylesheet" href="assets/css/adminlte.min.css">
-        <link rel="stylesheet" href="plugins/chart.js/Chart.min.css">
         <link rel="stylesheet" href="assets/css/report.css">
         
     </head>

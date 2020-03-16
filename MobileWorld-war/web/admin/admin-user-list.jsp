@@ -60,47 +60,35 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title">User List</h5>
-                                    </div>
                                     <!-- /.card-header -->
-                                    <div class="card-body p-0">
-                                        <table id="productsTable" class="table table-hover data-table">
+                                    <div class="card-body">
+                                        <table class="table table-hover data-table" data-order='[[0, "desc"]]'>
                                             <thead>
                                                 <tr>
                                                     <th class="text-center text-muted">#ID</th>
-
+                                                    <th class="text-center"><i class="fas fa-image"></i></th>
                                                     <th>UserName</th>
                                                     <th>Full Name</th>
                                                     <th>Phone</th>
                                                     <th>Address</th>
-                                                    <th class="text-center"><i class="fas fa-image"></i></th>
                                                     <th>Date Created</th>
-                                                    <th class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <c:forEach items="${customers}" var="item">
                                                     <tr>
                                                         <td class="text-center">#${item.id}</td>
-
-                                                        <td>${item.username}</td>
-                                                        <td>${item.fullname}</td>
-                                                        <td>${item.phone}</td>
-                                                        <td>${item.address}</td>
-
                                                         <td style="width: 150px; padding: 20px">
                                                             <c:if test="${item.avatar != null}">
                                                                 <img class="img-fluid" src="../uploads?fileName=${item.avatar}" />
                                                             </c:if>
                                                         </td>
+                                                        <td>${item.username}</td>
+                                                        <td>${item.fullname}</td>
+                                                        <td>${item.phone}</td>
+                                                        <td>${item.address}</td>
                                                         <td>
                                                             <fmt:formatDate value="${item.dateCreated}" pattern="dd-MM-yyyy"/>
-                                                        </td>
-
-                                                        <td class="text-center">
-                                                            <a target="_blank" href="../User?action=update&id=${item.id}" class="btn btn-primary btn-sm">View</a>
-
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -146,7 +134,7 @@
         <script src="assets/js/adminlte.js"></script>
 
         <!-- OPTIONAL SCRIPTS -->
-        <script src="assets/js/demo.js"></script>
+        <script src="assets/js/main.js"></script>
 
         <!-- PAGE PLUGINS -->
         <!-- DataTables -->
@@ -156,14 +144,7 @@
         <!-- PAGE SCRIPTS -->
         <script>
             $(function () {
-                $("#productsTable").DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                });
+                $(".data-table").DataTable(dataTableOptions);
             });
         </script>
     </body>

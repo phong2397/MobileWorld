@@ -925,7 +925,7 @@ function removeCartItem(prodId) {
 
 function updateHeaderCart(data) {
     $('.cart-pop .itm-cont').text(data.items);
-    $('.cart-pop .total').text(`${data.items} item(s) - $ ${data.total.toLocaleString('en-US')}`);
+    $('.cart-pop .total').text(`${data.items} item(s) - ${data.total.toLocaleString('en-US')} $`);
 }
 
 $(document).on('click', '.cart-btn, .btnCart', function (e) {

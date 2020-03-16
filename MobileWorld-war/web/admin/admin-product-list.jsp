@@ -95,7 +95,7 @@
                                                             </c:if>
 
                                                             <c:if test="${item.dateUpdated == null}">
-                                                                Not update
+                                                                Not updated
                                                             </c:if>
                                                         </td>
                                                         <td class="text-center">
