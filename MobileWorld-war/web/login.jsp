@@ -209,12 +209,12 @@
                 },
                 address: {
                     required: "<font color='red'>Please enter Address</font>",
-                     maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
+                    maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
                     minlength: "<font color='red'>Password must be at least 6 characters long</font>",
                 },
                 phone: {
                     required: "<font color='red'>Please enter Phone Number</font>",
-                    pattern: "<font color='red'>Invalid Phone,Valid Format:(123) 456-7890\n\,  123-456-7890  , 123.456.7890 , 1234567890<font>"
+                    pattern: "<font color='red'>Please enter valid phone - Phone begin 01 or 09 and 10 to 11 number!<font>"
                 },
             },
         });
@@ -224,12 +224,14 @@
             rules: {
                 username: {
                     required: true, //Required username
-
+                    minlength: 4,
+                    maxlength: 30,
                 },
 
                 pass: {
                     required: true, //Required password
-
+                    minlength: 2,
+                    maxlength: 30,
                 }
 
             },
@@ -237,12 +239,14 @@
             messages: {
                 username: {
                     required: "<font color='red'>Please enter Username</font>",
-
+                    minlength: "<font color='red'>Username must be at least 4 characters long<font>",
+                    maxlength: "<font color='red'>Username must be maximun at least 30 characters long<font>",
                 },
 
                 pass: {
                     required: "<font color='red'>Please enter Password</font>",
-
+                    maxlength: "<font color='red'>Password must be maximun at least 15 characters long<font>",
+                    minlength: "<font color='red'>Password must be at least 2 characters long</font>",
                 },
             },
 

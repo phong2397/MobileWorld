@@ -38,6 +38,7 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
                 .getSingleResult();
     }
     
+    @Override
     public Customer findUserByUsername(String username) {
         Query q = getEntityManager().createQuery("SELECT C FROM Customer c WHERE c.username = :username", Customer.class);
         q.setParameter("username", username);

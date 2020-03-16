@@ -30,4 +30,5 @@ public interface OrderDetailFacadeLocal {
 
     int count();
     
+    List<OrderDetail> getAllOrderDetailByOrderID(int id);
 }

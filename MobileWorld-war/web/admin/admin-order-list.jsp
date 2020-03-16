@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,7 +44,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0 text-dark">Users</h1>
+                                <h1 class="m-0 text-dark">Orders</h1>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
@@ -54,51 +55,45 @@
                 <section class="content">
                     <div class="container-fluid">
 
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">User List</h5>
+                                        <h5 class="card-title">Order List</h5>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body p-0">
-                                        <table id="productsTable" class="table table-hover data-table">
+                                        <table  class="table table-hover " data-order='[[ 0, "desc" ]]'> 
                                             <thead>
                                                 <tr>
                                                     <th class="text-center text-muted">#ID</th>
-
-                                                    <th>UserName</th>
-                                                    <th>Full Name</th>
-                                                    <th>Phone</th>
-                                                    <th>Address</th>
-                                                    <th class="text-center"><i class="fas fa-image"></i></th>
-                                                    <th>Date Created</th>
+                                                    <th>Customer</th>
+                                                    <th>State</th>
+                                                    <th>Order Date</th>
+                                                    <th>Verifier</th>
                                                     <th class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="${customers}" var="item">
+                                                <c:forEach items="${order}" var="item">
                                                     <tr>
                                                         <td class="text-center">#${item.id}</td>
+                                                        <td>${item.customer.username}</td>
+                                                        <td>${item.state}</td>
+                                                        <td class="text-center"> <fmt:formatDate value="${item.orderDate}" pattern="dd-MM-yyyy"/></td>
+                                                        <td>  <select class="select-state" target="${item.id}">
+                                                                <option value="1" ${item.state == 1 ? "selected" : ""}>PENDING</option>
 
-                                                        <td>${item.username}</td>
-                                                        <td>${item.fullname}</td>
-                                                        <td>${item.phone}</td>
-                                                        <td>${item.address}</td>
-
-                                                        <td style="width: 150px; padding: 20px">
-                                                            <c:if test="${item.avatar != null}">
-                                                                <img class="img-fluid" src="../uploads?fileName=${item.avatar}" />
-                                                            </c:if>
+                                                                <option value="2" ${item.state == 2 ? "selected" : ""}>SUCCESS</option>
+                                                               
+                                                            </select></td>
+                                                        <td class="text-center">
+                                                            <a href="update-category?action=find&id=${item.id}"    class="btn btn-warning btn-sm">Update</a>
+                                                            <a href="update-category?action=delete-category&id=${item.id}"  onclick="return confirm('You want to delete?');"class="btn btn-danger btn-sm">Delete</a>
                                                         </td>
-                                                        <td>                 <fmt:formatDate value="${item.dateCreated}" pattern="dd-MM-yyyy"/></td>
-
-                                                <td class="text-center">
-                                                    <a target="_blank" href="../User?action=update&id=${item.id}" class="btn btn-primary btn-sm">View</a>
-
-                                                </td>
-                                                </tr>
-                                            </c:forEach>
+                                                    </tr>
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
@@ -137,29 +132,38 @@
         <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- overlayScrollbars -->
         <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- SweetAleat -->
+        <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+      <script src="plugins/toastr/toastr.min.js"></script>
         <!-- AdminLTE App -->
         <script src="assets/js/adminlte.js"></script>
-
-        <!-- OPTIONAL SCRIPTS -->
-        <script src="assets/js/demo.js"></script>
 
         <!-- PAGE PLUGINS -->
         <!-- DataTables -->
         <script src="plugins/datatables/jquery.dataTables.js"></script>
         <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+        <script src="assets/js/main.js"></script>
 
         <!-- PAGE SCRIPTS -->
         <script>
-            $(function () {
-                $("#productsTable").DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                });
-            });
+                                                                $(function () {
+                                                                    $(".table-hover").DataTable(dataTableOptions);
+
+                                                                    $('.select-state').change(function (e) {
+                                                                        e.preventDefault();
+                                                                        var id = $(this).attr('target').trim();
+                                                                        var state = $(this).val().trim();
+                                                                        $.post('./order-change-state', {
+                                                                            id: id,
+                                                                            state: state
+                                                                        }, function (resp) {
+                                                                            toastr.success('The Order state updated');
+                                                                        });
+                                                                    });
+
+
+                                                                });
+
         </script>
     </body>
 </html>

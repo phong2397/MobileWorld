@@ -87,6 +87,24 @@
                             </li>
                         </ul>
                     </li>
+                      <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link <c:if test="${mainMenu.equals('orders')}">active</c:if>">
+                            <i class="nav-icon fas fa-box"></i>
+                            <p>
+                                Orders
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="./order-list" class="nav-link <c:if test="${subMenu.equals('order-list')}">active</c:if>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                           
+                        </ul>
+                    </li>
                     <li class="nav-item has-treeview menu-open">
                         <a href="#" class="nav-link <c:if test="${mainMenu.equals('customer')}">active</c:if>">
                             <i class="nav-icon fas fa-box"></i>
@@ -102,12 +120,7 @@
                                     <p>List</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="./create-user" class="nav-link <c:if test="${subMenu.equals('create-user')}">active</c:if>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </li>
             </ul>

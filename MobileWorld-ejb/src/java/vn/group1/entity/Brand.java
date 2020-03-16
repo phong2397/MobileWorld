@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author junev
+ * @author lehun
  */
 @Entity
 @Table(name = "Brands")
@@ -47,7 +47,7 @@ public class Brand implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "Name")
     private String name;
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "brand")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "brand")
     private Collection<Product> productCollection;
 
     public Brand() {

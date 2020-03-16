@@ -5,9 +5,11 @@
  */
 package vn.group1.sb;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import vn.group1.entity.OrderDetail;
 
 /**
@@ -29,4 +31,14 @@ public class OrderDetailFacade extends AbstractFacade<OrderDetail> implements Or
         super(OrderDetail.class);
     }
     
+    @Override
+    public List<OrderDetail> getAllOrderDetailByOrderID(int id) {
+        try {
+            Query q = getEntityManager().createQuery("SELECT od FROM OrderDetail od WHERE od.order.id = :id", OrderDetail.class);
+            q.setParameter("id", id);
+            return q.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

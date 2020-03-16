@@ -8,6 +8,7 @@ package vn.group1.controller;
 import java.io.IOException;
 
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +16,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import vn.group1.cliententity.CartItem;
 import vn.group1.entity.Customer;
+import vn.group1.entity.Order_;
 import vn.group1.sb.BrandFacadeLocal;
 import vn.group1.sb.CategoryFacadeLocal;
 import vn.group1.sb.CustomerFacadeLocal;
+import vn.group1.sb.OrderDetailFacadeLocal;
+import vn.group1.sb.Order_FacadeLocal;
 import vn.group1.sb.ProductFacadeLocal;
 
 /**
@@ -27,6 +32,12 @@ import vn.group1.sb.ProductFacadeLocal;
  */
 @WebServlet(name = "User", urlPatterns = {"/User"})
 public class UserServlet extends HttpServlet {
+
+    @EJB
+    private OrderDetailFacadeLocal orderDetailFacade;
+
+    @EJB
+    private Order_FacadeLocal order_Facade;
 
     @EJB
     private CategoryFacadeLocal categoryFacade;
@@ -48,9 +59,10 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("products", productFacade.findAll());
         request.setAttribute("categories", categoryFacade.findAll());
         request.setAttribute("brands", brandFacade.findAll());
-
+        Customer cus;
+    
         switch (action) {
-            case "insert":
+            case "insert":{
 
                 Customer newcus = new Customer();
                 newcus.setUsername(request.getParameter("username"));
@@ -76,7 +88,10 @@ public class UserServlet extends HttpServlet {
                 }
 
                 break;
-            case "update":
+            }
+            case "update":{
+                
+            
                 if (session.getAttribute("curAcc") == null) {
                     response.sendRedirect("login.jsp");
                 } else {
@@ -90,8 +105,8 @@ public class UserServlet extends HttpServlet {
                 }
 
                 break;
-
-            case "login":
+            }
+            case "login":{
 
                 String username = request.getParameter("username").trim();
                 String pass = request.getParameter("pass").trim();
@@ -108,10 +123,28 @@ public class UserServlet extends HttpServlet {
 
                 }
                 break;
-            case "logout":
+            }
+            case "logout":{
 
                 session.invalidate();
                 response.sendRedirect("");
+                break;
+            }
+            case "order-history":{
+            
+                if (session.getAttribute("curAcc") == null) {
+                    response.sendRedirect("login.jsp");
+                } else {
+                    int id = Integer.parseInt(request.getParameter("id"));
+                      cus = customerFacade.find(id);
+                        
+                    
+                  request.setAttribute("orderList",order_Facade.findAllOrderByCusId(cus.getId()));
+
+                 request.getRequestDispatcher("order-history.jsp").forward(request, response);
+                }
+            }
+
         }
 
     }
