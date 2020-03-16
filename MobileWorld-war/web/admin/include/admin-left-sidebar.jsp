@@ -37,8 +37,8 @@
                                     <p>Create</p>
                                 </a>
                             </li>
-                            
-                            
+
+
                         </ul>
                     </li>
                     <li class="nav-item has-treeview menu-open">
@@ -87,7 +87,7 @@
                             </li>
                         </ul>
                     </li>
-                      <li class="nav-item has-treeview menu-open">
+                    <li class="nav-item has-treeview menu-open">
                         <a href="#" class="nav-link <c:if test="${mainMenu.equals('orders')}">active</c:if>">
                             <i class="nav-icon fas fa-box"></i>
                             <p>
@@ -102,7 +102,7 @@
                                     <p>List</p>
                                 </a>
                             </li>
-                           
+
                         </ul>
                     </li>
                     <li class="nav-item has-treeview menu-open">
@@ -116,11 +116,11 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="./user-list" class="nav-link <c:if test="${subMenu.equals('user-list')}">active</c:if>">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>List</p>
-                                </a>
-                            </li>
-                        
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
             </ul>

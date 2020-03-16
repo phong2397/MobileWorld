@@ -43,9 +43,12 @@
                 <div class="content-header">
                     <div class="container-fluid">
                         <div class="row mb-2">
-                            <div class="col-sm-6">
+                            <div class="col-8">
                                 <h1 class="m-0 text-dark">Orders</h1>
                             </div><!-- /.col -->
+                            <div class="col-4 text-right">
+                                <a target="_blank" href="./order-report" class="btn btn-default">Generate Report</a>
+                            </div>
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
                 </div>

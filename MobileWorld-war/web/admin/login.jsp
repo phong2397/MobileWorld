@@ -24,17 +24,21 @@
         src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
+                jQuery.validator.addMethod("noSpace", function (value, element) {
+                    return value.indexOf(" ") < 0 && value != "";
+                }, " <font color='red'>No space  </font>");
+
                 $("#loginForm").validate({
 
                     rules: {
                         username: {
                             required: true, //Required username
-
+                            noSpace: true
                         },
 
                         pass: {
                             required: true, //Required password
-
+                            noSpace: true
                         }
 
                     },
@@ -91,14 +95,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-8">
-                                <div class="icheck-primary">
-                                    <input type="checkbox" id="remember">
-                                    <label for="remember">
-                                        Remember Me
-                                    </label>
-                                </div>
-                            </div>
+                        
                             <!-- /.col -->
                             <div class="col-4">
                                 <button type="submit" class="btn btn-primary btn-block">Sign In</button>

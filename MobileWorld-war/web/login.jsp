@@ -51,12 +51,7 @@
 
                                     </label>
                                 </li>
-                                <li class="col-sm-6">
-                                    <div class="checkbox checkbox-primary">
-                                        <input id="cate1" class="styled" type="checkbox" >
-                                        <label for="cate1"> Keep me logged in </label>
-                                    </div>
-                                </li>
+                               
                                 <li class="col-sm-12 text-left">
                                     <input type="submit" value="Login"class="btn-round"/>
                                 </li>
@@ -156,6 +151,9 @@
             return param.test(value);
         }, "Invalid regular expression format");
 
+        jQuery.validator.addMethod("noSpace", function (value, element) {
+            return value.indexOf(" ") < 0 && value != "";
+        }, " <font color='red'>No space  </font>");
 
         $("#register").validate({
             rules: {
@@ -163,29 +161,32 @@
                     required: true, //Required username
                     minlength: 4,
                     maxlength: 30,
-
+ noSpace: true
                 },
                 pass: {
                     required: true, //Required password
                     minlength: 8, //Password must be of at least 6 chars
                     maxlength: 20,
                     pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/i,
+                     noSpace: true
                 },
 
                 fullname: {
                     required: true,
                     minlength: 2,
                     maxlength: 30,
-
+ noSpace: true
                 },
                 phone: {required: true,
-                    pattern: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/i
+                    pattern: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/i,
+                     noSpace: true
                 },
 
                 address: {
                     required: true,
                     minlength: 6,
                     maxlength: 30,
+                     noSpace: true
                 },
             },
 
@@ -219,6 +220,7 @@
             },
         });
 
+
         $("#loginForm").validate({
 
             rules: {
@@ -226,12 +228,14 @@
                     required: true, //Required username
                     minlength: 4,
                     maxlength: 30,
+                     noSpace: true
                 },
 
                 pass: {
                     required: true, //Required password
                     minlength: 2,
                     maxlength: 30,
+                     noSpace: true
                 }
 
             },
@@ -241,12 +245,14 @@
                     required: "<font color='red'>Please enter Username</font>",
                     minlength: "<font color='red'>Username must be at least 4 characters long<font>",
                     maxlength: "<font color='red'>Username must be maximun at least 30 characters long<font>",
+                    noSpace:" <font color='red'>No space  </font>"
                 },
 
                 pass: {
                     required: "<font color='red'>Please enter Password</font>",
                     maxlength: "<font color='red'>Password must be maximun at least 15 characters long<font>",
                     minlength: "<font color='red'>Password must be at least 2 characters long</font>",
+                      noSpace:" <font color='red'>No space  </font>"
                 },
             },
 

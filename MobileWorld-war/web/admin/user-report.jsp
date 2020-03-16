@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="assets/css/adminlte.min.css">
         <link rel="stylesheet" href="plugins/chart.js/Chart.min.css">
         <link rel="stylesheet" href="assets/css/report.css">
+
     </head>
     <body>
         <div class="media-btn">
@@ -29,7 +30,7 @@
                 </div>
             </div>
 
-            <h5 class="title text-uppercase text-center">Order Report</h5>
+            <h5 class="title text-uppercase text-center">Customer Report</h5>
 
             <div class="row">
 
@@ -40,24 +41,25 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-             
-                        <th class="text-center">Customer(*)</th>
-                        <th class="text-center">State</th>
-                        <th class="text-center">Order Date</th>
+                        <th>UserName</th>
+                        <th class="text-center">FullName</th>
+                        <th class="text-center">Phone</th>
+                        <th class="text-center">Address</th>
+                        <th class="text-center">Date Created</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <c:forEach items="${order}" var="item" varStatus="loop">
+                    <c:forEach items="${customers}" var="item" varStatus="loop">
                         <tr>
                             <td class="text-center">${loop.index + 1}</td>
 
-                        
-                            <td>${item.customer.fullname}</td>
-                            <td>${item.state}</td>
-                          
+                            <td>${item.username}</td>
+                            <td>${item.fullname}</td>
+                            <td>${item.phone}</td>
+                            <td>${item.address}</td>
                             <td style="white-space: nowrap">
-                                <fmt:formatDate value="${item.orderDate}" pattern="dd-MM-yyyy"/>
+                                <fmt:formatDate value="${item.dateCreated}" pattern="dd-MM-yyyy"/>
                             </td>
                         </tr>
                     </c:forEach>
@@ -72,3 +74,9 @@
     <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/chart.js/Chart.min.js"></script>
     <script>
+        $('.print-btn').click(function () {
+            window.print();
+        });
+
+    </script>
+</html>

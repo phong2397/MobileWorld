@@ -93,25 +93,28 @@
                             <h2>Your information</h2>
                             <hr>
                         </div>
-                        <form action="./payment" method="post">
+                        <form action="./payment" method="post" id="register">
                             <div class="row"> 
                                 <div class="col-sm-6">
-                                    <label> Fullname
-                                        <input class="form-control" name="fullname" type="text" required="">
-                                    </label>
+                                    <div class="form-group">
+                                        <label for="fullname"> Fullname </label>
+                                        <input class="form-control" name="fullname" id="fullname" type="text" required="">
+                                    </div>
                                 </div>
 
 
                                 <div class="col-sm-6">
-                                    <label> Phone
-                                        <input class="form-control" name="phone" type="tel" required="">
-                                    </label>
+                                    <div class="form-group">
+                                        <label for="phone"> Phone </label>
+                                        <input class="form-control" name="phone" id="phone" type="text" required="">
+                                    </div>
                                 </div>
 
                                 <div class="col-sm-12">
-                                    <label> Address
-                                        <input class="form-control" name="address" type="text" required="">
-                                    </label>
+                                    <div class="form-group">
+                                        <label for="address"> Address </label>
+                                        <input class="form-control" name="address" id="address" type="text" required="">
+                                    </div>
                                 </div>
 
                                 <div class="pro-btn"> <input type="submit" id="btn-pay" class="btn-round" value="Confirm"></input> </div>
@@ -137,8 +140,68 @@
 <script type="text/javascript" src="rs-plugin/js/jquery.tp.min.js"></script>
 <script type="text/javascript" src="admin/plugins/toastr/toastr.min.js"></script> 
 <script src="js/main.js"></script> 
+
+<script type="text/javascript"
+src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+
 <script>
     $(function () {
+        $.validator.addMethod("pattern", function (value, element, param) {
+            if (this.optional(element)) {
+                return true;
+            }
+            if (typeof param === "string") {
+                param = new RegExp("^(?:" + param + ")$");
+            }
+            return param.test(value);
+        }, "Invalid regular expression format");
+
+        jQuery.validator.addMethod("noSpace", function (value, element) {
+            return value.indexOf(" ") < 0 && value != "";
+        }, " <font color='red'>No space  </font>");
+
+        $("#register").validate({
+
+            rules: {
+                fullname: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 30,
+                    noSpace: true
+                },
+                phone: {required: true,
+                    pattern: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/i,
+                    noSpace: true
+                },
+
+                address: {
+                    required: true,
+                    minlength: 6,
+                    maxlength: 30,
+                    noSpace: true
+                },
+
+            },
+
+            messages: {
+                fullname: {
+                    required: "<font color='red'>Please enter Fullname</font>",
+                    minlength: "<font color='red'>Fullname must be at least 2 characters long<font>",
+                    maxlength: "<font color='red'>Fullname must be maximun at least 30 characters long<font>",
+                },
+                address: {
+                    required: "<font color='red'>Please enter Address</font>",
+                    maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
+                    minlength: "<font color='red'>Password must be at least 6 characters long</font>",
+                },
+                phone: {
+                    required: "<font color='red'>Please enter Phone Number</font>",
+                    pattern: "<font color='red'>Please enter valid phone - Phone begin 01 or 09 and 10 to 11 number!<font>"
+                },
+            },
+
+        });
+
 
         $('.cart-quantity').change(function () {
             var val = parseInt($(this).val().trim());
@@ -154,4 +217,5 @@
         });
     });
 </script>
+
 <%@include file="include/footer.jsp" %>
