@@ -47,7 +47,7 @@ public class Brand implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "Name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "brand")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "brand")
     private Collection<Product> productCollection;
 
     public Brand() {

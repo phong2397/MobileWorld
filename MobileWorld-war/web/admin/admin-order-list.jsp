@@ -219,5 +219,8 @@
         <script src="plugins/datatables/jquery.dataTables.js"></script>
         <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
         <script src="assets/js/main.js"></script>
+        <script>
+            $(".table").DataTable(dataTableOptions);
+        </script>
     </body>
 </html>
