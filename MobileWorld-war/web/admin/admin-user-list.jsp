@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -42,9 +42,12 @@
                 <div class="content-header">
                     <div class="container-fluid">
                         <div class="row mb-2">
-                            <div class="col-sm-6">
+                            <div class="col-8">
                                 <h1 class="m-0 text-dark">Users</h1>
                             </div><!-- /.col -->
+                            <div class="col-4 text-right">
+                                <a target="_blank" href="./user-report" class="btn btn-default">Generate Report</a>
+                            </div>
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
                 </div>
@@ -91,14 +94,16 @@
                                                                 <img class="img-fluid" src="../uploads?fileName=${item.avatar}" />
                                                             </c:if>
                                                         </td>
-                                                        <td>                 <fmt:formatDate value="${item.dateCreated}" pattern="dd-MM-yyyy"/></td>
+                                                        <td>
+                                                            <fmt:formatDate value="${item.dateCreated}" pattern="dd-MM-yyyy"/>
+                                                        </td>
 
-                                                <td class="text-center">
-                                                    <a target="_blank" href="../User?action=update&id=${item.id}" class="btn btn-primary btn-sm">View</a>
+                                                        <td class="text-center">
+                                                            <a target="_blank" href="../User?action=update&id=${item.id}" class="btn btn-primary btn-sm">View</a>
 
-                                                </td>
-                                                </tr>
-                                            </c:forEach>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>

@@ -122,7 +122,9 @@
         <script type="text/javascript">
 
             $(document).ready(function () {
-
+                jQuery.validator.addMethod("noSpace", function (value, element) {
+                    return value.indexOf(" ") < 0 && value != "";
+                }, " <font color='red'>No space  </font>");
 
 
                 $("#loginForm").validate({
@@ -132,16 +134,18 @@
                             required: true, //Required username
                             minlength: 2, //Password must be of at least 6 chars
                             maxlength: 30,
-                        },
-                        messages: {
-                            name: {
-                                required: "<font color='red'>Please enter Name's Category</font>",
-                                maxlength: "<font color='red'>Brand must be maximun at least 30 characters long<font>",
-                                minlength: "<font color='red'>Brand must be at least 2 characters long</font>",
-                            },
-
+                            noSpace: true
                         }
+                    },
+                    messages: {
+                        name: {
+                            required: "<font color='red'>Please enter Name's Category</font>",
+                            maxlength: "<font color='red'>Brand must be maximun at least 30 characters long<font>",
+                            minlength: "<font color='red'>Brand must be at least 2 characters long</font>",
+                        },
+
                     }
+
                 });
             });
         </script>

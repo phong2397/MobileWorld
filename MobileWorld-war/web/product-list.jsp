@@ -95,7 +95,7 @@
 </div>
 
 
-<%@include file="include/recently-viewed-items.jsp" %>
+
 
 <!-- JavaScripts --> 
 <!-- Plugins --> 
