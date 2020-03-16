@@ -51,7 +51,7 @@
 
                                     </label>
                                 </li>
-                               
+
                                 <li class="col-sm-12 text-left">
                                     <input type="submit" value="Login"class="btn-round"/>
                                 </li>
@@ -141,6 +141,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+        
         $.validator.addMethod("pattern", function (value, element, param) {
             if (this.optional(element)) {
                 return true;
@@ -151,42 +152,49 @@
             return param.test(value);
         }, "Invalid regular expression format");
 
-        jQuery.validator.addMethod("noSpace", function (value, element) {
-            return value.indexOf(" ") < 0 && value != "";
-        }, " <font color='red'>No space  </font>");
+
+$.each($.validator.methods, function (key, value) {
+        $.validator.methods[key] = function () {           
+            if(arguments.length > 0) {
+                arguments[0] = $.trim(arguments[0]);
+            }
+
+            return value.apply(this, arguments);
+        };
+    });
 
         $("#register").validate({
             rules: {
                 username: {
-                    required: true, //Required username
+                    required:true,
                     minlength: 4,
                     maxlength: 30,
- noSpace: true
+
                 },
                 pass: {
-                    required: true, //Required password
+                   required:true,
                     minlength: 8, //Password must be of at least 6 chars
                     maxlength: 20,
                     pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/i,
-                     noSpace: true
+
                 },
 
                 fullname: {
-                    required: true,
+                   required:true,
                     minlength: 2,
                     maxlength: 30,
- noSpace: true
+
                 },
-                phone: {required: true,
+                phone: {required:true,
                     pattern: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/i,
-                     noSpace: true
+
                 },
 
                 address: {
-                    required: true,
+                  required:true,
                     minlength: 6,
                     maxlength: 30,
-                     noSpace: true
+
                 },
             },
 
@@ -210,8 +218,8 @@
                 },
                 address: {
                     required: "<font color='red'>Please enter Address</font>",
-                    maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
-                    minlength: "<font color='red'>Password must be at least 6 characters long</font>",
+                    maxlength: "<font color='red'>Address must be maximun at least 30 characters long<font>",
+                    minlength: "<font color='red'>Address must be at least 6 characters long</font>",
                 },
                 phone: {
                     required: "<font color='red'>Please enter Phone Number</font>",
@@ -225,17 +233,17 @@
 
             rules: {
                 username: {
-                    required: true, //Required username
-                    minlength: 4,
+                   required:true,
+
                     maxlength: 30,
-                     noSpace: true
+
                 },
 
                 pass: {
-                    required: true, //Required password
-                    minlength: 2,
+                  required:true,
+
                     maxlength: 30,
-                     noSpace: true
+
                 }
 
             },
@@ -243,16 +251,15 @@
             messages: {
                 username: {
                     required: "<font color='red'>Please enter Username</font>",
-                    minlength: "<font color='red'>Username must be at least 4 characters long<font>",
+
                     maxlength: "<font color='red'>Username must be maximun at least 30 characters long<font>",
-                    noSpace:" <font color='red'>No space  </font>"
+
                 },
 
                 pass: {
                     required: "<font color='red'>Please enter Password</font>",
-                    maxlength: "<font color='red'>Password must be maximun at least 15 characters long<font>",
-                    minlength: "<font color='red'>Password must be at least 2 characters long</font>",
-                      noSpace:" <font color='red'>No space  </font>"
+                    maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
+
                 },
             },
 

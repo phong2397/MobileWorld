@@ -15,13 +15,9 @@
         <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
         <!-- DataTables -->
         <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="assets/css/adminlte.min.css">
-        <!-- SweetAleart -->
-        <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
-        <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
-        <!-- Custom style -->
-        <link rel="stylesheet" href="assets/css/custom.css">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     </head>
@@ -133,6 +129,7 @@
         <!-- AdminLTE App -->
         <script src="assets/js/adminlte.js"></script>
 
+     
         <!-- OPTIONAL SCRIPTS -->
         <script src="assets/js/main.js"></script>
 
@@ -146,6 +143,10 @@
             $(function () {
                 $(".data-table").DataTable(dataTableOptions);
             });
+
+            <c:if test="${error != null}">
+            toastr.error('${error}');
+            </c:if>
         </script>
     </body>
 </html>

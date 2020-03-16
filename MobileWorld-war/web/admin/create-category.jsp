@@ -122,10 +122,15 @@
         <script type="text/javascript">
 
             $(document).ready(function () {
-                jQuery.validator.addMethod("noSpace", function (value, element) {
-                    return value.indexOf(" ") < 0 && value != "";
-                }, " <font color='red'>No space  </font>");
+               $.each($.validator.methods, function (key, value) {
+        $.validator.methods[key] = function () {           
+            if(arguments.length > 0) {
+                arguments[0] = $.trim(arguments[0]);
+            }
 
+            return value.apply(this, arguments);
+        };
+    });
 
                 $("#loginForm").validate({
 
@@ -134,14 +139,14 @@
                             required: true, //Required username
                             minlength: 2, //Password must be of at least 6 chars
                             maxlength: 30,
-                            noSpace: true
+                           
                         }
                     },
                     messages: {
                         name: {
                             required: "<font color='red'>Please enter Name's Category</font>",
-                            maxlength: "<font color='red'>Brand must be maximun at least 30 characters long<font>",
-                            minlength: "<font color='red'>Brand must be at least 2 characters long</font>",
+                            maxlength: "<font color='red'>Name's Category must be maximun at least 30 characters long<font>",
+                            minlength: "<font color='red'>Name's Category must be at least 2 characters long</font>",
                         },
 
                     }

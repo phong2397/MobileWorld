@@ -156,29 +156,35 @@ src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.
             return param.test(value);
         }, "Invalid regular expression format");
 
-        jQuery.validator.addMethod("noSpace", function (value, element) {
-            return value.indexOf(" ") < 0 && value != "";
-        }, " <font color='red'>No space  </font>");
+       $.each($.validator.methods, function (key, value) {
+        $.validator.methods[key] = function () {           
+            if(arguments.length > 0) {
+                arguments[0] = $.trim(arguments[0]);
+            }
+
+            return value.apply(this, arguments);
+        };
+    });
 
         $("#register").validate({
 
             rules: {
                 fullname: {
-                    required: true,
+                    required:true,
                     minlength: 2,
                     maxlength: 30,
-                    noSpace: true
+                    
                 },
-                phone: {required: true,
+                phone: {    required:true,
                     pattern: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/i,
-                    noSpace: true
+         
                 },
 
                 address: {
-                    required: true,
+                      required:true,
                     minlength: 6,
                     maxlength: 30,
-                    noSpace: true
+               
                 },
 
             },
@@ -191,8 +197,8 @@ src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.
                 },
                 address: {
                     required: "<font color='red'>Please enter Address</font>",
-                    maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
-                    minlength: "<font color='red'>Password must be at least 6 characters long</font>",
+                    maxlength: "<font color='red'>Address must be maximun at least 30 characters long<font>",
+                    minlength: "<font color='red'>Address must be at least 6 characters long</font>",
                 },
                 phone: {
                     required: "<font color='red'>Please enter Phone Number</font>",
