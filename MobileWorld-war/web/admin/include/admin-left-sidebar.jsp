@@ -87,6 +87,14 @@
                             </li>
                         </ul>
                     </li>
+                     <li class="nav-item">
+                        <a href="./review-list" class="nav-link <c:if test="${mainMenu.equals('review-list')}">active</c:if>">
+                            <i class="nav-icon fas fa-star"></i>
+                            <p>
+                                Review
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="./order-list" class="nav-link <c:if test="${mainMenu.equals('orders')}">active</c:if>">
                             <i class="nav-icon fas fa-scroll"></i>
