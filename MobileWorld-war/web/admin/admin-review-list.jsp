@@ -62,15 +62,15 @@
                                     <!-- /.card-header -->
                                     <div class="card-body">
 
-                                        <table class="table table-hover data-table">
+                                        <table class="table table-hover data-table" data-order='[[0, "desc"]]'>
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
-                                                    <th class="text-center">Customer(*)</th>
-                                                    <th class="text-center">Product(*)</th>
+                                                    <th>Customer</th>
+                                                    <th>Product</th>
                                                     <th class="text-center">Star</th>
-                                                    <th class="text-right">Comment</th>
-                                                    <th class="text-right">Date Rating</th>
+                                                    <th>Comment</th>
+                                                    <th class="text-center">Date Rating</th>
                                                 </tr>
                                             </thead>
 
@@ -80,16 +80,20 @@
                                                 <c:forEach items="${review}" var="item" >
 
                                                     <tr>
-                                                        <td>#${item.id}</td>
-                                                        <td class="text-center">${item.customer.fullname}</td>
-                                                        <td class="text-center">${item.product.name}</td>
-                                                        <td class="text-center">    <c:forEach begin="1" end="${item.stars}">
-                                                                <i class="fa fa-star" style="color:yellow"></i>
-                                                            </c:forEach>    </td>
-                                                        <td class="text-right">
+                                                        <td>${item.id}</td>
+                                                        <td>${item.customer.fullname}</td>
+                                                        <td>
+                                                            <a href="../product?id=${item.product.id}">${item.product.name}</a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <c:forEach begin="1" end="${item.stars}">
+                                                                <i class="fa fa-star" style="color:#fecb00"></i>
+                                                            </c:forEach>
+                                                        </td>
+                                                        <td>
                                                             ${item.comment}
                                                         </td>
-                                                        <td class="text-right">
+                                                        <td class="text-center">
                                                             <fmt:formatDate value="${item.ratingDate}" pattern="dd-MM-yyyy"/>
                                                         </td>
                                                     </tr>
