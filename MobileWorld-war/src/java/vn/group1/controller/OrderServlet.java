@@ -60,8 +60,9 @@ public class OrderServlet extends HttpServlet {
         if (session.getAttribute("curAcc") != null) {
             cus = (Customer) session.getAttribute("curAcc");
         } else {
-            cus = customerFacade.findByPhone(phone);
-            if (cus == null) {
+            try {
+                cus = customerFacade.findByPhone(phone);
+            } catch (Exception e) {
                 cus = new Customer();
                 cus.setUsername(phone);
                 cus.setPhone(phone);

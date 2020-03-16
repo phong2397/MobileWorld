@@ -92,6 +92,7 @@
                         <h2>Your information</h2>
                         <hr>
                     </div>
+                    <% if (session.getAttribute("curAcc") == null) { %>
                     <form action="./payment" method="post">
                         <div class="row"> 
                             <div class="col-sm-6">
@@ -114,8 +115,40 @@
                             </div>
 
                             <div class="pro-btn"> <input type="submit" class="btn-round" value="Confirm"></input> </div>
+                            
+                            
                         </div>
                     </form>
+                    <% } %>
+                    
+                      <% if (session.getAttribute("curAcc") != null) { %>
+                     <form action="./payment" method="post">
+                        <div class="row"> 
+                            <div class="col-sm-6">
+                                <label> Fullname
+                                    <input class="form-control" name="fullname" value="${curAcc.fullname}" type="text" required="">
+                                </label>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <label> Phone
+                                    <input class="form-control" name="phone"  value="${curAcc.phone}" type="tel" required="">
+                                </label>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <label> Address
+                                    <input class="form-control" name="address"  value="${curAcc.address}" type="text" required="">
+                                </label>
+                            </div>
+
+                            <div class="pro-btn"> <input type="submit" class="btn-round" value="Confirm"></input> </div>
+                            
+                            
+                        </div>
+                    </form>
+                       <% } %>
                 </div>
             </div>
         </div>

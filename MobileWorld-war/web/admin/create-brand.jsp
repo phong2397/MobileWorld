@@ -143,7 +143,8 @@
                 rules: {
                     name: {
                         required: true, //Required username
-
+  minlength: 2, //Password must be of at least 6 chars
+                    maxlength: 30,
                     },
                     logo: {
                         required: true, //Required logo   
@@ -151,6 +152,8 @@
                 },
                 messages: {
                     name: {
+                          maxlength: "<font color='red'>Brand must be maximun at least 30 characters long<font>",
+                    minlength: "<font color='red'>Brand must be at least 2 characters long</font>",
                         required: "<font color='red'>Please enter Name's Brand</font>",
                     },
                     logo: {

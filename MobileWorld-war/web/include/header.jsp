@@ -45,6 +45,7 @@
                     <div class="right-sec">
                     
                         <ul>
+                             
                             <li>  <% if (session.getAttribute("curAcc") != null) { %>
 		
                             <li><i class="glyphicon glyphicon-user" ></i><a href="User?action=update&id=${curAcc.id}">Hello: ${curAcc.fullname}</a></li>

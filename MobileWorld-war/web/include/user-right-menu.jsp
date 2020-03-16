@@ -20,7 +20,7 @@
         <li><a href="User?action=update&id=${curAcc.id}"><i class="fa fa-edit"></i> My Account</a></li>                                        
      <li><a href="changepass?action=findid&id=${user.id}">  <i class="fa fa-edit"></i> Change Password</a></li>
  
-        <li><a href="order-history.jsp"> <i class="fa fa-edit"></i> Order History</a></li>
+        <li><a href="User?action=order-history&id=${curAcc.id}"> <i class="fa fa-edit"></i> Order History</a></li>
        
     </ul>                                
 </div>

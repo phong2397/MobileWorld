@@ -7,6 +7,8 @@ package vn.group1.sb;
 
 import java.util.List;
 import javax.ejb.Local;
+import vn.group1.entity.Customer;
+import vn.group1.entity.OrderDetail;
 import vn.group1.entity.Order_;
 
 /**
@@ -30,4 +32,6 @@ public interface Order_FacadeLocal {
 
     int count();
     
+    List<Order_> findAllOrderByCusId(int id);
+    List<OrderDetail> getAllOrderDetailByOrderID(int id);
 }

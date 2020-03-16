@@ -6,7 +6,7 @@
 
 <%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@include file="include/header.jsp"  %>
 
@@ -26,7 +26,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-          $.validator.addMethod("pattern", function (value, element, param) {
+        $.validator.addMethod("pattern", function (value, element, param) {
             if (this.optional(element)) {
                 return true;
             }
@@ -39,19 +39,20 @@
         $("#loginForm").validate({
 
             rules: {
-                 
+
                 oldpass: {
                     required: true, //Required password
-
+                    minlength: 2,
+                    maxlength: 30,
                 },
                 pass: {
                     required: true, //Required password
                     minlength: 8, //Password must be of at least 6 chars
-                    maxlength: 20,
-                      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/i,
+                    maxlength: 30,
+                    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/i,
                 },
-    repass: {
-                equalTo: "#pass",
+                repass: {
+                    equalTo: "#pass",
 
                 },
             },
@@ -59,16 +60,17 @@
             messages: {
                 oldpass: {
                     required: "<font color='red'>Please enter Your Current Pass</font>",
-
+                    minlength: "<font color='red'>Password must be at least 3 characters long</font>",
+                    maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
                 },
-              pass: {
+                pass: {
                     required: "<font color='red'>Please enter Password</font>",
-                    maxlength: "<font color='red'>Password must be maximun at least 20 characters long<font>",
+                    maxlength: "<font color='red'>Password must be maximun at least 30 characters long<font>",
                     minlength: "<font color='red'>Password must be at least 8 characters long</font>",
                     pattern: "<font color='red'>Invalid Pass,Valid Format:  ninhvu123^,Phong123@<font>",
                 },
                 repass: {
-                  
+
                     equalTo: "<font color='red'>Your Password does not match</font>",
 
                 },
@@ -77,7 +79,7 @@
         });
 
     });
-    </script>
+</script>
 <style>
     .ui-datepicker {
         height: auto !important;
@@ -211,11 +213,10 @@
     }
 
 </style>
- <% 
-   if (session.getAttribute("curAcc") == null)
-   {
-      response.sendRedirect("login.jsp");
-   }
+<%
+    if (session.getAttribute("curAcc") == null) {
+        response.sendRedirect("login.jsp");
+    }
 %> 
 <!-- MY ACCOUNT -->
 <div class="account-wrap">
@@ -246,7 +247,7 @@
                                     <div class="column form-row">
                                         <hr class="border--primary" style="width: 50%; size: 50px; border-width: 1px; margin-left: 50px;
                                             border-style: double; position: relative; margin-bottom: 20px; margin-top:20px">
-                                       
+
                                     </div>
                                 </li>
                                 <li class="col-md-7 col-sm-11">

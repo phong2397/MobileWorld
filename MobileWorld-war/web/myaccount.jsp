@@ -1,6 +1,6 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@include file="include/header.jsp"  %>
 <script src="js/vendors/jquery/jquery.min.js"></script> 
 <script src="js/vendors/wow.min.js"></script> 
@@ -37,7 +37,6 @@
                     maxlength: 30,
 
                 },
-              
 
                 fullname: {
 
@@ -52,6 +51,8 @@
                 },
 
                 address: {
+                    minlength: 6,
+                    maxlength: 40,
                     required: true,
 
                 },
@@ -65,7 +66,6 @@
 
                 },
 
-               
                 fullname: {
                     required: "<font color='red'>Please enter Fullname</font>",
                     minlength: "<font color='red'>Fullname must be at least 2 characters long<font>",
@@ -73,6 +73,8 @@
 
                 },
                 address: {
+                    minlength: "<font color='red'>Address must be at least 6 characters long<font>",
+                    maxlength: "<font color='red'>Address must be maximun at least 40 characters long<font>",
                     required: "<font color='red'>Please enter Address</font>",
 
                 },
@@ -265,9 +267,7 @@
     }
 
 </style>
-<%
-   
-%> 
+
 <!-- MY ACCOUNT -->
 <div class="account-wrap">
     <div class="container">
@@ -326,7 +326,9 @@
                                          border-radius: 3px;
                                          height: 200px;
                                          width: 200px;
-                                         "></div>
+                                         ">
+                                        <img src="./uploads?fileName=${user.avatar}" style="max-height: 100%">
+                                    </div>
                                 </li>
                                 <div class="buttons-set">
                                     <button class="btn-black fs-button-update-user" type="submit"><span>Update Account</span></button>
