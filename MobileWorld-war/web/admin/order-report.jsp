@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="assets/css/adminlte.min.css">
         <link rel="stylesheet" href="plugins/chart.js/Chart.min.css">
         <link rel="stylesheet" href="assets/css/report.css">
-
     </head>
     <body>
         <div class="media-btn">
@@ -73,9 +72,3 @@
     <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/chart.js/Chart.min.js"></script>
     <script>
-        $('.print-btn').click(function () {
-            window.print();
-        });
-
-    </script>
-</html>

@@ -38,11 +38,16 @@
 
                                     <!-- Reviews -->
                                     <p class="rev">
-                                        <c:if test="${item.ratingCollection.size() > 0}">
-                                            <c:forEach begin="1" end="${item.ratingCollection.get(0).stars}">
+                                        <c:if test="${item.ratingCollection.size() > 0}">  
+                                            <c:set var="sum" value="0"></c:set>
+                                            <c:forEach items="${item.ratingCollection}" var="r">
+                                                <c:set var="sum" value="${sum = sum + r.stars}"></c:set>
+                                            </c:forEach>
+                                            <c:set var="stars" value="${sum/item.ratingCollection.size()}"></c:set>
+                                            <c:forEach begin="1" end="${stars}">
                                                 <i class="fa fa-star"></i>
                                             </c:forEach>     
-                                            <c:forEach begin="${item.ratingCollection.get(0).stars + 1}" end="5">
+                                            <c:forEach begin="${stars + 1}" end="5">
                                                 <i class="fa fa-star-o"></i> 
                                             </c:forEach>
                                         </c:if>

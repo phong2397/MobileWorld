@@ -62,12 +62,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title">Order List</h5>
-                                    </div>
                                     <!-- /.card-header -->
-                                    <div class="card-body p-0">
-                                        <table  class="table table-hover " data-order='[[ 0, "desc" ]]'> 
+                                    <div class="card-body">
+                                        <table  class="table table-hover" data-order='[[ 0, "desc" ]]'> 
                                             <thead>
                                                 <tr>
                                                     <th class="text-center text-muted">#ID</th>

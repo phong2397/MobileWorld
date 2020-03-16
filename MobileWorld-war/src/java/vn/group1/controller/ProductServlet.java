@@ -7,7 +7,9 @@ package vn.group1.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +17,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import vn.group1.entity.Customer;
 import vn.group1.entity.Product;
+import vn.group1.entity.Rating;
 import vn.group1.sb.ProductFacadeLocal;
 
 /**
@@ -44,16 +48,29 @@ public class ProductServlet extends HttpServlet {
         }
 
         String sId = request.getParameter("id");
-        
+
         if (sId != null) {
             int id = Integer.parseInt(sId);
             Product p = productFacade.find(id);
-            
+
             if (!recentlyViewed.contains(id)) {
                 recentlyViewed.add(id);
             }
+
+            Customer cus = (Customer) session.getAttribute("curAcc");
+            
+            boolean rated = false;
+            if (cus != null) {
+                for (Rating r : p.getRatingCollection()) {
+                if (r.getCustomer().getId() == cus.getId()) {
+                    rated = true;
+                }
+            }
+            }
+
             session.setAttribute("recentlyViewed", recentlyViewed);
             request.setAttribute("product", p);
+            request.setAttribute("rated", rated);
             request.setAttribute("relatedProducts", productFacade.getRelatedProducts(p, 10));
             request.getRequestDispatcher("product-detail.jsp").forward(request, response);
             return;
@@ -66,7 +83,7 @@ public class ProductServlet extends HttpServlet {
             request.getRequestDispatcher("product-list.jsp").forward(request, response);
             return;
         }
-        
+
         sId = request.getParameter("brandId");
         if (sId != null) {
             int brandId = Integer.parseInt(sId);
@@ -84,8 +101,10 @@ public class ProductServlet extends HttpServlet {
         int products = productFacade.count();
 
         int pages = (int) Math.ceil((double) products / LIMIT);
+        
+        List<Product> productList = productFacade.findByPageNumber(currentPage, LIMIT);
 
-        request.setAttribute("products", productFacade.findByPageNumber(currentPage, LIMIT));
+        request.setAttribute("products", productList);
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("pages", pages);
         request.getRequestDispatcher("product-list.jsp").forward(request, response);

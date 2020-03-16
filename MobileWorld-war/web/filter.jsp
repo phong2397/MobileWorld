@@ -49,7 +49,31 @@
                                         <span class="tag">${item.category.name}</span>
                                         <a href="./product?id=${item.id}" class="tittle">${item.name}</a> 
                                         <!-- Reviews -->
-                                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">${item.ratingCollection.size()} Review(s)</span></p>
+
+                                        <p class="rev">
+                                            <c:if test="${item.ratingCollection.size() > 0}">  
+                                                <c:set var="sum" value="0"></c:set>
+                                                <c:forEach items="${item.ratingCollection}" var="r">
+                                                    <c:set var="sum" value="${sum = sum + r.stars}"></c:set>
+                                                </c:forEach>
+                                                <c:set var="stars" value="${sum/item.ratingCollection.size()}"></c:set>
+                                                <c:forEach begin="1" end="${stars}">
+                                                    <i class="fa fa-star"></i>
+                                                </c:forEach>     
+                                                <c:forEach begin="${stars + 1}" end="5">
+                                                    <i class="fa fa-star-o"></i> 
+                                                </c:forEach>
+                                            </c:if>
+
+                                            <c:if test="${item.ratingCollection.size() == 0}">
+                                                <i class="fa fa-star-o"></i> 
+                                                <i class="fa fa-star-o"></i> 
+                                                <i class="fa fa-star-o"></i> 
+                                                <i class="fa fa-star-o"></i> 
+                                                <i class="fa fa-star-o"></i> 
+                                            </c:if>
+                                            <span class="margin-left-10">${item.ratingCollection.size()} Review(s)</span>
+                                        </p>
                                         <ul class="bullet-round-list">
                                             <c:forEach items="${item.specificationCollection}" var="s">
                                                 <c:if test="${s.attribute.show}">
@@ -78,11 +102,11 @@
                                                     </span>
                                                 </p>
                                                 <a href="#" target="${item.id}" class="btn-round btnCart"><i class="icon-basket-loaded"></i> Add to Cart</a> </div>
-                                        </div>
                                     </div>
                                 </div>
-                            </article>
-                        </div>
+                            </div>
+                        </article>
+                    </div>
                 </c:forEach>
             </div>               
         </div>

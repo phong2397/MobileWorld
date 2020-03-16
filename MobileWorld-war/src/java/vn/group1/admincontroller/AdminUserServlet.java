@@ -43,7 +43,7 @@ public class AdminUserServlet extends HttpServlet {
         request.setAttribute("mainMenu", "customer");
         request.setAttribute("subMenu", "user-list");
         request.setAttribute("customers", customerFacade.findAll());
-
+        
         request.getRequestDispatcher("admin-user-list.jsp").forward(request, response);
     }
 
