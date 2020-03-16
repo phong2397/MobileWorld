@@ -6,13 +6,11 @@
 package vn.group1.admincontroller;
 
 import java.io.IOException;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import vn.group1.sb.AdminFacadeLocal;
 
 /**
  *
@@ -20,9 +18,6 @@ import vn.group1.sb.AdminFacadeLocal;
  */
 @WebServlet(name = "DashboardServlet", urlPatterns = {"/admin/"})
 public class DashboardServlet extends HttpServlet {
-
-    @EJB
-    private AdminFacadeLocal adminFacade;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

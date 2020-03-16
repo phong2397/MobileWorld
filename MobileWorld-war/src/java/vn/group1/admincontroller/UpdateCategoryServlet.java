@@ -62,8 +62,12 @@ public class UpdateCategoryServlet extends HttpServlet {
             case "delete-category":
 
                 Category b1 = categoryFacade.find(id);
-                categoryFacade.remove(b1);
-                request.setAttribute("cate", b1);
+                try {
+                    categoryFacade.remove(b1);
+                } catch (Exception e) {
+                    
+                request.setAttribute("error", "Can not delete this category");
+                }
 
                 request.getRequestDispatcher("category-list").forward(request, response);
                 break;

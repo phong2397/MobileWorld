@@ -2,8 +2,8 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <span class="brand-text font-weight-light">Admin Panel</span>
+    <a href="index3.html" class="brand-link text-center">
+        <span class="brand-text font-weight-bold">Admin Panel</span>
     </a>
 
     <!-- Sidebar -->
@@ -28,13 +28,13 @@
                             <li class="nav-item">
                                 <a href="./product-list" class="nav-link <c:if test="${subMenu.equals('product-list')}">active</c:if>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Product List</p>
+                                    <p>List</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="./create-product" class="nav-link <c:if test="${subMenu.equals('create-product')}">active</c:if>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Add New Product</p>
+                                    <p>Create</p>
                                 </a>
                             </li>
 

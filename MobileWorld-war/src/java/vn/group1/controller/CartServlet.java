@@ -45,6 +45,8 @@ public class CartServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("application/json");
         String action = request.getParameter("action") != null ? request.getParameter("action") : "";
 
         HttpSession session = request.getSession();

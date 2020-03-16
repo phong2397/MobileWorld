@@ -164,6 +164,10 @@ public class UpdateProductServlet extends HttpServlet {
             } catch (ParseException ex) {
                 ex.printStackTrace();
             }
+        }else {
+            p.setDiscount(null);
+            p.setStartDate(null);
+            p.setEndDate(null);
         }
 
         if (productFacade.update(p)) {

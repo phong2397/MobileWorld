@@ -48,6 +48,8 @@ public class DataProviderFilter implements Filter {
         HttpSession session = req.getSession();
         int items = 0;
         int total = 0;
+        
+        req.setAttribute("cus", session.getAttribute("curAcc"));
 
         if (session.getAttribute("cart") != null) {
             List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
