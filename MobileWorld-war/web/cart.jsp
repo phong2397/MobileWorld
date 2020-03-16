@@ -24,7 +24,7 @@
                     <th class="text-center">Price</th>
                     <th class="text-center">Quantity</th>
                     <th class="text-center">Total Price </th>
-                    <th>&nbsp; </th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -83,42 +83,44 @@
             <div class="pro-btn"> <a href="./product" class="btn-round btn-light">Go Shopping</a> </div>
         </c:if>
 
+        <c:if test="${cart.size() > 0}">
             <div class="pay-method" style="margin-top: 40px">
-            <div class="row">
-                <div class="col-md-12"> 
+                <div class="row">
+                    <div class="col-md-12"> 
 
-                    <!-- Your information -->
-                    <div class="heading">
-                        <h2>Your information</h2>
-                        <hr>
-                    </div>
-                    <form action="./payment" method="post">
-                        <div class="row"> 
-                            <div class="col-sm-6">
-                                <label> Fullname
-                                    <input class="form-control" name="fullname" type="text" required="">
-                                </label>
-                            </div>
-
-
-                            <div class="col-sm-6">
-                                <label> Phone
-                                    <input class="form-control" name="phone" type="tel" required="">
-                                </label>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <label> Address
-                                    <input class="form-control" name="address" type="text" required="">
-                                </label>
-                            </div>
-
-                            <div class="pro-btn"> <input type="submit" class="btn-round" value="Confirm"></input> </div>
+                        <!-- Your information -->
+                        <div class="heading">
+                            <h2>Your information</h2>
+                            <hr>
                         </div>
-                    </form>
+                        <form action="./payment" method="post">
+                            <div class="row"> 
+                                <div class="col-sm-6">
+                                    <label> Fullname
+                                        <input class="form-control" name="fullname" type="text" required="">
+                                    </label>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <label> Phone
+                                        <input class="form-control" name="phone" type="tel" required="">
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <label> Address
+                                        <input class="form-control" name="address" type="text" required="">
+                                    </label>
+                                </div>
+
+                                <div class="pro-btn"> <input type="submit" id="btn-pay" class="btn-round" value="Confirm"></input> </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </c:if>
 
     </div>
 </section>

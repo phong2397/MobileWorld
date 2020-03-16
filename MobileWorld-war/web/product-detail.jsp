@@ -1,10 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file="include/header.jsp"  %>
 <c:set var="today" value="<%=new java.util.Date()%>"/>
-
+<link rel="stylesheet" href="css/starability-basic.min.css">
 <!-- Linking -->
 <div class="linking">
     <div class="container">
@@ -56,7 +56,7 @@
                             <h5>${product.name}</h5>
                             <p class="rev">
                                 <c:if test="${product.ratingCollection.size() > 0}">
-                                    <c:forEach begin="1" end="${product.ratingCollection.get(0).stars}">
+                                    <c:forEach begin="1" end="${product.ratingCollection.stream().mapToInt(r->r.getStars()).sum()}">
                                         <i class="fa fa-star"></i>
                                     </c:forEach>     
                                     <c:forEach begin="${product.ratingCollection.get(0).stars + 1}" end="5">
@@ -110,10 +110,6 @@
                                         </c:if>
                                     </c:forEach>
                             </ul>
-                            <!-- Compare Wishlist -->
-                            <ul class="cmp-list">
-                                <li><a href="#."><i class="fa fa-navicon"></i> Add to Compare</a></li>
-                            </ul>
 
                             <a href="#" target="${product.id}" class="btn-round btnCart"><i class="icon-basket-loaded margin-right-5"></i> Add to Cart</a> 
                         </div>
@@ -139,15 +135,69 @@
                             </ul>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="cus-rev">
+
+                            <c:if test="${cus != null}">
+                                <div class="rev-group mb-5">
+                                    <form action="rating" method="post">
+                                        <input type="hidden" name="prodId" value="${product.id}"/>
+                                        <div class="rev-header">
+                                            <div class="avt">
+                                                <c:if test="${cus.avatar != null}">
+                                                    <img src="./uploads?fileName=${cus.avatar}" />
+                                                </c:if>
+                                                <c:if test="${cus.avatar == null}">
+                                                    <img src="images/user-64.png" />
+                                                </c:if>
+                                            </div>
+                                            <div class="cus">
+                                                <span class="cus-name">${cus.fullname}</span>
+                                                <span class="rev">
+                                                    <fieldset class="starability-basic" style="min-height: 0">
+                                                        <input type="radio" id="rate1" name="rating" value="1" checked="">
+                                                        <label for="rate1" title="Terrible">1 star</label>
+
+                                                        <input type="radio" id="rate2" name="rating" value="2">
+                                                        <label for="rate2" title="Not good">2 stars</label>
+
+                                                        <input type="radio" id="rate3" name="rating" value="3">
+                                                        <label for="rate3" title="Average">3 stars</label>
+
+                                                        <input type="radio" id="rate4" name="rating" value="4">
+                                                        <label for="rate4" title="Very good">4 stars</label>
+
+                                                        <input type="radio" id="rate5" name="rating" value="5">
+                                                        <label for="rate5" title="Amazing">5 stars</label>
+                                                    </fieldset>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <p class="cmt">
+                                            <textarea class="form-control txt-cmt" name="cmt" cols="2" required=""></textarea>
+                                        </p>
+
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </c:if>
+
                             <c:if test="${product.ratingCollection.size() > 0}">
                                 <c:forEach items="${product.ratingCollection}" var="item" varStatus="loop">
                                     <div class="rev-group <c:if test="${loop.index < product.ratingCollection.size() - 1}">mb-5</c:if>">
                                             <div class="rev-header">
                                                 <div class="avt">
-                                                    <img src="./uploads?fileName=${item.customer.avatar != '' ? item.customer.avatar : 'user-64.png'}" />
+                                                <c:if test="${item.customer.avatar != null}">
+                                                    <img src="./uploads?fileName=${item.customer.avatar}" />
+                                                </c:if>
+                                                <c:if test="${item.customer.avatar == null}">
+                                                    <img src="images/user-64.png" />
+                                                </c:if>
                                             </div>
                                             <div class="cus">
                                                 <span class="cus-name">${item.customer.fullname}</span>
+                                                <span class="rev-date"><fmt:formatDate value="${item.ratingDate}" pattern="dd/MM/yyyy"/></span>
                                                 <span class="rev">
                                                     <c:forEach begin="1" end="${item.stars}">
                                                         <i class="fa fa-star"></i>
@@ -170,8 +220,9 @@
                     </div>
                 </div>
             </div>
-        </div> 
-    </div>
+        </div>
+    </div> 
+
     <!-- Related Products -->
     <section class="padding-top-30 padding-bottom-30">
         <!-- heading -->

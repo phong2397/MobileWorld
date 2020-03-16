@@ -27,14 +27,10 @@ public class UpdateBrandServlet extends HttpServlet {
     @EJB
     private BrandFacadeLocal brandFacade;
 
-    @EJB
-    private CategoryFacadeLocal categoryFacade;
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
-        HttpSession session = request.getSession();
 
         int id = Integer.parseInt(request.getParameter("id"));
         switch (action) {
@@ -59,10 +55,13 @@ public class UpdateBrandServlet extends HttpServlet {
             case "delete-brand":
 
                 Brand b1 = brandFacade.find(id);
-                brandFacade.remove(b1);
-                request.setAttribute("brand", b1);
+                try {
+                    brandFacade.remove(b1);
+                } catch (Exception e) {
+                    request.setAttribute("error", "Can not delete this brand");
+                }
 
-                response.sendRedirect("brand-list");
+                request.getRequestDispatcher("brand-list").forward(request, response);
                 break;
         }
 

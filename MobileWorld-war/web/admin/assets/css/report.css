@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FAFAFA;
+    font: 12pt "Arial";
+}
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.page {
+    width: 21cm;
+    overflow:hidden;
+    min-height:297mm;
+    padding: 2.5cm;
+    margin-left:auto;
+    margin-right:auto;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.subpage {
+    padding: 1cm;
+    border: 5px red solid;
+    height: 237mm;
+    outline: 2cm #FFEAEA solid;
+}
+
+@page {
+    size: A4;
+    margin: 0 ;
+}
+
+@media print {
+    @page {
+        margin: 2cm 0;
+        border: initial;
+        border-radius: initial;
+        width: auto;
+        min-height: min-content;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+
+    .page {
+        padding: 0;
+    }
+
+    button {
+        display: none;
+    }
+
+    canvas {
+        height: auto !important;
+        max-height: none !important;
+        width: 100% !important;
+    }
+}
+
+.logo img {
+    height: 50px;
+}
+
+.company {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-transform: uppercase;
+}
+
+.company .text {
+    font-weight: bold;
+    margin: 0;
+}
+
+.title {
+    margin: 40px 0;
+    font-weight: bold;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+}
+
+.media-btn {
+    position: fixed;
+    top: 100px;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.media-btn button {
+    width: 70px;
+    height: 70px;
+    border: none;
+    margin: 10px 0;
+}
+
+.media-btn button:focus {
+    outline: none;
+}
+
+.media-btn button img {
+    width: 100%;
+    padding: 10px;
+}

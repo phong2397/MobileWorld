@@ -83,7 +83,7 @@
                                                 <c:forEach items="${products}" var="item">
                                                     <tr>
                                                         <td class="text-center">#${item.id}</td>
-                                                        <td style="width: 150px; padding: 20px">
+                                                        <td style="width: 150px; padding: 20px" class="text-center">
                                                             <img class="img-fluid" src="../uploads?fileName=${item.thumb}" /></td>
                                                         <td>${item.name}</td>
                                                         <td>${item.category.name}</td>

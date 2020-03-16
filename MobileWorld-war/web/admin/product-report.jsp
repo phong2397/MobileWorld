@@ -11,80 +11,16 @@
         <title>Report</title>
         <link rel="stylesheet" href="assets/css/adminlte.min.css">
         <link rel="stylesheet" href="plugins/chart.js/Chart.min.css">
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                background-color: #FAFAFA;
-                font: 12pt "Arial";
-            }
-            * {
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-            }
-            .page {
-                width: 21cm;
-                overflow:hidden;
-                min-height:297mm;
-                padding: 2.5cm;
-                margin-left:auto;
-                margin-right:auto;
-                background: white;
-                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            }
-            .subpage {
-                padding: 1cm;
-                border: 5px red solid;
-                height: 237mm;
-                outline: 2cm #FFEAEA solid;
-            }
-
-            @page {
-                size: A4;
-                margin: 0;
-            }
-
-            @media print {
-                @page {
-                    margin: 0;
-                    border: initial;
-                    border-radius: initial;
-                    width: initial;
-                    min-height: initial;
-                    box-shadow: initial;
-                    background: initial;
-                    page-break-after: always;
-                }
-            }
-
-            .logo img {
-                height: 50px;
-            }
-
-            .company {
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-                text-transform: uppercase;
-            }
-
-            .company .text {
-                font-weight: bold;
-                margin: 0;
-            }
-
-            .title {
-                margin: 40px 0;
-                font-weight: bold;
-            }
-
-            .table td,
-            .table th {
-                vertical-align: middle;
-            }
-        </style>
+        <link rel="stylesheet" href="assets/css/report.css">
+        
     </head>
-    <body onload="window.print();">
+    <body>
+        <div class="media-btn">
+            <button class="print-btn rounded-circle elevation-4" title="Print">
+                <img src="assets/img/printer-60.png">
+            </button>
+
+        </div>
         <div id="page" class="page">
             <div class="header row">
                 <div class="logo col-6"><img src="../images/logo.png"/></div>
@@ -97,17 +33,18 @@
             <h5 class="title text-uppercase text-center">Product Report</h5>
 
             <div class="row">
-                <div class="col-6">
-                    <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+
+                <div class="col-12 text-center">
+                    <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
             </div>
 
-            <table class="table table-bordered">
+            <table class="table table-bordered" style="margin-top: 30px">
                 <thead>
                     <tr>
                         <th>No.</th>
                         <th>Name</th>
-                        <th class="text-center">Type</th>
+                        <th class="text-center">Category</th>
                         <th class="text-center">Brand</th>
                         <th class="text-center">Price</th>
                         <th class="text-center">Discount</th>
@@ -143,26 +80,46 @@
     <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/chart.js/Chart.min.js"></script>
     <script>
-        var donutChartCanvas = $('#donutChart').get(0).getContext('2d');
-
-        var donutData = {
-            labels: ${labels},
-            datasets: [
-                {
-                    data: ${data},
-                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-                }
-            ]
+        function random_rgb() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + 1 + ')';
         }
-        var donutOptions = {
-            maintainAspectRatio: false,
+        var cateLabels = ${labels};
+
+
+        var datasets = [];
+
+        var brandDatas = ${brandDatas};
+
+        cateLabels.forEach(function (e, i) {
+            datasets.push({
+                label: e,
+                backgroundColor: random_rgb(),
+                borderColor: 'rgba(210, 214, 222, 1)',
+                data: brandDatas[i]
+            });
+        });
+
+        var barChartCanvas = $('#barChart').get(0).getContext('2d')
+        var barChartData = {
+            labels: ${brandLabels},
+            datasets: datasets
+        }
+
+        var barChartOptions = {
             responsive: true,
+            maintainAspectRatio: false,
+            datasetFill: false
         }
 
-        var donutChart = new Chart(donutChartCanvas, {
-            type: 'doughnut',
-            data: donutData,
-            options: donutOptions
+        var barChart = new Chart(barChartCanvas, {
+            type: 'bar',
+            data: barChartData,
+            options: barChartOptions
         })
+
+        $('.print-btn').click(function () {
+            window.print();
+        });
     </script>
 </html>

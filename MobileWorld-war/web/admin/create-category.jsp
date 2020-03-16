@@ -71,95 +71,77 @@
                             <!-- /.card-header -->
 
                             <div class="card-body">
-                              
-                                    <form action="create-category" method="post" id="loginForm">
-                                        <div class="col-md-6">
 
-                                            <label>Category Name</label>
-                                            <input type="text" id="name" name="name" class="form-control" />
+                                <form action="create-category" method="post" id="loginForm">
+                                    <div class="col-md-12">
 
-                                        </div>
-                                        <div class="col-sm-2 " style="margin-top: 30px">
-                                            <button id="btnPublish" class="btn btn-primary">
-                                                <i class="fas fa-upload mr-2"></i>Publish
-                                            </button>
-                                        </div>
-                                    </form>
-                              
+                                        <label>Category Name</label>
+                                        <input type="text" id="name" name="name" class="form-control" />
+
+                                    </div>
+                                    <div class="col-sm-2 " style="margin-top: 30px">
+                                        <button id="btnPublish" class="btn btn-success">
+                                            <i class="fas fa-plus mr-2"></i>Create
+                                        </button>
+                                    </div>
+                                </form>
+
                             </div><!--/. container-fluid -->
-                            </section>
-                            <!-- /.content -->
                         </div>
-                        <!-- /.content-wrapper -->
-
-                        <!-- Control Sidebar -->
-                        <aside class="control-sidebar control-sidebar-dark">
-                            <!-- Control sidebar content goes here -->
-                        </aside>
-                        <!-- /.control-sidebar -->
-
-                        <!-- Main Footer -->
-                        <%@include file="include/admin-footer.jsp" %>
                     </div>
-                    <!-- ./wrapper -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
 
-                    <!-- REQUIRED SCRIPTS -->
-                    <!-- jQuery -->
-                    <script src="plugins/jquery/jquery.min.js"></script>
-                    <!-- Bootstrap -->
-                    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-                    <!-- overlayScrollbars -->
-                    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-                    <!-- AdminLTE App -->
-                    <script src="assets/js/adminlte.js"></script>
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
 
-                    <!-- OPTIONAL SCRIPTS -->
-                    <script src="assets/js/demo.js"></script>
+            <!-- Main Footer -->
+            <%@include file="include/admin-footer.jsp" %>
+        </div>
+        <!-- ./wrapper -->
 
-                    <!-- PAGE PLUGINS -->
-                    <!-- Select2 -->
-                    <script src="plugins/select2/js/select2.full.min.js"></script>
-                    <!-- InputMask -->
-                    <!--<script src="plugins/moment/moment.min.js"></script>-->
-                    <script src="plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
-                    <!-- iro color picker -->
-                    <script src="plugins/iro/iro.min.js"></script>
-                    <!-- Toastr -->
-                    <script src="plugins/toastr/toastr.min.js"></script>
+        <!-- REQUIRED SCRIPTS -->
+        <!-- jQuery -->
+        <script src="plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="assets/js/adminlte.js"></script>
+        <script src="plugins/toastr/toastr.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+        <script type="text/javascript">
 
-                    !-- PAGE SCRIPTS -->
-                    <script>
-                        var attributeList = ${attributes};
-                    </script>
-                    <script src="assets/js/pages/create-brand.js"></script>
-                    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
-                    <script type="text/javascript">
-
-                        $(document).ready(function () {
+            $(document).ready(function () {
 
 
 
-                        $("#loginForm").validate({
+                $("#loginForm").validate({
 
-                        rules: {
+                    rules: {
                         name: {
-                        required: true, //Required username
+                            required: true, //Required username
 
                         },
-                                logo:{
-                                required: true, //Required logo   
-                                },
+                        logo: {
+                            required: true, //Required logo   
                         },
-                                messages: {
-                                name: {
-                                required: "<font color='red'>Please enter Name's Category</font>",
-                                },
-                                        
-                                },
-                        });
-                    });
-                    </script>
-                    </body>
+                    },
+                    messages: {
+                        name: {
+                            required: "<font color='red'>Please enter Name's Category</font>",
+                        },
 
-                    </html>
+                    },
+                });
+            });
+        </script>
+    </body>
+
+</html>

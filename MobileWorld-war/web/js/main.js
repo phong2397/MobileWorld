@@ -888,8 +888,7 @@ function addToCart(prodId) {
     $.post(url, {
         action: "add",
         id: prodId
-    }, function (resp) {
-        var data = JSON.parse(resp);
+    }, function (data) {
         toastr.success('Your cart updated');
         updateHeaderCart(data);
     });
@@ -901,8 +900,7 @@ function changeCartQuantity(prodId, newQuantity) {
         action: "update",
         id: prodId,
         quantity: newQuantity
-    }, function (resp) {
-        var data = JSON.parse(resp);
+    }, function (data) {
         updateHeaderCart(data);
         $(`[item=${prodId}] .total-price`).text('$' + data.subTotal.toLocaleString('en-US'));
         $('.grand-total span').text('$' + data.total.toLocaleString('en-US'));
@@ -914,11 +912,14 @@ function removeCartItem(prodId) {
     $.post(url, {
         action: "remove",
         id: prodId
-    }, function (resp) {
-        var data = JSON.parse(resp);
+    }, function (data) {
         $(`[item=${prodId}]`).remove();
         updateHeaderCart(data);
         $('.grand-total span').text('$' + data.total.toLocaleString('en-US'));
+
+
+        data.items == 0 ? $('.pay-method').css('display', 'none') : $('.pay-method').css('display', 'block');
+
     });
 }
 

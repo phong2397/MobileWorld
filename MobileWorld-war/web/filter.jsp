@@ -38,7 +38,7 @@
                             <!-- Product img -->
                             <div class="media-left">
                                 <div class="item-img">
-                                    <img class="img-responsive" src="./uploads?fileName=${item.thumb}" >
+                                    <a href="./product?id=${item.id}"><img class="img-responsive" src="./uploads?fileName=${item.thumb}" ></a>
                                 </div>
                             </div>                  
                             <!-- Content -->
@@ -59,7 +59,7 @@
                                         </ul>
                                     </div>                      
                                     <!-- Content Right -->
-                                    <div class="col-sm-5 text-center"> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
+                                    <div class="col-sm-5 text-center">
                                         <div class="position-center-center">
                                             <div class="price">
                                                 <c:if test="${item.discount != null}">

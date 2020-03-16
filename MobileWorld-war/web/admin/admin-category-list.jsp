@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
         <!-- DataTables -->
         <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="assets/css/adminlte.min.css">
         <!-- Google Font: Source Sans Pro -->
@@ -48,17 +49,12 @@
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid">
-
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title">Category List</h5>
-                                    </div>
                                     <!-- /.card-header -->
-                                    <div class="card-body p-0">
-                                        <table id="productsTable" class="table table-hover">
+                                    <div class="card-body">
+                                        <table class="table table-hover" data-order='[[0, "desc"]]'>
                                             <thead>
                                                 <tr>
                                                     <th class="text-center text-muted">#ID</th>
@@ -69,7 +65,7 @@
                                             <tbody>
                                                 <c:forEach items="${categories}" var="item">
                                                     <tr>
-                                                        <td class="text-center">#${item.id}</td>
+                                                        <td class="text-center">${item.id}</td>
                                                         <td>${item.name}</td>
                                                         <td class="text-center">
                                                             <a href="update-category?action=find&id=${item.id}"    class="btn btn-warning btn-sm">Update</a>
@@ -115,11 +111,12 @@
         <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- overlayScrollbars -->
         <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <script src="plugins/toastr/toastr.min.js"></script>
         <!-- AdminLTE App -->
         <script src="assets/js/adminlte.js"></script>
 
         <!-- OPTIONAL SCRIPTS -->
-        <script src="assets/js/demo.js"></script>
+        <script src="assets/js/main.js"></script>
 
         <!-- PAGE PLUGINS -->
         <!-- DataTables -->
@@ -128,16 +125,14 @@
 
         <!-- PAGE SCRIPTS -->
         <script>
-                                                        $(function () {
-                                                            $("#productsTable").DataTable({
-                                                                "paging": true,
-                                                                "lengthChange": false,
-                                                                "searching": false,
-                                                                "ordering": true,
-                                                                "info": true,
-                                                                "autoWidth": false,
-                                                            });
-                                                        });
+            $(function () {
+                $(".table").DataTable(dataTableOptions);
+                
+            });
+            
+            <c:if test="${error != null}">
+                toastr.error('${error}');
+            </c:if>
         </script>
     </body>
 </html>
