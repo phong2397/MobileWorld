@@ -60,7 +60,7 @@
 
                 address: {
                     minlength: 6,
-                    maxlength: 40,
+                    maxlength: 100,
                     required: true,
 
                 },
