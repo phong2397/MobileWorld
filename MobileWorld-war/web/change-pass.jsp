@@ -64,6 +64,7 @@
                 repass: {
                     required: true,
                     equalTo: "#pass",
+                     maxlength: 30,
 
                 },
             },
@@ -244,8 +245,8 @@
 
                         <form  class="fs-form-change-pass" action="changepass?action=change-pass" method="post" id="loginForm">    
                             <input name="id" type="hidden" value="${id}">
-                            <span class="text-success">${message}</span>
-                            <span  class="text-danger">${error}</span>
+                            <span class="text-success" style="font-size: 20px;font-weight: bolder;font-family: inherit">${message}</span>
+                            <span  class="text-danger" style="font-size: 20px;font-weight: bolder;font-family: inherit">${error}</span>
                             <ul class="form-list row">
 
 

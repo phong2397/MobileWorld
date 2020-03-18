@@ -183,7 +183,7 @@ src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.
                 address: {
                       required:true,
                     minlength: 6,
-                    maxlength: 30,
+                    maxlength: 100,
                
                 },
 
@@ -197,7 +197,7 @@ src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.
                 },
                 address: {
                     required: "<font color='red'>Please enter Address</font>",
-                    maxlength: "<font color='red'>Address must be maximun at least 30 characters long<font>",
+                    maxlength: "<font color='red'>Address must be maximun at least 50 characters long<font>",
                     minlength: "<font color='red'>Address must be at least 6 characters long</font>",
                 },
                 phone: {

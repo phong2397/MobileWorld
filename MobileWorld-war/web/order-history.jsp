@@ -17,6 +17,15 @@
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
 <style>
+    .badge-danger{
+        color: #fff;
+        background-color:#dc3545
+    }
+      .badge-success {
+    color: #fff;
+    background-color: #28a745;
+}
+    
     .account-title{
         color: #333333;
 
@@ -201,7 +210,7 @@
                                     <c:forEach items="${orderList}" var="item">
                                         <tr>
 
-                                            <td align="center"><a href="order?action=order-detail&id=${item.id}">Order No.${item.id}</a></td>
+                                            <td align="center" ><a href="order?action=order-detail&id=${item.id}" class="btn-link ">Order No.${item.id}</a></td>
                                             <td align="center">
                                                 <div class="item-price" name ="username">${item.customer.fullname}</div>
                                             </td>
@@ -220,17 +229,17 @@
 
                                             <td align="center">
                                          
-                                    <p>Availability: 
+                                  
                                         <c:if test="${item.state == 1}">
-                                            <span class="in-stock">PENDING</span>
+                                            <span class="badge badge-danger">PENDING</span>
                                         </c:if>
 
                                         <c:if test="${item.state == 2}">
-                                            <span class="text-warning">SUCCESS</span>
+                                            <span class=" badge badge-success">VERIFIED</span>
                                         </c:if>
 
                                        
-                                    </p>
+                               
                                
                                             </td>
                                         </tr> 
@@ -245,10 +254,8 @@
 
                             </tbody>
                         </table>
-
-                        <div class="table-btn">
-                            <a href="User?action=update&id=${curAcc.id}" class="btn-black">Back To Account</a>
-                        </div>
+<div class="pro-btn"> <a href="User?action=update&id=${curAcc.id}"  class="btn-round btn-light">Back to Account</a>  </div>
+                        
                     </div>                          
                 </div>
             </div>

@@ -274,6 +274,7 @@
         margin-bottom: 20px
     }
 
+   
 </style>
 
 <!-- MY ACCOUNT -->
@@ -286,7 +287,7 @@
                     <h4 class="account-title"><span class="fa fa-chevron-right"></span>Change Your Personal Details</h4>                                                                  
                     <div class="account-form">
                         <form  class="form-update-user" method="POST" action="UpdateUser" id="register">      
-                            <span class="text-success">${message}</span>
+                            <span class="text-success" style="font-size: 20px;font-weight: bolder;font-family: inherit">${message}</span>
                             <ul class="row">
 
                                 <input type="hidden" name="id" value="${user.id}" />
