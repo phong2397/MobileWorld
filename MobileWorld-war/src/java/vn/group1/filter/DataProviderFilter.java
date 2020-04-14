@@ -25,7 +25,7 @@ import vn.group1.sb.CategoryFacadeLocal;
  *
  * @author junev
  */
-@WebFilter(filterName = "DataProviderFilter", urlPatterns = {"/home", "/product", "/filter", "/cart", "/payment", "/login", "/User", "/UpdateUser", "/changepass", "/order"})
+@WebFilter(filterName = "DataProviderFilter", urlPatterns = {"/home", "/product", "/filter", "/cart", "/payment", "/login", "/forgot-pass", "/User", "/UpdateUser", "/changepass", "/order", "/repass"})
 public class DataProviderFilter implements Filter {
 
     @EJB
@@ -48,7 +48,7 @@ public class DataProviderFilter implements Filter {
         HttpSession session = req.getSession();
         int items = 0;
         int total = 0;
-        
+
         req.setAttribute("cus", session.getAttribute("curAcc"));
 
         if (session.getAttribute("cart") != null) {

@@ -34,8 +34,8 @@
                     <span id="price-min">0</span>
                     <span id="price-max">5000</span> 
                 </div>
-                <input type="hidden" name="minPrice" value="<%= request.getParameter("minPrice") != null ? request.getParameter("minPrice") : 0 %>"/>
-                <input type="hidden" name="maxPrice" value="<%= request.getParameter("maxPrice")!= null ? request.getParameter("maxPrice") : 5000 %>"/>
+                <input type="hidden" name="minPrice" value="<%= request.getParameter("minPrice") != null ? request.getParameter("minPrice") : 0%>"/>
+                <input type="hidden" name="maxPrice" value="<%= request.getParameter("maxPrice") != null ? request.getParameter("maxPrice") : 5000%>"/>
                 <button type="submit" class="btn-round" >Filter</button> 
             </div>   
         </div>

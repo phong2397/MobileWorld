@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     var pkg = grunt.file.readJSON("package.json");
 
@@ -27,16 +27,16 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     patterns: [{
-                        match: "VERSION",
-                        replacement: "<%= pkg.version %>"
-                    }]
+                            match: "VERSION",
+                            replacement: "<%= pkg.version %>"
+                        }]
                 },
                 files: [{
-                    expand: true,
-                    flatten: true,
-                    src: ["<%= concat.dist.dest %>", "<%= concat.nodeps.dest %>"],
-                    dest: "./"
-                }]
+                        expand: true,
+                        flatten: true,
+                        src: ["<%= concat.dist.dest %>", "<%= concat.nodeps.dest %>"],
+                        dest: "./"
+                    }]
             }
         },
         concat: {

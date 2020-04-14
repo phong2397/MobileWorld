@@ -149,5 +149,5 @@ public class Rating implements Serializable {
     public String toString() {
         return "vn.group1.entity.Rating[ id=" + id + " ]";
     }
-    
+
 }

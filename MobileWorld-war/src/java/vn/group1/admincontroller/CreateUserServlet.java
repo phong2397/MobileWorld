@@ -32,9 +32,9 @@ import vn.group1.sb.ProductFacadeLocal;
 @WebServlet(name = "CreateUserServlet", urlPatterns = {"/admin/create-user"})
 public class CreateUserServlet extends HttpServlet {
 
-       @EJB
+    @EJB
     private CustomerFacadeLocal customerFacade;
-    
+
     @EJB
     private AttributeFacadeLocal attributeFacade;
 
@@ -62,19 +62,17 @@ public class CreateUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-       request.setAttribute("mainMenu", "user-list");
+
+        request.setAttribute("mainMenu", "user-list");
         request.setAttribute("subMenu", "create-user");
-       
 
         request.getRequestDispatcher("create-user.jsp").forward(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         session.setAttribute("uid", 1);
         int uid = (int) session.getAttribute("uid");
         Admin user = adminFacade.find(uid);

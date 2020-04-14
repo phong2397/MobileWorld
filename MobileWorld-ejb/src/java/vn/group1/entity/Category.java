@@ -122,5 +122,5 @@ public class Category implements Serializable {
     public String toString() {
         return "vn.group1.entity.Category[ id=" + id + " ]";
     }
-    
+
 }

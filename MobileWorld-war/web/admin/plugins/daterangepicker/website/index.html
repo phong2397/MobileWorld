@@ -96,7 +96,7 @@
                              data-ad-slot="8963174596"
                              data-ad-format="auto"></ins>
                         <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
+                            (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
                     </div>
 
@@ -128,9 +128,9 @@
                             <label>Produces:</label>
                             <input type="text" name="dates" class="form-control pull-right" />
                             <script>
-                                $(function() {
-                                    $('input[name="dates"]').daterangepicker({ startDate: moment(), endDate: moment().add(2, 'day')});
-                                })
+                            $(function () {
+                                $('input[name="dates"]').daterangepicker({startDate: moment(), endDate: moment().add(2, 'day')});
+                            })
                             </script>
                         </div>
                     </div>
@@ -154,13 +154,13 @@
                                 <input type="text" name="daterange" class="form-control" value="1/01/2018 - 01/15/2018" />
 
                                 <script>
-                                $(function() {
-                                  $('input[name="daterange"]').daterangepicker({
+                            $(function () {
+                                $('input[name="daterange"]').daterangepicker({
                                     opens: 'left'
-                                  }, function(start, end, label) {
+                                }, function (start, end, label) {
                                     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-                                  });
                                 });
+                            });
                                 </script>
                             </div>
                         </div>
@@ -179,16 +179,16 @@
                                 <input type="text" name="datetimes" class="form-control pull-right" />
 
                                 <script>
-                                $(function() {
-                                  $('input[name="datetimes"]').daterangepicker({
+                            $(function () {
+                                $('input[name="datetimes"]').daterangepicker({
                                     timePicker: true,
                                     startDate: moment().startOf('hour'),
                                     endDate: moment().startOf('hour').add(32, 'hour'),
                                     locale: {
-                                      format: 'M/DD hh:mm A'
+                                        format: 'M/DD hh:mm A'
                                     }
-                                  });
                                 });
+                            });
                                 </script>
                             </div>
                         </div>
@@ -207,17 +207,17 @@
                                 <input type="text" name="birthday" class="form-control pull-right" value="10/24/1984" />
 
                                 <script>
-                                $(function() {
-                                  $('input[name="birthday"]').daterangepicker({
+                            $(function () {
+                                $('input[name="birthday"]').daterangepicker({
                                     singleDatePicker: true,
                                     showDropdowns: true,
                                     minYear: 1901,
-                                    maxYear: parseInt(moment().format('YYYY'),10)
-                                  }, function(start, end, label) {
+                                    maxYear: parseInt(moment().format('YYYY'), 10)
+                                }, function (start, end, label) {
                                     var years = moment().diff(start, 'years');
                                     alert("You are " + years + " years old!");
-                                  });
                                 });
+                            });
                                 </script>
                             </div>
                         </div>
@@ -240,31 +240,31 @@
                                 </div>
 
                                 <script type="text/javascript">
-                                $(function() {
+                            $(function () {
 
-                                    var start = moment().subtract(29, 'days');
-                                    var end = moment();
+                                var start = moment().subtract(29, 'days');
+                                var end = moment();
 
-                                    function cb(start, end) {
-                                        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                                function cb(start, end) {
+                                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                                }
+
+                                $('#reportrange').daterangepicker({
+                                    startDate: start,
+                                    endDate: end,
+                                    ranges: {
+                                        'Today': [moment(), moment()],
+                                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                                     }
+                                }, cb);
 
-                                    $('#reportrange').daterangepicker({
-                                        startDate: start,
-                                        endDate: end,
-                                        ranges: {
-                                           'Today': [moment(), moment()],
-                                           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                                           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                                           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                                           'This Month': [moment().startOf('month'), moment().endOf('month')],
-                                           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                                        }
-                                    }, cb);
+                                cb(start, end);
 
-                                    cb(start, end);
-                                    
-                                });
+                            });
                                 </script>
 
                             </div>
@@ -282,26 +282,26 @@
                             <div class="col-4">
                                 <label>Produces:</label>
                                 <input type="text" name="datefilter" class="form-control pull-right" value="" />
-                                 
+
                                 <script type="text/javascript">
-                                $(function() {
+                            $(function () {
 
-                                  $('input[name="datefilter"]').daterangepicker({
-                                      autoUpdateInput: false,
-                                      locale: {
-                                          cancelLabel: 'Clear'
-                                      }
-                                  });
-
-                                  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-                                      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-                                  });
-
-                                  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-                                      $(this).val('');
-                                  });
-
+                                $('input[name="datefilter"]').daterangepicker({
+                                    autoUpdateInput: false,
+                                    locale: {
+                                        cancelLabel: 'Clear'
+                                    }
                                 });
+
+                                $('input[name="datefilter"]').on('apply.daterangepicker', function (ev, picker) {
+                                    $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+                                });
+
+                                $('input[name="datefilter"]').on('cancel.daterangepicker', function (ev, picker) {
+                                    $(this).val('');
+                                });
+
+                            });
                                 </script>
                             </div>
                         </div>
@@ -423,7 +423,7 @@
                     <script src="https://gist.github.com/dangrossman/8ff9b1220c9b5682e8bd.js"></script>
 
                     <br/>
-                    
+
                     <ul class="nobullets">
                         <li>
                             <code>setStartDate(Date or string)</code>: Sets the date range picker's currently selected start date to the provided date
@@ -482,203 +482,203 @@
                     <h1 style="margin-top: 30px"><a id="config" href="#config">Configuration Generator</a></h1>
 
                     <div class="well configurator">
-                                       
-                      <form>
-                          <div class="row">
 
-                            <div class="col-md-4">
+                        <form>
+                            <div class="row">
 
-                              <div class="form-group">
-                                <label for="parentEl">parentEl</label>
-                                <input type="text" class="form-control" id="parentEl" value="" placeholder="body">
-                              </div>
+                                <div class="col-md-4">
 
-                              <div class="form-group">
-                                <label for="startDate">startDate</label>
-                                <input type="text" class="form-control" id="startDate" value="07/01/2017">
-                              </div>
+                                    <div class="form-group">
+                                        <label for="parentEl">parentEl</label>
+                                        <input type="text" class="form-control" id="parentEl" value="" placeholder="body">
+                                    </div>
 
-                              <div class="form-group">
-                                <label for="endDate">endDate</label>
-                                <input type="text" class="form-control" id="endDate" value="07/15/2017">
-                              </div>
+                                    <div class="form-group">
+                                        <label for="startDate">startDate</label>
+                                        <input type="text" class="form-control" id="startDate" value="07/01/2017">
+                                    </div>
 
-                              <div class="form-group">
-                                <label for="minDate">minDate</label>
-                                <input type="text" class="form-control" id="minDate" value="" placeholder="MM/DD/YYYY">
-                              </div>
+                                    <div class="form-group">
+                                        <label for="endDate">endDate</label>
+                                        <input type="text" class="form-control" id="endDate" value="07/15/2017">
+                                    </div>
 
-                              <div class="form-group">
-                                <label for="maxDate">maxDate</label>
-                                <input type="text" class="form-control" id="maxDate" value="" placeholder="MM/DD/YYYY">
-                              </div>
+                                    <div class="form-group">
+                                        <label for="minDate">minDate</label>
+                                        <input type="text" class="form-control" id="minDate" value="" placeholder="MM/DD/YYYY">
+                                    </div>
 
-                              <div class="form-group">
-                                <label for="opens">opens</label>
-                                <select id="opens" class="form-control">
-                                  <option value="right" selected>right</option>
-                                  <option value="left">left</option>
-                                  <option value="center">center</option>
-                                </select>
-                              </div>
+                                    <div class="form-group">
+                                        <label for="maxDate">maxDate</label>
+                                        <input type="text" class="form-control" id="maxDate" value="" placeholder="MM/DD/YYYY">
+                                    </div>
 
-                              <div class="form-group">
-                                <label for="drops">drops</label>
-                                <select id="drops" class="form-control">
-                                  <option value="down" selected>down</option>
-                                  <option value="up">up</option>
-                                </select>
-                              </div>
+                                    <div class="form-group">
+                                        <label for="opens">opens</label>
+                                        <select id="opens" class="form-control">
+                                            <option value="right" selected>right</option>
+                                            <option value="left">left</option>
+                                            <option value="center">center</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="drops">drops</label>
+                                        <select id="drops" class="form-control">
+                                            <option value="down" selected>down</option>
+                                            <option value="up">up</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4">
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="showDropdowns"> showDropdowns
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="minYear">minYear</label>
+                                        <input type="text" class="form-control" id="minYear" value="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="maxYear">maxYear</label>
+                                        <input type="text" class="form-control" id="maxYear" value="">
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="showWeekNumbers"> showWeekNumbers
+                                        </label>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="showISOWeekNumbers"> showISOWeekNumbers
+                                        </label>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="singleDatePicker"> singleDatePicker
+                                        </label>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="timePicker"> timePicker
+                                        </label>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="timePicker24Hour"> timePicker24Hour
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="timePickerIncrement">timePickerIncrement (in minutes)</label>
+                                        <input type="text" class="form-control" id="timePickerIncrement" value="1">
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="timePickerSeconds"> timePickerSeconds
+                                        </label>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="maxSpan"> maxSpan (example value)
+                                        </label>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="locale"> locale (example settings)
+                                        </label>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="autoApply"> autoApply
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4">
+
+                                    <div class="form-group">
+                                        <label for="buttonClasses">buttonClasses</label>
+                                        <input type="text" class="form-control" id="buttonClasses" value="btn btn-sm">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="applyButtonClasses">applyButtonClasses</label>
+                                        <input type="text" class="form-control" id="applyButtonClasses" value="btn-primary">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="cancelButtonClasses">cancelButtonClasses</label>
+                                        <input type="text" class="form-control" id="cancelButtonClasses" value="btn-default">
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="ranges"> ranges (with example predefined ranges)
+                                        </label>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="alwaysShowCalendars"> alwaysShowCalendars
+                                        </label>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="showCustomRangeLabel" checked="checked"> showCustomRangeLabel
+                                        </label>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="linkedCalendars" checked="checked"> linkedCalendars
+                                        </label>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="autoUpdateInput" checked="checked"> autoUpdateInput
+                                        </label>
+                                    </div>
+
+                                </div>
 
                             </div>
-                            <div class="col-md-4">
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="showDropdowns"> showDropdowns
-                                </label>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="minYear">minYear</label>
-                                <input type="text" class="form-control" id="minYear" value="">
-                              </div>
-
-                              <div class="form-group">
-                                <label for="maxYear">maxYear</label>
-                                <input type="text" class="form-control" id="maxYear" value="">
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="showWeekNumbers"> showWeekNumbers
-                                </label>
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="showISOWeekNumbers"> showISOWeekNumbers
-                                </label>
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="singleDatePicker"> singleDatePicker
-                                </label>
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="timePicker"> timePicker
-                                </label>
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="timePicker24Hour"> timePicker24Hour
-                                </label>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="timePickerIncrement">timePickerIncrement (in minutes)</label>
-                                <input type="text" class="form-control" id="timePickerIncrement" value="1">
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="timePickerSeconds"> timePickerSeconds
-                                </label>
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="maxSpan"> maxSpan (example value)
-                                </label>
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="locale"> locale (example settings)
-                                </label>
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="autoApply"> autoApply
-                                </label>
-                              </div>
-
-                            </div>
-                            <div class="col-md-4">
-
-                              <div class="form-group">
-                                <label for="buttonClasses">buttonClasses</label>
-                                <input type="text" class="form-control" id="buttonClasses" value="btn btn-sm">
-                              </div>
-
-                              <div class="form-group">
-                                <label for="applyButtonClasses">applyButtonClasses</label>
-                                <input type="text" class="form-control" id="applyButtonClasses" value="btn-primary">
-                              </div>
-
-                              <div class="form-group">
-                                <label for="cancelButtonClasses">cancelButtonClasses</label>
-                                <input type="text" class="form-control" id="cancelButtonClasses" value="btn-default">
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="ranges"> ranges (with example predefined ranges)
-                                </label>
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="alwaysShowCalendars"> alwaysShowCalendars
-                                </label>
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="showCustomRangeLabel" checked="checked"> showCustomRangeLabel
-                                </label>
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="linkedCalendars" checked="checked"> linkedCalendars
-                                </label>
-                              </div>
-
-                              <div class="checkbox">
-                                <label>
-                                  <input type="checkbox" id="autoUpdateInput" checked="checked"> autoUpdateInput
-                                </label>
-                              </div>
-
-                            </div>
-
-                          </div>
-                      </form>
+                        </form>
 
                     </div>
 
                     <div class="row">
 
-                      <div class="col-4 demo">
-                        <div style="position: relative">
-                            <h2 style="margin-bottom: 15px">Your Date Range Picker</h2>
-                            <input type="text" id="config-demo" class="form-control">
+                        <div class="col-4 demo">
+                            <div style="position: relative">
+                                <h2 style="margin-bottom: 15px">Your Date Range Picker</h2>
+                                <input type="text" id="config-demo" class="form-control">
+                            </div>
                         </div>
-                      </div>
 
-                      <div class="col-8">
-                        <h2 style="margin-bottom: 15px">Your Configuration to Copy</h2>
+                        <div class="col-8">
+                            <h2 style="margin-bottom: 15px">Your Configuration to Copy</h2>
 
-                        <div class="well">
-                          <textarea id="config-text" style="height: 300px; width: 100%; padding: 10px"></textarea>
+                            <div class="well">
+                                <textarea id="config-text" style="height: 300px; width: 100%; padding: 10px"></textarea>
+                            </div>
                         </div>
-                      </div>
 
                     </div>
 
@@ -706,19 +706,21 @@
 
                     <div id="disqus_thread"></div>
                     <script type="text/javascript">
-                        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                        var disqus_url = 'http://www.dangrossman.info/2012/08/20/a-date-range-picker-for-twitter-bootstrap/';
-                        var disqus_identifier = '1045 http://www.dangrossman.info/?p=1045';
-                        var disqus_container_id = 'disqus_thread';
-                        var disqus_shortname = 'dangrossman';
-                        var disqus_title = "A Date Range Picker for Bootstrap";
+                            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                            var disqus_url = 'http://www.dangrossman.info/2012/08/20/a-date-range-picker-for-twitter-bootstrap/';
+                            var disqus_identifier = '1045 http://www.dangrossman.info/?p=1045';
+                            var disqus_container_id = 'disqus_thread';
+                            var disqus_shortname = 'dangrossman';
+                            var disqus_title = "A Date Range Picker for Bootstrap";
 
-                        /* * * DON'T EDIT BELOW THIS LINE * * */
-                        (function() {
-                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                        })();
+                            /* * * DON'T EDIT BELOW THIS LINE * * */
+                            (function () {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript';
+                                dsq.async = true;
+                                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                            })();
                     </script>
                     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
@@ -731,9 +733,33 @@
         <!-- End W3Counter Tracking Code -->
 
         <script type="text/javascript">
-        var im_domain = 'awio';
-        var im_project_id = 48;
-        (function(e,t){window._improvely=[];var n=e.getElementsByTagName("script")[0];var r=e.createElement("script");r.type="text/javascript";r.src="https://"+im_domain+".iljmp.com/improvely.js";r.async=true;n.parentNode.insertBefore(r,n);if(typeof t.init=="undefined"){t.init=function(e,t){window._improvely.push(["init",e,t])};t.goal=function(e){window._improvely.push(["goal",e])};t.conversion=function(e){window._improvely.push(["conversion",e])};t.label=function(e){window._improvely.push(["label",e])}}window.improvely=t;t.init(im_domain,im_project_id)})(document,window.improvely||[])
+                            var im_domain = 'awio';
+                            var im_project_id = 48;
+                            (function (e, t) {
+                                window._improvely = [];
+                                var n = e.getElementsByTagName("script")[0];
+                                var r = e.createElement("script");
+                                r.type = "text/javascript";
+                                r.src = "https://" + im_domain + ".iljmp.com/improvely.js";
+                                r.async = true;
+                                n.parentNode.insertBefore(r, n);
+                                if (typeof t.init == "undefined") {
+                                    t.init = function (e, t) {
+                                        window._improvely.push(["init", e, t])
+                                    };
+                                    t.goal = function (e) {
+                                        window._improvely.push(["goal", e])
+                                    };
+                                    t.conversion = function (e) {
+                                        window._improvely.push(["conversion", e])
+                                    };
+                                    t.label = function (e) {
+                                        window._improvely.push(["label", e])
+                                    }
+                                }
+                                window.improvely = t;
+                                t.init(im_domain, im_project_id)
+                            })(document, window.improvely || [])
         </script>
 
         <div id="footer">

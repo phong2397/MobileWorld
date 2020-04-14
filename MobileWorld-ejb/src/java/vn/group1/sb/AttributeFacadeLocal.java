@@ -30,7 +30,7 @@ public interface AttributeFacadeLocal {
     List<Attribute> findRange(int[] range);
 
     int count();
-    
+
     List getKeyAndName();
-    
+
 }

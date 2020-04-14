@@ -125,13 +125,13 @@
 
         <!-- PAGE SCRIPTS -->
         <script>
-            $(function () {
-                $(".table").DataTable(dataTableOptions);
-                
-            });
-            
+                                                                $(function () {
+                                                                    $(".table").DataTable(dataTableOptions);
+
+                                                                });
+
             <c:if test="${error != null}">
-                toastr.error('${error}');
+                                                                toastr.error('${error}');
             </c:if>
         </script>
     </body>

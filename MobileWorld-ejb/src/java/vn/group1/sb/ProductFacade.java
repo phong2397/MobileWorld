@@ -57,8 +57,6 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
         }
         em.getEntityManagerFactory().getCache().evictAll();
     }
-    
-    
 
     @Override
     public void create(Product entity) {
@@ -114,7 +112,7 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
         }
         em.getEntityManagerFactory().getCache().evictAll();
     }
-    
+
     public boolean delete(Product entity) {
         try {
             utx.begin();
@@ -131,7 +129,7 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
             }
             return false;
         }
-        
+
     }
 
     @Override
@@ -243,7 +241,6 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
         return q.setMaxResults(limit).getResultList();
     }
 
-    
     @Override
     public List<Product> getPopularProducts(int limit) {
         TypedQuery<Product> q = em.createQuery("SELECT p FROM Product p INNER JOIN OrderDetail o ON p.id = o.product.id GROUP BY p ORDER BY SUM(o.quantity) DESC", Product.class);
@@ -280,6 +277,5 @@ public class ProductFacade extends AbstractFacade<Product> implements ProductFac
         TypedQuery<Product> q = em.createQuery("SELECT p FROM Product p WHERE p.brand.id = :brandId", Product.class);
         return q.setParameter("brandId", brandId).getResultList();
     }
-    
-    
+
 }

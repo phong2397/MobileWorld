@@ -25,13 +25,12 @@ public class AdminReviewServlet extends HttpServlet {
     @EJB
     private RatingFacadeLocal ratingFacade;
 
-   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-     
+
         request.setAttribute("mainMenu", "review-list");
-      
+
         request.setAttribute("review", ratingFacade.findAll());
 
         request.getRequestDispatcher("admin-review-list.jsp").forward(request, response);

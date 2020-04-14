@@ -289,5 +289,5 @@ public class Product implements Serializable {
     public String toString() {
         return "vn.group1.entity.Product[ id=" + id + " ]";
     }
-    
+
 }

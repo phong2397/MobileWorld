@@ -12,10 +12,10 @@ import vn.group1.entity.Product;
  * @author junev
  */
 public class CartItem {
+
     private Product product;
     private int quantity;
     private int finalPrice;
-
 
     /**
      * @return the product
@@ -65,5 +65,4 @@ public class CartItem {
         this.finalPrice = finalPrice;
     }
 
-  
 }

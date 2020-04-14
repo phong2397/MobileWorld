@@ -46,15 +46,16 @@ public class OrderDetailServlet extends HttpServlet {
     @EJB
     private CustomerFacadeLocal customerFacade;
 
-       @EJB
+    @EJB
     private ProductFacadeLocal productFacade;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         HttpSession session = request.getSession();
 
-  request.setAttribute("products", productFacade.findAll());
+        request.setAttribute("products", productFacade.findAll());
         request.setAttribute("categories", categoryFacade.findAll());
         request.setAttribute("brands", brandFacade.findAll());
         Customer cus;

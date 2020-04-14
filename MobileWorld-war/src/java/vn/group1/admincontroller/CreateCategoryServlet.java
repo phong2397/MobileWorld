@@ -74,15 +74,14 @@ public class CreateCategoryServlet extends HttpServlet {
         }
         request.setAttribute("categories", categoryFacade.findAll());
 
-
         String name = request.getParameter("name");
-        
+
         Category b = new Category();
         b.setName(name);
 
         categoryFacade.create(b);
-      
- request.getRequestDispatcher("category-list").forward(request, response);
+
+        request.getRequestDispatcher("category-list").forward(request, response);
     }
 
     /**
@@ -96,5 +95,3 @@ public class CreateCategoryServlet extends HttpServlet {
     }// </editor-fold>
 
 }
-
-

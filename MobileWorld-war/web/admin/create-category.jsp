@@ -122,15 +122,15 @@
         <script type="text/javascript">
 
             $(document).ready(function () {
-               $.each($.validator.methods, function (key, value) {
-        $.validator.methods[key] = function () {           
-            if(arguments.length > 0) {
-                arguments[0] = $.trim(arguments[0]);
-            }
+                $.each($.validator.methods, function (key, value) {
+                    $.validator.methods[key] = function () {
+                        if (arguments.length > 0) {
+                            arguments[0] = $.trim(arguments[0]);
+                        }
 
-            return value.apply(this, arguments);
-        };
-    });
+                        return value.apply(this, arguments);
+                    };
+                });
 
                 $("#loginForm").validate({
 
@@ -139,7 +139,7 @@
                             required: true, //Required username
                             minlength: 2, //Password must be of at least 6 chars
                             maxlength: 30,
-                           
+
                         }
                     },
                     messages: {

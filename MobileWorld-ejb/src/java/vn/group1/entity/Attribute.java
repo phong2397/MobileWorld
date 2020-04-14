@@ -135,5 +135,5 @@ public class Attribute implements Serializable {
     public String toString() {
         return "vn.group1.entity.Attribute[ id=" + id + " ]";
     }
-    
+
 }

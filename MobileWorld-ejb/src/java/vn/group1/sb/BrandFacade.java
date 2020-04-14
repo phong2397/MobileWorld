@@ -28,5 +28,5 @@ public class BrandFacade extends AbstractFacade<Brand> implements BrandFacadeLoc
     public BrandFacade() {
         super(Brand.class);
     }
-    
+
 }

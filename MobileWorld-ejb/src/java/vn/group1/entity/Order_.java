@@ -163,5 +163,5 @@ public class Order_ implements Serializable {
     public String toString() {
         return "vn.group1.entity.Order_[ id=" + id + " ]";
     }
-    
+
 }

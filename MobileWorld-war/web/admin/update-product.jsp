@@ -251,11 +251,11 @@
 
         !-- PAGE SCRIPTS -->
         <script>
-            var id = ${product.id};
-            var images = ${images};
-            
-            var startPromotion = '${startDate}';
-            var endPromotion = '${endDate}';
+                                                                               var id = ${product.id};
+                                                                               var images = ${images};
+
+                                                                               var startPromotion = '${startDate}';
+                                                                               var endPromotion = '${endDate}';
         </script>
         <script src="assets/js/pages/update-product.js"></script>
 

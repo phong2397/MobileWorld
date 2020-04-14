@@ -50,7 +50,7 @@
                                 <b><fmt:formatNumber type="currency" currencySymbol="$" value="${item.price}" maxFractionDigits="0" /> </b>
                             </div>
                         </c:if> 
-                       <a href="#" target="${item.id}" class="cart-btn"><i class="icon-basket-loaded"></i></a>
+                        <a href="#" target="${item.id}" class="cart-btn"><i class="icon-basket-loaded"></i></a>
                     </article>
                 </div>
             </c:forEach>

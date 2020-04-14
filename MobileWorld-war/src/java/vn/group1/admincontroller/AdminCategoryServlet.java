@@ -28,7 +28,6 @@ public class AdminCategoryServlet extends HttpServlet {
     @EJB
     private AdminFacadeLocal adminFacade;
 
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,7 +39,7 @@ public class AdminCategoryServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setAttribute("mainMenu", "category");
         request.setAttribute("subMenu", "category-list");
         request.setAttribute("categories", categoryFacade.findAll());

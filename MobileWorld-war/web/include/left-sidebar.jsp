@@ -8,7 +8,7 @@
                 <ul>
                     <c:forEach items="${categories}" var="item">
                         <li><a href="./product?cateId=${item.id}"> ${item.name}</a></li>
-                    </c:forEach>
+                        </c:forEach>
                 </ul>
             </div>
         </div>

@@ -17,13 +17,13 @@ import vn.group1.entity.Product;
 public interface ProductFacadeLocal {
 
     void create(Product product);
-    
+
     void edit(Product product);
 
     boolean update(Product product);
 
     void remove(Product product);
-    
+
     boolean delete(Product product);
 
     Product find(Object id);
@@ -37,21 +37,21 @@ public interface ProductFacadeLocal {
     List<Product> filter(List<String> categories, List<String> brands, int minPrice, int maxPrice);
 
     List<Product> search(String txt, int cateId);
-    
+
     List<Product> findByPageNumber(int pageNumber, int limit);
-    
+
     List<Product> getPromotions(int limit);
-    
+
     List<Product> getLastestProducts(int limit);
-    
-    List<Product> getPopularProducts(int limit); 
-    
-    List<Product> getRelatedProducts(Product product, int limit); 
-    
+
+    List<Product> getPopularProducts(int limit);
+
+    List<Product> getRelatedProducts(Product product, int limit);
+
     List<Product> getProducts(List<Integer> ids);
+
     List<Product> getProductsByCate(int cateId);
+
     List<Product> getProductsByBrand(int brandId);
-    
-    
-    
+
 }

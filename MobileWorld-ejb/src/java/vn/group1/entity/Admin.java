@@ -196,5 +196,5 @@ public class Admin implements Serializable {
     public String toString() {
         return "vn.group1.entity.Admin[ id=" + id + " ]";
     }
-    
+
 }

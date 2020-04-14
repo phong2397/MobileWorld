@@ -38,5 +38,5 @@ public class AttributeFacade extends AbstractFacade<Attribute> implements Attrib
         List list = q.getResultList();
         return list;
     }
-    
+
 }

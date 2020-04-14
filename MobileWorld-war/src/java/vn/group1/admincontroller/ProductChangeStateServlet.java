@@ -28,9 +28,9 @@ public class ProductChangeStateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       int id = Integer.parseInt(req.getParameter("id"));
-       int state = Integer.parseInt(req.getParameter("state"));
-       
+        int id = Integer.parseInt(req.getParameter("id"));
+        int state = Integer.parseInt(req.getParameter("state"));
+
         Product p = productFacade.find(id);
         p.setState(state);
         productFacade.edit(p);
@@ -39,7 +39,5 @@ public class ProductChangeStateServlet extends HttpServlet {
         writer.flush();
         writer.close();
     }
-
-  
 
 }

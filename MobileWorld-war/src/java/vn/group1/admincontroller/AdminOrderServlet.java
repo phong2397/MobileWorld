@@ -29,12 +29,10 @@ public class AdminOrderServlet extends HttpServlet {
     @EJB
     private AdminFacadeLocal adminFacade;
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
+
         request.setAttribute("mainMenu", "orders");
         request.setAttribute("subMenu", "order-list");
         request.setAttribute("order", order_Facade.findAll());

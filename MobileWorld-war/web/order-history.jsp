@@ -21,11 +21,11 @@
         color: #fff;
         background-color:#dc3545
     }
-      .badge-success {
-    color: #fff;
-    background-color: #28a745;
-}
-    
+    .badge-success {
+        color: #fff;
+        background-color: #28a745;
+    }
+
     .account-title{
         color: #333333;
 
@@ -228,19 +228,19 @@
                                             </td>
 
                                             <td align="center">
-                                         
-                                  
-                                        <c:if test="${item.state == 1}">
-                                            <span class="badge badge-danger">PENDING</span>
-                                        </c:if>
 
-                                        <c:if test="${item.state == 2}">
-                                            <span class=" badge badge-success">VERIFIED</span>
-                                        </c:if>
 
-                                       
-                               
-                               
+                                                <c:if test="${item.state == 1}">
+                                                    <span class="badge badge-danger">PENDING</span>
+                                                </c:if>
+
+                                                <c:if test="${item.state == 2}">
+                                                    <span class=" badge badge-success">VERIFIED</span>
+                                                </c:if>
+
+
+
+
                                             </td>
                                         </tr> 
                                     </c:forEach>
@@ -254,8 +254,8 @@
 
                             </tbody>
                         </table>
-<div class="pro-btn"> <a href="User?action=update&id=${curAcc.id}"  class="btn-round btn-light">Back to Account</a>  </div>
-                        
+                        <div class="pro-btn"> <a href="User?action=update&id=${curAcc.id}"  class="btn-round btn-light">Back to Account</a>  </div>
+
                     </div>                          
                 </div>
             </div>

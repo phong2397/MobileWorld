@@ -19,7 +19,7 @@ import vn.group1.sb.ProductFacadeLocal;
  *
  * @author junev
  */
-@WebServlet(name = "ProductAdminServlet", urlPatterns = { "/admin", "/admin/product-list"})
+@WebServlet(name = "ProductAdminServlet", urlPatterns = {"/admin", "/admin/product-list"})
 public class ProductServlet extends HttpServlet {
 
     @EJB

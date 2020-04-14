@@ -39,7 +39,7 @@ function uploadImage(el) {
                 $galleryContainer.find('.image-chooser').remove();
                 data.forEach(function (item, i) {
                     $galleryContainer.append(
-                        `<div class="image-preview col-md-3">
+                            `<div class="image-preview col-md-3">
                             <span class="close" title="Remove" onclick="removeImage(this, '${item}')">×</span>
                             <div class="image" style="background-image:url(../uploads?fileName=${item})">
                                 <input hidden type="text" name="images" value="${item}"/>
@@ -78,7 +78,7 @@ function removeImage(el, image) {
 
 $('.data-table').on('length.dt', function (e, settings, len) {
     localStorage.setItem('pageLength', len);
-    
+
 });
 var pageLength = localStorage.getItem('pageLength');
 

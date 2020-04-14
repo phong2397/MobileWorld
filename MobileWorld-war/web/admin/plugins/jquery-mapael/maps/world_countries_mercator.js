@@ -86,10 +86,14 @@
                     var self = this;
 
                     // Project map boundaries with projection (only once for performance)
-                    if (self._xLeftPrime === undefined) self._xLeftPrime = self._projectLongitude(self.leftLongitude);
-                    if (self._xRightPrime === undefined) self._xRightPrime = self._projectLongitude(self.rightLongitude);
-                    if (self._yTopPrime === undefined) self._yTopPrime = self._projectLatitude(self.topLatitude);
-                    if (self._yBottomPrime === undefined) self._yBottomPrime = self._projectLatitude(self.bottomLatitude);
+                    if (self._xLeftPrime === undefined)
+                        self._xLeftPrime = self._projectLongitude(self.leftLongitude);
+                    if (self._xRightPrime === undefined)
+                        self._xRightPrime = self._projectLongitude(self.rightLongitude);
+                    if (self._yTopPrime === undefined)
+                        self._yTopPrime = self._projectLatitude(self.topLatitude);
+                    if (self._yBottomPrime === undefined)
+                        self._yBottomPrime = self._projectLatitude(self.bottomLatitude);
 
                     // Compute x' and y' (projection-specific value)
                     var xPrime = self._projectLongitude(lon);

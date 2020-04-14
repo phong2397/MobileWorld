@@ -94,7 +94,7 @@ public class OrderServlet extends HttpServlet {
             orderDetailFacade.create(od);
             orderDetails.add(od);
         }
-        
+
         order.setOrderDetailCollection(orderDetails);
         session.removeAttribute("cart");
         req.setAttribute("order", order);

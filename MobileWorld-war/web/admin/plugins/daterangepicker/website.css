@@ -71,12 +71,12 @@ label {
 }
 
 .gist {
-   overflow: auto;
+    overflow: auto;
 }
 
 .gist .blob-wrapper.data {
-   max-height: 350px;
-   overflow: auto;
+    max-height: 350px;
+    overflow: auto;
 }
 
 .list-group-item {

@@ -25,7 +25,7 @@ public class AdminUserServlet extends HttpServlet {
     @EJB
     private AdminFacadeLocal adminFacade;
 
-   @EJB
+    @EJB
     private CustomerFacadeLocal customerFacade;
 
     /**
@@ -39,11 +39,11 @@ public class AdminUserServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
         request.setAttribute("mainMenu", "customer");
         request.setAttribute("subMenu", "user-list");
         request.setAttribute("customers", customerFacade.findAll());
-        
+
         request.getRequestDispatcher("admin-user-list.jsp").forward(request, response);
     }
 

@@ -131,7 +131,7 @@ public class CreateProductServlet extends HttpServlet {
         }
 
         productFacade.create(p);
-        
+
         PrintWriter writer = response.getWriter();
         writer.print("successed");
         writer.flush();

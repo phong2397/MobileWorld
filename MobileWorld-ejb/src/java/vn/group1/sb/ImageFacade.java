@@ -28,5 +28,5 @@ public class ImageFacade extends AbstractFacade<Image> implements ImageFacadeLoc
     public ImageFacade() {
         super(Image.class);
     }
-    
+
 }

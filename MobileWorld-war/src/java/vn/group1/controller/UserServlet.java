@@ -60,9 +60,9 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("categories", categoryFacade.findAll());
         request.setAttribute("brands", brandFacade.findAll());
         Customer cus;
-    
+
         switch (action) {
-            case "insert":{
+            case "insert": {
 
                 Customer newcus = new Customer();
                 newcus.setUsername(request.getParameter("username"));
@@ -89,9 +89,8 @@ public class UserServlet extends HttpServlet {
 
                 break;
             }
-            case "update":{
-                
-            
+            case "update": {
+
                 if (session.getAttribute("curAcc") == null) {
                     response.sendRedirect("login.jsp");
                 } else {
@@ -106,42 +105,46 @@ public class UserServlet extends HttpServlet {
 
                 break;
             }
-            case "login":{
+            case "login": {
 
                 String username = request.getParameter("username").trim();
                 String pass = request.getParameter("pass").trim();
 
                 Customer curAcc = customerFacade.checklogin(username, pass);
-                if (curAcc != null) {
-
-                    session.setAttribute("curAcc", curAcc);
-                    response.sendRedirect("home");
-
-                } else {
-                    request.setAttribute("error", " Username and Password Invalid");
+                if (curAcc.getIsInactive() == false) {
+                    request.setAttribute("error1", " Username is Blocking");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
+                } else {
+                    if (curAcc != null) {
 
+                        session.setAttribute("curAcc", curAcc);
+                        response.sendRedirect("home");
+
+                    } else {
+                        request.setAttribute("error", " Username and Password Invalid");
+                        request.getRequestDispatcher("login.jsp").forward(request, response);
+
+                    }
                 }
                 break;
             }
-            case "logout":{
+            case "logout": {
 
                 session.invalidate();
                 response.sendRedirect("");
                 break;
             }
-            case "order-history":{
-            
+            case "order-history": {
+
                 if (session.getAttribute("curAcc") == null) {
                     response.sendRedirect("login.jsp");
                 } else {
                     int id = Integer.parseInt(request.getParameter("id"));
-                      cus = customerFacade.find(id);
-                        
-                    
-                  request.setAttribute("orderList",order_Facade.findAllOrderByCusId(cus.getId()));
+                    cus = customerFacade.find(id);
 
-                 request.getRequestDispatcher("order-history.jsp").forward(request, response);
+                    request.setAttribute("orderList", order_Facade.findAllOrderByCusId(cus.getId()));
+
+                    request.getRequestDispatcher("order-history.jsp").forward(request, response);
                 }
             }
 

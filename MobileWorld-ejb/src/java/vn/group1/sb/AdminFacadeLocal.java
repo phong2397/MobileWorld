@@ -29,6 +29,6 @@ public interface AdminFacadeLocal {
     List<Admin> findRange(int[] range);
 
     int count();
-    
+
     Admin checklogin(String username, String pass);
 }

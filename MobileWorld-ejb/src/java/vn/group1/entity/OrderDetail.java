@@ -132,5 +132,5 @@ public class OrderDetail implements Serializable {
     public String toString() {
         return "vn.group1.entity.OrderDetail[ id=" + id + " ]";
     }
-    
+
 }

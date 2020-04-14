@@ -31,7 +31,7 @@ public class AdminBrandServlet extends HttpServlet {
 //chan vl
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setAttribute("mainMenu", "brand");
         request.setAttribute("subMenu", "brand-list");
         request.setAttribute("brands", brandFacade.findAll());

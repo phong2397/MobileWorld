@@ -73,7 +73,7 @@ public class UpdateProductServlet extends HttpServlet {
         request.setAttribute("attributes", attributeFacade.findAll());
 
         Product p = productFacade.find(Integer.parseInt(sId));
-        
+
         Gson gson = new Gson();
         List<String> images = new ArrayList<>();
         for (Image image : p.getImageCollection()) {
@@ -124,7 +124,7 @@ public class UpdateProductServlet extends HttpServlet {
 
         Brand brand = brandFacade.find(brandId);
         Category cate = categoryFacade.find(cateId);
-        
+
         Product p = productFacade.find(id);
         p.setName(name);
         p.setPrice(price);
@@ -164,7 +164,7 @@ public class UpdateProductServlet extends HttpServlet {
             } catch (ParseException ex) {
                 ex.printStackTrace();
             }
-        }else {
+        } else {
             p.setDiscount(null);
             p.setStartDate(null);
             p.setEndDate(null);

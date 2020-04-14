@@ -28,7 +28,6 @@ import vn.group1.sb.ProductFacadeLocal;
 @WebServlet(name = "CreateCateServlet", urlPatterns = {"/admin/create-cate"})
 public class CreateCateServlet extends HttpServlet {
 
-    
     @EJB
     private AttributeFacadeLocal attributeFacade;
 
@@ -44,8 +43,6 @@ public class CreateCateServlet extends HttpServlet {
     @EJB
     private CategoryFacadeLocal categoryFacade;
 
-   
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -58,7 +55,7 @@ public class CreateCateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setAttribute("mainMenu", "category");
         request.setAttribute("subMenu", "create-cate");
         request.setAttribute("categories", categoryFacade.findAll());
@@ -85,17 +82,15 @@ public class CreateCateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
 
         String name = request.getParameter("name");
-        
+
         Category c = new Category();
         c.setName(name);
-      
 
         categoryFacade.create(c);
-      
- request.getRequestDispatcher("cate-list").forward(request, response);
+
+        request.getRequestDispatcher("cate-list").forward(request, response);
     }
 
     /**

@@ -29,5 +29,5 @@ public interface RatingFacadeLocal {
     List<Rating> findRange(int[] range);
 
     int count();
-    
+
 }

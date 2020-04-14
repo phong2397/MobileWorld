@@ -32,7 +32,8 @@ public class Order_Facade extends AbstractFacade<Order_> implements Order_Facade
     public Order_Facade() {
         super(Order_.class);
     }
-      @Override
+
+    @Override
     public List<Order_> findAllOrderByCusId(int id) {
         try {
             Query q = getEntityManager().createQuery("SELECT o FROM Order_ o WHERE o.customer.id = :id ORDER BY o.orderDate DESC", Order_.class);
@@ -42,8 +43,8 @@ public class Order_Facade extends AbstractFacade<Order_> implements Order_Facade
             return null;
         }
     }
-    
-     @Override
+
+    @Override
     public List<OrderDetail> getAllOrderDetailByOrderID(int id) {
         try {
             Query q = getEntityManager().createQuery("SELECT od FROM OrderDetail od WHERE od.order.id = :id", OrderDetail.class);

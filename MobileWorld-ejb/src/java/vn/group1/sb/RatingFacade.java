@@ -28,5 +28,5 @@ public class RatingFacade extends AbstractFacade<Rating> implements RatingFacade
     public RatingFacade() {
         super(Rating.class);
     }
-    
+
 }

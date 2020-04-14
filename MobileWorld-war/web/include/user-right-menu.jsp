@@ -9,19 +9,19 @@
 <!--<h6>Reviews and Ratings</h6>-->
 <style>
     .checkout-steps div {
-    background: #f5f5f5;
-    padding: 20px 20px 30px;
-}
+        background: #f5f5f5;
+        padding: 20px 20px 30px;
+    }
 
 </style>
 <div>
     <ul class="account-list">
 
         <li><a href="User?action=update&id=${curAcc.id}"><i class="fa fa-edit"></i> My Account</a></li>                                        
-     <li><a href="changepass?action=findid&id=${user.id}">  <i class="fa fa-edit"></i> Change Password</a></li>
- 
+        <li><a href="changepass?action=findid&id=${user.id}">  <i class="fa fa-edit"></i> Change Password</a></li>
+
         <li><a href="User?action=order-history&id=${curAcc.id}"> <i class="fa fa-edit"></i> Order History</a></li>
-       
+
     </ul>                                
 </div>
 

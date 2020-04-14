@@ -30,7 +30,7 @@ public class OrderDetailFacade extends AbstractFacade<OrderDetail> implements Or
     public OrderDetailFacade() {
         super(OrderDetail.class);
     }
-    
+
     @Override
     public List<OrderDetail> getAllOrderDetailByOrderID(int id) {
         try {

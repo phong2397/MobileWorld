@@ -10,9 +10,9 @@ package vn.group1.cliententity;
  * @author junev
  */
 public class Spec {
+
     private int attributeId;
     private String value;
-
 
     /**
      * @return the value

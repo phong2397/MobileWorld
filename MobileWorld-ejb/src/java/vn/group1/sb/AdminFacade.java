@@ -28,12 +28,13 @@ public class AdminFacade extends AbstractFacade<Admin> implements AdminFacadeLoc
     public AdminFacade() {
         super(Admin.class);
     }
-  @Override
+
+    @Override
     public Admin checklogin(String username, String pass) {
         try {
             return em.createQuery("select c from Admin c where c.username = :username and c.password = :pass", Admin.class).setParameter("username", username).setParameter("pass", pass).getSingleResult();
         } catch (Exception e) {
             return null;
         }
-    }  
+    }
 }

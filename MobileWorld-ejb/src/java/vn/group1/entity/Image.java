@@ -109,5 +109,5 @@ public class Image implements Serializable {
     public String toString() {
         return "vn.group1.entity.Image[ id=" + id + " ]";
     }
-    
+
 }

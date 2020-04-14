@@ -11,7 +11,7 @@
         <title>Report</title>
         <link rel="stylesheet" href="assets/css/adminlte.min.css">
         <link rel="stylesheet" href="assets/css/report.css">
-        
+
     </head>
     <body>
         <div class="media-btn">

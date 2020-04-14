@@ -38,10 +38,10 @@ public class AdminCateServlet extends HttpServlet {
 
     @EJB
     private CategoryFacadeLocal categoryFacade;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setAttribute("mainMenu", "category");
         request.setAttribute("subMenu", "cate-list");
         request.setAttribute("categories", categoryFacade.findAll());

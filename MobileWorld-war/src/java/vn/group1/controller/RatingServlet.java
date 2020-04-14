@@ -36,16 +36,16 @@ public class RatingServlet extends HttpServlet {
         int prodId = Integer.parseInt(req.getParameter("prodId"));
         int stars = Integer.parseInt(req.getParameter("rating"));
         String cmt = req.getParameter("cmt");
-        
+
         Customer cus = (Customer) req.getSession().getAttribute("curAcc");
-        
+
         Rating r = new Rating();
         r.setProduct(productFacade.find(prodId));
         r.setCustomer(cus);
         r.setStars(stars);
         r.setComment(cmt);
         r.setRatingDate(new Date());
-        
+
         ratingFacade.create(r);
         String url = req.getHeader("referer");
         resp.setStatus(200);

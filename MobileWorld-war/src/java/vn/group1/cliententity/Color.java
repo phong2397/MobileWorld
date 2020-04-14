@@ -10,6 +10,7 @@ package vn.group1.cliententity;
  * @author junev
  */
 public class Color {
+
     private String hexCode;
     private String name;
 

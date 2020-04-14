@@ -120,5 +120,5 @@ public class Specification implements Serializable {
     public String toString() {
         return "vn.group1.entity.Specification[ id=" + id + " ]";
     }
-    
+
 }

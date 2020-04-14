@@ -156,35 +156,35 @@ src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.
             return param.test(value);
         }, "Invalid regular expression format");
 
-       $.each($.validator.methods, function (key, value) {
-        $.validator.methods[key] = function () {           
-            if(arguments.length > 0) {
-                arguments[0] = $.trim(arguments[0]);
-            }
+        $.each($.validator.methods, function (key, value) {
+            $.validator.methods[key] = function () {
+                if (arguments.length > 0) {
+                    arguments[0] = $.trim(arguments[0]);
+                }
 
-            return value.apply(this, arguments);
-        };
-    });
+                return value.apply(this, arguments);
+            };
+        });
 
         $("#register").validate({
 
             rules: {
                 fullname: {
-                    required:true,
+                    required: true,
                     minlength: 2,
                     maxlength: 30,
-                    
+
                 },
-                phone: {    required:true,
+                phone: {required: true,
                     pattern: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/i,
-         
+
                 },
 
                 address: {
-                      required:true,
+                    required: true,
                     minlength: 6,
                     maxlength: 100,
-               
+
                 },
 
             },

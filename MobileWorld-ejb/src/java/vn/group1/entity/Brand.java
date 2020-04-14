@@ -111,5 +111,5 @@ public class Brand implements Serializable {
     public String toString() {
         return "vn.group1.entity.Brand[ id=" + id + " ]";
     }
-    
+
 }

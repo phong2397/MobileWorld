@@ -10,7 +10,7 @@
     <div class="container"> 
 
         <h5>Order Successfully</h5>
-        
+
         <div class="pay-method check-out"> 
 
             <!-- Shopping Cart -->
@@ -38,14 +38,14 @@
                 </ul>
             </c:forEach>
 
-            
+
             <!-- Delivery infomation -->
             <div class="heading margin-top-50">
                 <h2>Delivery infomation</h2>
                 <hr>
             </div>
 
-            
+
             <!-- Information -->
             <ul class="row check-item infoma">
                 <li class="col-sm-3">

@@ -37,7 +37,7 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
         return q.setParameter("phone", phone)
                 .getSingleResult();
     }
-    
+
     @Override
     public Customer findUserByUsername(String username) {
         Query q = getEntityManager().createQuery("SELECT C FROM Customer c WHERE c.username = :username", Customer.class);
@@ -63,6 +63,30 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
         Customer findID = find(id);
         findID.setPassword(newpass);
         getEntityManager().merge(findID);
+    }
+
+    @Override
+    public Customer findUserByEmail(String email) {
+
+        Query q = getEntityManager().createQuery("SELECT C FROM Customer c WHERE c.email = :email", Customer.class);
+        q.setParameter("email", email);
+        try {
+            return (Customer) q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Customer findUserByToken(String token) {
+
+        Query q = getEntityManager().createQuery("SELECT C FROM Customer c WHERE c.repassToken = :token", Customer.class);
+        q.setParameter("token", token);
+        try {
+            return (Customer) q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

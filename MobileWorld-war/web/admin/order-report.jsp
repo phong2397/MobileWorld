@@ -54,7 +54,14 @@
 
 
                             <td>${item.customer.fullname}</td>
-                            <td>${item.state}</td>
+                            <td class="text-center">
+                                <c:if test="${item.state == 1}">
+                                    <span class="badge badge-danger">PENDING</span>
+                                </c:if>
+
+                                <c:if test="${item.state == 2}">
+                                    <span class=" badge badge-success">VERIFIED</span>
+                                </c:if></td>
 
                             <td style="white-space: nowrap">
                                 <fmt:formatDate value="${item.orderDate}" pattern="dd-MM-yyyy"/>

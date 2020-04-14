@@ -64,7 +64,7 @@
                 repass: {
                     required: true,
                     equalTo: "#pass",
-                     maxlength: 30,
+                    maxlength: 30,
 
                 },
             },

@@ -31,7 +31,8 @@ public interface Order_FacadeLocal {
     List<Order_> findRange(int[] range);
 
     int count();
-    
+
     List<Order_> findAllOrderByCusId(int id);
+
     List<OrderDetail> getAllOrderDetailByOrderID(int id);
 }

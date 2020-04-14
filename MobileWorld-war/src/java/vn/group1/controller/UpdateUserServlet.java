@@ -53,20 +53,19 @@ public class UpdateUserServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
 
-                String avatar = request.getParameter("avatar");
+        String avatar = request.getParameter("avatar");
 
-                
-           
         Customer cus = customerFacade.find(id);
         cus.setUsername(username);
         cus.setFullname(fullname);
         cus.setPhone(phone);
         cus.setAddress(address);
         cus.setDateCreated(new Date());
-     if (avatar != null) {
-                    cus.setAvatar(avatar);
-                }
-              
+        cus.setIsInactive(Boolean.TRUE);
+        if (avatar != null) {
+            cus.setAvatar(avatar);
+        }
+
         customerFacade.edit(cus);
 
         request.setAttribute("categories", categoryFacade.findAll());

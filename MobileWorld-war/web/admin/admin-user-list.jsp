@@ -67,6 +67,7 @@
                                                     <th>Full Name</th>
                                                     <th>Phone</th>
                                                     <th>Address</th>
+                                                    <th>Action</th>
                                                     <th>Date Created</th>
                                                 </tr>
                                             </thead>
@@ -83,6 +84,12 @@
                                                         <td>${item.fullname}</td>
                                                         <td>${item.phone}</td>
                                                         <td>${item.address}</td>
+                                                        <td>
+                                                            <div class="custom-control custom-switch">
+                                                                <input type="checkbox" class="custom-control-input cbx-active" id="switch${item.id}" ${item.isInactive  ? "checked" : ""} target="${item.id}">
+                                                                <label class="custom-control-label" for="switch${item.id}">${item.isInactive ? "Active" : "InActive"}</label>
+                                                            </div>
+                                                        </td>
                                                         <td>
                                                             <fmt:formatDate value="${item.dateCreated}" pattern="dd-MM-yyyy"/>
                                                         </td>
@@ -129,7 +136,7 @@
         <!-- AdminLTE App -->
         <script src="assets/js/adminlte.js"></script>
 
-     
+        <script src="plugins/toastr/toastr.min.js"></script>
         <!-- OPTIONAL SCRIPTS -->
         <script src="assets/js/main.js"></script>
 
@@ -144,6 +151,18 @@
                 $(".data-table").DataTable(dataTableOptions);
             });
 
+            $('.cbx-active').change(function (e) {
+                var checkbox = $(this);
+                var id = checkbox.attr('target');
+                var value = this.checked;
+                $.post('./user-change-state', {
+                    id: id,
+                    value: value
+                }, function (resp) {
+                    checkbox.next().html(resp);
+                    toastr.success('User state updated');
+                });
+            });
             <c:if test="${error != null}">
             toastr.error('${error}');
             </c:if>

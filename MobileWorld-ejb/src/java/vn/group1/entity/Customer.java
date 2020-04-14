@@ -45,6 +45,21 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Customer.findByDateCreated", query = "SELECT c FROM Customer c WHERE c.dateCreated = :dateCreated")})
 public class Customer implements Serializable {
 
+    @Size(max = 100)
+    @Column(name = "repassToken")
+    private String repassToken;
+
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 50)
+    @Column(name = "Email")
+    private String email;
+
+    @Column(name = "IsInactive")
+    private Boolean isInactive;
+    @Size(max = 50)
+    @Column(name = "ReasonBanned")
+    private String reasonBanned;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -212,5 +227,37 @@ public class Customer implements Serializable {
     public String toString() {
         return "vn.group1.entity.Customer[ id=" + id + " ]";
     }
-    
+
+    public Boolean getIsInactive() {
+        return isInactive;
+    }
+
+    public void setIsInactive(Boolean isInactive) {
+        this.isInactive = isInactive;
+    }
+
+    public String getReasonBanned() {
+        return reasonBanned;
+    }
+
+    public void setReasonBanned(String reasonBanned) {
+        this.reasonBanned = reasonBanned;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRepassToken() {
+        return repassToken;
+    }
+
+    public void setRepassToken(String repassToken) {
+        this.repassToken = repassToken;
+    }
+
 }

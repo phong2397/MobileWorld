@@ -29,6 +29,6 @@ public interface OrderDetailFacadeLocal {
     List<OrderDetail> findRange(int[] range);
 
     int count();
-    
+
     List<OrderDetail> getAllOrderDetailByOrderID(int id);
 }
